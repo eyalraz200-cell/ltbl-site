@@ -25,3 +25,7 @@
 .row > *{position:static}
 .crop{overflow:hidden}
 .cutout{will-change:transform}
+
+/* folds 8–9: shabbat (12649:850) and footer (12649:939) */
+.fold .darkener--25{background:rgba(0,0,0,.25)}
+.footer-learn a{color:inherit;text-decoration:none;cursor:pointer}

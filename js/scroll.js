@@ -37,10 +37,25 @@
     if (tl.duration() < 1) tl.to({}, { duration: 1 - tl.duration() });   // every fold pins for the full range
   });
 
+  // nav: the current fold is the last one whose pin has started (covers jumps that skip onToggle, e.g. restored scroll)
+  function syncNav(){
+    if (!LTBL.navSetCurrent) return;
+    const y = scrollY; let cur = 0;
+    folds.forEach((f, i) => { const st = ScrollTrigger.getById(f.id); if (st && y >= st.start - 1) cur = i; });
+    LTBL.navSetCurrent(cur);
+  }
+  ScrollTrigger.addEventListener('scrollEnd', syncNav);
+  ScrollTrigger.addEventListener('refresh', syncNav);
+
   window.LTBL.scrollTo = id => {
     const st = ScrollTrigger.getById(id); if (!st) return;
     gsap.to(window, { scrollTo: st.start, duration: 1, ease: 'power2.inOut', onComplete: () => ScrollTrigger.refresh() });
   };
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]'); if (!a) return;
+    e.preventDefault();                                   // no instant hash jumps
+    const id = a.getAttribute('href').slice(1); if (id) LTBL.scrollTo(id);
+  });
   if (document.readyState === 'complete') ScrollTrigger.refresh();
   else addEventListener('load', () => ScrollTrigger.refresh());
 })();
