@@ -1,7 +1,7 @@
 // Once-on-load intro: the five סרטון frames (12649:1136, 1121, 1105, 1073, 1047) then the hero rest state (12649:1019).
 // Every offset below is (Figma position in that frame) − (position in the hero rest frame), in stage px.
 (function(){
-  const hero = document.querySelector('#fold-hero .stage');
+  const hero = document.querySelector('#fold-hero');   // the fold: clouds sit in .backdrop, titles in .stage
   const introClouds = hero.querySelector('.intro-clouds');
   let skip = !LTBL.isDesktop() || LTBL.reducedMotion() || LTBL.restoreY > 10 || location.search.includes('nointro');
 

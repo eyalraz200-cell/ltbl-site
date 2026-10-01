@@ -18,8 +18,8 @@
 *{box-sizing:border-box;margin:0}
 html,body{background:var(--ground);color:var(--white);overflow-x:hidden}
 img{display:block;max-width:none}
-.h192{font:400 144px/0.8 var(--font-heading);text-transform:uppercase;text-shadow:var(--aura-heading);text-align:center;white-space:nowrap;letter-spacing:.03em}
-.h48{font:400 36px/0.8 var(--font-heading);letter-spacing:.03em;text-transform:uppercase;text-align:center}
+.h192{font:400 120px/153.6px var(--font-heading);text-transform:uppercase;text-shadow:var(--aura-heading);text-align:center;white-space:nowrap;letter-spacing:.07em}
+.h48{font:400 30px/38.4px var(--font-heading);letter-spacing:.07em;text-transform:uppercase;text-align:center}
 .b36{font:400 36px/1.6 var(--font-body);text-shadow:var(--aura-body);text-align:center}
 .desktop-only-plate{display:none}
 @media (max-width:1023px){
@@ -31,21 +31,33 @@ img{display:block;max-width:none}
   width:calc(var(--stage-w) * 1px);height:calc(var(--stage-h) * 1px);
   transform:translate(-50%,-50%) scale(var(--stage-scale,1));
   transform-origin:center center;
-  overflow:hidden;   /* nothing paints on the bars: travellers parked outside the frame stay invisible until they enter */
+  /* no clip: the frame edge now sits over scenery, so a traveller mid-flight must not be cut there; the fold clips at the viewport */
 }
 .stage > *{position:absolute}
+/* backdrop: the same 1728x1117 frame scaled to COVER the viewport (--bleed-scale), so scenery fills the window with no bars;
+   its outer edges are cropped by the fold while the content stage above stays contained. Figma coordinates unchanged. */
+.backdrop{
+  position:absolute;left:50%;top:50%;
+  width:calc(var(--stage-w) * 1px);height:calc(var(--stage-h) * 1px);
+  transform:translate(-50%,-50%) scale(var(--bleed-scale,1));
+  transform-origin:center center;
+}
+.backdrop > *{position:absolute}
 html.is-intro{overflow:hidden}
 /* day nav: a 1728-wide strip scaled with the stage; labels 48px heading, padding 0 199 (node 12661:1380) */
 .daynav{position:fixed;left:50%;top:var(--stage-top,0px);z-index:10;width:calc(1728px * var(--stage-scale,1));height:calc(39px * var(--stage-scale,1));transform:translateX(-50%);pointer-events:none}
 .daynav__list{list-style:none;padding:0;margin:0}
-.daynav__item{position:absolute;top:0;font:400 calc(36px * var(--stage-scale,1))/0.8 var(--font-heading);letter-spacing:.03em;text-transform:uppercase;color:var(--white);white-space:nowrap;opacity:0;transition:opacity .3s;pointer-events:none;cursor:pointer;background:none;border:0;padding:0}
+.daynav__item{position:absolute;top:0;font:400 calc(30px * var(--stage-scale,1))/calc(38.4px * var(--stage-scale,1)) var(--font-heading);letter-spacing:.07em;text-transform:uppercase;color:var(--white);white-space:nowrap;opacity:0;transition:opacity .3s;pointer-events:none;cursor:pointer;background:none;border:0;padding:0}
 .daynav__item.is-prev{left:calc(199px * var(--stage-scale,1))}
 .daynav__item.is-next{right:calc(199px * var(--stage-scale,1))}
 .daynav__item.is-near{opacity:.5;pointer-events:auto}
 .daynav__item.is-current{left:50%;transform:translateX(-50%);opacity:1;text-shadow:var(--aura-body)}
 /* heading sizes (RFC Vintage Apothecary, line-height .8, aura heading) and body sizes (Abyssinica SIL, 1.6, aura body) */
-.hd{font-family:var(--font-heading);font-weight:400;line-height:0.8;letter-spacing:.03em;text-transform:uppercase;text-align:center;text-shadow:var(--aura-heading);color:var(--white);white-space:nowrap}
-.h128{font-size:96px}.h96{font-size:72px}.h72{font-size:54px}.h60{font-size:45px}.h48x{font-size:36px}.h36x{font-size:27px}
+.hd{font-family:var(--font-heading);font-weight:400;letter-spacing:.07em;text-transform:uppercase;text-align:center;text-shadow:var(--aura-heading);color:var(--white);white-space:nowrap}
+/* RFC's caps sit on the bottom of its line box; Pica's sit near the top — pad .306 of the line box so baselines land where Figma's do */
+.h192,.h48,.hd,.daynav__item{padding-top:.306lh}
+/* heading sizes: line box = Figma size × .8 (so every box and line step stays verbatim); glyphs at 62.5% because IM Fell DW Pica's caps are taller than RFC's */
+.h128{font-size:80px;line-height:102.4px}.h96{font-size:60px;line-height:76.8px}.h72{font-size:45px;line-height:57.6px}.h60{font-size:37.5px;line-height:48px}.h48x{font-size:30px;line-height:38.4px}.h36x{font-size:22.5px;line-height:28.8px}
 .hd.aura-body{text-shadow:var(--aura-body)}
 .bd{font-family:var(--font-body);font-weight:400;line-height:1.6;text-align:center;text-shadow:var(--aura-body);color:var(--white)}
 .b30{font-size:30px}.b24{font-size:24px}

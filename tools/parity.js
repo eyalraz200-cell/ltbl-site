@@ -11,7 +11,7 @@ const expect = JSON.parse(fs.readFileSync(__dirname + '/parity-expect.json', 'ut
     const stage = document.querySelector('#' + fold + ' .stage'); const s = stage.getBoundingClientRect();
     const out = {};
     for (const sel of Object.keys(expect)) {
-      const el = stage.querySelector(sel); if (!el) { out[sel] = null; continue; }
+      const el = document.querySelector('#' + fold).querySelector(sel)   /* scenery sits in .backdrop, measured at 1728x1117 where both scales are 1 */; if (!el) { out[sel] = null; continue; }
       const r = el.getBoundingClientRect(); out[sel] = [r.left - s.left, r.top - s.top, r.width, r.height].map(v => Math.round(v * 10) / 10);
     }
     return out;

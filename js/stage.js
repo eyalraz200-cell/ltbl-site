@@ -5,6 +5,8 @@
     // contain (Eyal's pick, 2026-10-01, over cover / fit-height): the whole 1728x1117 frame is always visible;
     // the --ground colour of .fold shows as bars where the window is a different shape
     const s = Math.min(innerWidth / W, innerHeight / H);
+    // backdrop (.backdrop, scenery + darkener) covers instead: no bars, scenery edges crop, content never does
+    root.style.setProperty('--bleed-scale', Math.max(innerWidth / W, innerHeight / H).toFixed(4));
     root.style.setProperty('--stage-scale', s.toFixed(4));
     root.style.setProperty('--stage-top', ((innerHeight - H * s) / 2).toFixed(2) + 'px');   // where the frame's top edge sits (the nav hangs there)
     return s;
