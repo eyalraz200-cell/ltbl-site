@@ -17,6 +17,7 @@
 }
 *{box-sizing:border-box;margin:0}
 html,body{background:var(--ground);color:var(--white);overflow-x:hidden}
+html{scrollbar-width:none}html::-webkit-scrollbar{display:none}   /* no visible scrollbar (Eyal, 2026-10-01); scrolling still works, the day labels show the place */
 body{-webkit-user-select:none;user-select:none}
 img{-webkit-user-drag:none}
 img{display:block;max-width:none}
