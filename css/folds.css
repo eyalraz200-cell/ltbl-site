@@ -1,1 +1,14 @@
 /* per-fold geometry: every value copied verbatim from Figma (1728x1117 stage) */
+
+/* fold 1: hero (node 12649:1019; intro frames 12649:1136..1047) */
+.fold--hero .darkener{inset:0;background:rgba(0,0,0,.4)}
+.fold--hero .cloud,.fold--hero .dark{will-change:transform,opacity}
+.fold--hero .clouds > *,.fold--hero .intro-clouds > *{position:absolute}
+.logo{display:flex;flex-direction:column;align-items:center;gap:8px}
+.logo img{filter:drop-shadow(var(--shadow-logo))}
+.logo__word{font:400 35px/0.8 var(--font-logo);text-transform:uppercase;text-align:center;white-space:nowrap}
+.ticket{filter:drop-shadow(var(--shadow-ticket))}
+.hand{display:flex;align-items:center;justify-content:center}
+.hand img{position:static;width:257px;height:98px;filter:drop-shadow(var(--shadow-hand))}
+.hand--right img{transform:rotate(-30deg)}
+.hand--left img{transform:scaleX(-1) rotate(17.53deg)}

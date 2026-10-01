@@ -17,7 +17,7 @@
 *{box-sizing:border-box;margin:0}
 html,body{background:var(--ground);color:var(--white);overflow-x:hidden}
 img{display:block;max-width:none}
-.h192{font:400 192px/0.8 var(--font-heading);text-transform:uppercase;text-shadow:var(--aura-heading);text-align:center}
+.h192{font:400 192px/0.8 var(--font-heading);text-transform:uppercase;text-shadow:var(--aura-heading);text-align:center;white-space:nowrap}
 .h48{font:400 48px/0.8 var(--font-heading);text-transform:uppercase;text-align:center}
 .b36{font:400 36px/1.6 var(--font-body);text-shadow:var(--aura-body);text-align:center}
 .desktop-only-plate{display:none}
@@ -32,3 +32,4 @@ img{display:block;max-width:none}
   transform-origin:center center;
 }
 .stage > *{position:absolute}
+body.is-intro{overflow:hidden}
