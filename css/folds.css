@@ -12,3 +12,7 @@
 .hand img{position:static;width:257px;height:98px;filter:drop-shadow(var(--shadow-hand))}
 .hand--right img{transform:rotate(-30deg)}
 .hand--left img{transform:scaleX(-1) rotate(17.53deg)}
+
+/* fold 2: about (node 12649:394) */
+.fold .darkener{inset:0;background:rgba(0,0,0,.4)}
+.fold .clouds > *{position:absolute}
