@@ -10,7 +10,10 @@
     window.LTBL.introDone = Promise.resolve();
     return;
   }
-  const q = gsap.utils.selector(hero);
+  // the hero's own pieces only: the footer has a .logo and a .ticket of its own (parked above the frame at frame 0), and the
+  // sun is also a .cloud — touching those made them appear in tall windows after the intro
+  const sel = { '.logo': '.logo:not(.logo--footer)', '.ticket': '.ticket--hero', '.cloud': '.backdrop .cloud' };
+  const q0 = gsap.utils.selector(hero), q = s => q0(s.split(',').map(p => sel[p.trim()] || p.trim()).join(','));
   document.documentElement.classList.add('is-intro');
   // hold the intro until its own pictures are decoded (sky, both cloud sets, logo, ticket, hands) — never start on a black frame
   const critical = [...hero.querySelectorAll('img[fetchpriority="high"], .logo img, .ticket img, .hand img')];

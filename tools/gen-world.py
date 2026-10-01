@@ -1,6 +1,7 @@
 # Generates the single-stage "world" markup: every element carries data-k = its left/top (and optionally w,h,rotation,opacity)
 # in each of the nine Figma frames (hero, about, day2..day6, shabbat, footer). null = carry the neighbouring value.
-# Positions are verbatim from the Figma frames (docs/figma-geometry.md). Run: python3 tools/gen-world.py > /tmp/world.html
+# Positions are verbatim from the Figma frames (docs/figma-geometry.md).
+# Run: python3 tools/gen-world.py --write   (replaces the #world section of index.html in place; without --write it prints it)
 import json
 N = 9
 def K(*pairs):
@@ -154,4 +155,13 @@ CRIT=('shared/sky','shared/cloud-','intro/dark-','shared/logo-god','shared/ticke
 def _p(m):
     t=m.group(0).replace(' fetchpriority="high"',''); src=_re.search(r'assets/img/([^"]+)',t).group(1)
     return t.replace('<img ','<img fetchpriority="'+('high' if src.startswith(CRIT) else 'low')+'" ',1)
-print(_re.sub(r'<img [^>]*src="assets/img/[^>]*>',_p,OUT))
+WORLD=_re.sub(r'<img [^>]*src="assets/img/[^>]*>',_p,OUT)
+import sys as _sys, os as _os
+if '--write' in _sys.argv:
+    path=_os.path.join(_os.path.dirname(_os.path.abspath(__file__)),'..','index.html')
+    html=open(path,encoding='utf-8').read()
+    new,n=_re.subn(r'<section class="world" id="world".*?</section>',lambda m: WORLD,html,count=1,flags=_re.S)
+    if n!=1: _sys.exit('index.html: #world section not found')
+    open(path,'w',encoding='utf-8').write(new); print('index.html: #world', 'unchanged' if new==html else 'regenerated')
+else:
+    print(WORLD)
