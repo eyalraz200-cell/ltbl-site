@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Let There Be Light</title>
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/AbyssinicaSIL-Regular.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/RFCVintageApothecary-Regular.woff2">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/folds.css">
 </head>
@@ -21,17 +23,17 @@
   <div class="stage">
     <img class="sky" src="assets/img/shared/sky.webp" alt="" style="left:0;top:0;width:1728px;height:1117px">
     <div class="clouds" style="left:0;top:0;width:1728px;height:1117px;overflow:hidden">
-      <img class="cloud c-front-left"   src="assets/img/shared/cloud-front-left.webp"         alt="" style="left:347px;top:88px;width:616px;height:309px">
-      <img class="cloud c-bl-back"      src="assets/img/shared/cloud-bottom-left-back.webp"   alt="" style="left:-128px;top:625px;width:890px;height:446px">
-      <img class="cloud c-br-back"      src="assets/img/shared/cloud-bottom-right-back.webp"  alt="" style="left:1140px;top:627px;width:890px;height:446px">
-      <img class="cloud c-br-front"     src="assets/img/shared/cloud-bottom-right-front.webp" alt="" style="left:654px;top:695px;width:2428px;height:569px">
-      <img class="cloud c-bl-front"     src="assets/img/shared/cloud-bottom-left-front.webp"  alt="" style="left:-64px;top:679px;width:964px;height:528px">
-      <img class="cloud c-tiny"         src="assets/img/shared/cloud-tiny.webp"               alt="" style="left:854px;top:114px;width:255px;height:175px">
-      <img class="cloud c-left-back"    src="assets/img/shared/cloud-left-back.webp"          alt="" style="left:-60px;top:119px;width:509px;height:251px">
-      <img class="cloud c-left-far"     src="assets/img/shared/cloud-left-far.webp"           alt="" style="left:-165px;top:-115px;width:701px;height:395px">
-      <img class="cloud c-top-big"      src="assets/img/shared/cloud-top-big.webp"            alt="" style="left:-122px;top:-102px;width:1990px;height:466px">
-      <img class="cloud c-small-right"  src="assets/img/shared/cloud-small-right.webp"        alt="" style="left:968px;top:190px;width:446px;height:131px">
-      <img class="cloud c-tr-front"     src="assets/img/shared/cloud-top-right-front.webp"    alt="" style="left:1177px;top:5px;width:831px;height:455px">
+      <img fetchpriority="high" class="cloud c-front-left"   src="assets/img/shared/cloud-front-left.webp"         alt="" style="left:347px;top:88px;width:616px;height:309px">
+      <img fetchpriority="high" class="cloud c-bl-back"      src="assets/img/shared/cloud-bottom-left-back.webp"   alt="" style="left:-128px;top:625px;width:890px;height:446px">
+      <img fetchpriority="high" class="cloud c-br-back"      src="assets/img/shared/cloud-bottom-right-back.webp"  alt="" style="left:1140px;top:627px;width:890px;height:446px">
+      <img fetchpriority="high" class="cloud c-br-front"     src="assets/img/shared/cloud-bottom-right-front.webp" alt="" style="left:654px;top:695px;width:2428px;height:569px">
+      <img fetchpriority="high" class="cloud c-bl-front"     src="assets/img/shared/cloud-bottom-left-front.webp"  alt="" style="left:-64px;top:679px;width:964px;height:528px">
+      <img fetchpriority="high" class="cloud c-tiny"         src="assets/img/shared/cloud-tiny.webp"               alt="" style="left:854px;top:114px;width:255px;height:175px">
+      <img fetchpriority="high" class="cloud c-left-back"    src="assets/img/shared/cloud-left-back.webp"          alt="" style="left:-60px;top:119px;width:509px;height:251px">
+      <img fetchpriority="high" class="cloud c-left-far"     src="assets/img/shared/cloud-left-far.webp"           alt="" style="left:-165px;top:-115px;width:701px;height:395px">
+      <img fetchpriority="high" class="cloud c-top-big"      src="assets/img/shared/cloud-top-big.webp"            alt="" style="left:-122px;top:-102px;width:1990px;height:466px">
+      <img fetchpriority="high" class="cloud c-small-right"  src="assets/img/shared/cloud-small-right.webp"        alt="" style="left:968px;top:190px;width:446px;height:131px">
+      <img fetchpriority="high" class="cloud c-tr-front"     src="assets/img/shared/cloud-top-right-front.webp"    alt="" style="left:1177px;top:5px;width:831px;height:455px">
     </div>
     <div class="intro-clouds" style="left:0;top:0;width:1728px;height:1117px" aria-hidden="true">
       <img class="dark d-8"  src="assets/img/intro/dark-8.webp"  alt="" style="left:3px;top:0;width:1721px;height:524px">
@@ -83,22 +85,22 @@
 </section>
 <section class="fold fold--day2" id="fold-day2" data-day="2">
   <div class="stage">
-    <img class="sky" src="assets/img/shared/sky.webp" alt="" style="left:0;top:0;width:1728px;height:1117px">
+    <img loading="lazy" decoding="async" class="sky" src="assets/img/shared/sky.webp" alt="" style="left:0;top:0;width:1728px;height:1117px">
     <div class="sea" style="left:0;top:0;width:1728px;height:1117px">
-      <img class="s" src="assets/img/shared/sea-5.webp" alt="" style="left:-1px;top:579px;width:863px;height:482px">
-      <img class="s" src="assets/img/shared/sea-4.webp" alt="" style="left:-1px;top:685px;width:982px;height:390px">
-      <img class="s" src="assets/img/shared/sea-2.webp" alt="" style="left:-1px;top:894px;width:1112px;height:222px">
-      <img class="s" src="assets/img/shared/sea-3.webp" alt="" style="left:810px;top:608px;width:917px;height:406px">
-      <img class="s" src="assets/img/shared/sea-1.webp" alt="" style="left:484px;top:811px;width:1243px;height:305px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-5.webp" alt="" style="left:-1px;top:579px;width:863px;height:482px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-4.webp" alt="" style="left:-1px;top:685px;width:982px;height:390px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-2.webp" alt="" style="left:-1px;top:894px;width:1112px;height:222px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-3.webp" alt="" style="left:810px;top:608px;width:917px;height:406px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-1.webp" alt="" style="left:484px;top:811px;width:1243px;height:305px">
     </div>
     <div class="clouds" style="left:0;top:0;width:1728px;height:1117px;overflow:hidden">
-      <img class="cloud c-front-left" src="assets/img/shared/cloud-front-left.webp" alt="" style="left:347px;top:88px;width:616px;height:309px">
-      <img class="cloud c-tiny" src="assets/img/shared/cloud-tiny.webp" alt="" style="left:854px;top:114px;width:255px;height:175px">
-      <img class="cloud c-left-back" src="assets/img/shared/cloud-left-back.webp" alt="" style="left:-60px;top:119px;width:509px;height:251px">
-      <img class="cloud c-left-far" src="assets/img/shared/cloud-left-far.webp" alt="" style="left:-165px;top:-115px;width:701px;height:395px">
-      <img class="cloud c-top-big" src="assets/img/shared/cloud-top-big.webp" alt="" style="left:-122px;top:-102px;width:1990px;height:466px">
-      <img class="cloud c-small-right" src="assets/img/shared/cloud-small-right.webp" alt="" style="left:968px;top:190px;width:446px;height:131px">
-      <img class="cloud c-tr-front" src="assets/img/shared/cloud-top-right-front.webp" alt="" style="left:1177px;top:5px;width:831px;height:455px">
+      <img loading="lazy" decoding="async" class="cloud c-front-left" src="assets/img/shared/cloud-front-left.webp" alt="" style="left:347px;top:88px;width:616px;height:309px">
+      <img loading="lazy" decoding="async" class="cloud c-tiny" src="assets/img/shared/cloud-tiny.webp" alt="" style="left:854px;top:114px;width:255px;height:175px">
+      <img loading="lazy" decoding="async" class="cloud c-left-back" src="assets/img/shared/cloud-left-back.webp" alt="" style="left:-60px;top:119px;width:509px;height:251px">
+      <img loading="lazy" decoding="async" class="cloud c-left-far" src="assets/img/shared/cloud-left-far.webp" alt="" style="left:-165px;top:-115px;width:701px;height:395px">
+      <img loading="lazy" decoding="async" class="cloud c-top-big" src="assets/img/shared/cloud-top-big.webp" alt="" style="left:-122px;top:-102px;width:1990px;height:466px">
+      <img loading="lazy" decoding="async" class="cloud c-small-right" src="assets/img/shared/cloud-small-right.webp" alt="" style="left:968px;top:190px;width:446px;height:131px">
+      <img loading="lazy" decoding="async" class="cloud c-tr-front" src="assets/img/shared/cloud-top-right-front.webp" alt="" style="left:1177px;top:5px;width:831px;height:455px">
     </div>
     <div class="darkener"></div>
     <div class="col day2-text" data-from="1753,324" data-to="2615,324" style="left:741px;top:324px;width:922px;gap:53px">
@@ -106,50 +108,50 @@
       <p class="hd h36x" style="width:730px">Ocean's Wrath vs. Divine Power!</p>
       <p class="bd b30" style="width:730px;height:274px">Get ready for the ultimate showdown! On 02.01.0001, witness an incredible battle as Poseidon, the God of the Sea, takes on the Almighty in a mythical contest of strength, will, and supremacy.</p>
     </div>
-    <div class="box cutout poseidon" data-from="343,1095" data-to="574,2182" style="left:201px;top:430px;width:728.443px;height:650.596px"><img src="assets/img/shared/poseidon.webp" alt="" style="width:608px;height:487px;transform:scaleY(-1) rotate(-162.06deg);filter:drop-shadow(10px -11px 4px #000)"></div>
-    <div class="box cutout zeus" data-from="-584,-291" data-to="-1371,-1148" style="left:0;top:103px;width:559.068px;height:660.44px"><img src="assets/img/shared/zeus.webp" alt="" style="width:453.279px;height:582.634px;transform:rotate(11.35deg);filter:drop-shadow(10px -11px 4px #000)"></div>
+    <div class="box cutout poseidon" data-from="343,1095" data-to="574,2182" style="left:201px;top:430px;width:728.443px;height:650.596px"><img loading="lazy" decoding="async" src="assets/img/shared/poseidon.webp" alt="" style="width:608px;height:487px;transform:scaleY(-1) rotate(-162.06deg);filter:drop-shadow(10px -11px 4px #000)"></div>
+    <div class="box cutout zeus" data-from="-584,-291" data-to="-1371,-1148" style="left:0;top:103px;width:559.068px;height:660.44px"><img loading="lazy" decoding="async" src="assets/img/shared/zeus.webp" alt="" style="width:453.279px;height:582.634px;transform:rotate(11.35deg);filter:drop-shadow(10px -11px 4px #000)"></div>
   </div>
 </section>
 <section class="fold fold--day3" id="fold-day3" data-day="3">
   <div class="stage">
-    <img class="sky" src="assets/img/shared/sky.webp" alt="" style="left:0;top:0;width:1728px;height:1117px">
+    <img loading="lazy" decoding="async" class="sky" src="assets/img/shared/sky.webp" alt="" style="left:0;top:0;width:1728px;height:1117px">
     <div class="ground" style="left:0;top:0;width:1728px;height:1117px;overflow:hidden">
-      <img class="g" src="assets/img/shared/mountain-2.webp" alt="" style="left:900px;top:506px;width:609px;height:174px">
-      <img class="g" src="assets/img/shared/ground-8.webp" alt="" style="left:1377px;top:496px;width:351px;height:388px">
-      <img class="g" src="assets/img/shared/mountain-1.webp" alt="" style="left:0px;top:401px;width:945px;height:316px">
-      <img class="g" src="assets/img/shared/ground-5.webp" alt="" style="left:539px;top:555px;width:461px;height:396px">
-      <img class="g" src="assets/img/shared/ground-4.webp" alt="" style="left:0px;top:470px;width:747px;height:494px">
-      <img class="g" src="assets/img/shared/ground-6.webp" alt="" style="left:880px;top:555px;width:459px;height:399px">
-      <img class="g" src="assets/img/shared/ground-3.webp" alt="" style="left:721px;top:557px;width:777px;height:356px">
-      <img class="g" src="assets/img/shared/ground-7.webp" alt="" style="left:1353px;top:591px;width:375px;height:399px">
-      <img class="g" src="assets/img/shared/ground-1.webp" alt="" style="left:565px;top:576px;width:435px;height:312px">
-      <img class="g" src="assets/img/shared/ground-2.webp" alt="" style="left:0px;top:605px;width:726px;height:512px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/mountain-2.webp" alt="" style="left:900px;top:506px;width:609px;height:174px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-8.webp" alt="" style="left:1377px;top:496px;width:351px;height:388px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/mountain-1.webp" alt="" style="left:0px;top:401px;width:945px;height:316px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-5.webp" alt="" style="left:539px;top:555px;width:461px;height:396px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-4.webp" alt="" style="left:0px;top:470px;width:747px;height:494px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-6.webp" alt="" style="left:880px;top:555px;width:459px;height:399px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-3.webp" alt="" style="left:721px;top:557px;width:777px;height:356px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-7.webp" alt="" style="left:1353px;top:591px;width:375px;height:399px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-1.webp" alt="" style="left:565px;top:576px;width:435px;height:312px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-2.webp" alt="" style="left:0px;top:605px;width:726px;height:512px">
     </div>
     <div class="sea" style="left:0;top:0;width:1728px;height:1117px">
-      <img class="s" src="assets/img/shared/sea-5.webp" alt="" style="left:-1px;top:760px;width:863px;height:482px">
-      <img class="s" src="assets/img/shared/sea-4.webp" alt="" style="left:-1px;top:773px;width:982px;height:390px">
-      <img class="s" src="assets/img/shared/sea-2.webp" alt="" style="left:-15px;top:915px;width:1112px;height:222px">
-      <img class="s" src="assets/img/shared/sea-3.webp" alt="" style="left:810px;top:807px;width:917px;height:406px">
-      <img class="s" src="assets/img/shared/sea-1.webp" alt="" style="left:541px;top:915px;width:1243px;height:305px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-5.webp" alt="" style="left:-1px;top:760px;width:863px;height:482px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-4.webp" alt="" style="left:-1px;top:773px;width:982px;height:390px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-2.webp" alt="" style="left:-15px;top:915px;width:1112px;height:222px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-3.webp" alt="" style="left:810px;top:807px;width:917px;height:406px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-1.webp" alt="" style="left:541px;top:915px;width:1243px;height:305px">
     </div>
     <div class="clouds" style="left:0;top:0;width:1728px;height:1117px">
-      <img class="cloud c-front-left" src="assets/img/shared/cloud-front-left.webp" alt="" style="left:347px;top:88px;width:616px;height:309px">
-      <img class="cloud c-tiny" src="assets/img/shared/cloud-tiny.webp" alt="" style="left:854px;top:114px;width:255px;height:175px">
-      <img class="cloud c-left-back" src="assets/img/shared/cloud-left-back.webp" alt="" style="left:-60px;top:119px;width:509px;height:251px">
-      <img class="cloud c-left-far" src="assets/img/shared/cloud-left-far.webp" alt="" style="left:-165px;top:-115px;width:701px;height:395px">
-      <img class="cloud c-top-big" src="assets/img/shared/cloud-top-big.webp" alt="" style="left:-122px;top:-102px;width:1990px;height:466px">
-      <img class="cloud c-small-right" src="assets/img/shared/cloud-small-right.webp" alt="" style="left:968px;top:190px;width:446px;height:131px">
-      <img class="cloud c-tr-front" src="assets/img/shared/cloud-top-right-front.webp" alt="" style="left:1177px;top:5px;width:831px;height:455px">
+      <img loading="lazy" decoding="async" class="cloud c-front-left" src="assets/img/shared/cloud-front-left.webp" alt="" style="left:347px;top:88px;width:616px;height:309px">
+      <img loading="lazy" decoding="async" class="cloud c-tiny" src="assets/img/shared/cloud-tiny.webp" alt="" style="left:854px;top:114px;width:255px;height:175px">
+      <img loading="lazy" decoding="async" class="cloud c-left-back" src="assets/img/shared/cloud-left-back.webp" alt="" style="left:-60px;top:119px;width:509px;height:251px">
+      <img loading="lazy" decoding="async" class="cloud c-left-far" src="assets/img/shared/cloud-left-far.webp" alt="" style="left:-165px;top:-115px;width:701px;height:395px">
+      <img loading="lazy" decoding="async" class="cloud c-top-big" src="assets/img/shared/cloud-top-big.webp" alt="" style="left:-122px;top:-102px;width:1990px;height:466px">
+      <img loading="lazy" decoding="async" class="cloud c-small-right" src="assets/img/shared/cloud-small-right.webp" alt="" style="left:968px;top:190px;width:446px;height:131px">
+      <img loading="lazy" decoding="async" class="cloud c-tr-front" src="assets/img/shared/cloud-top-right-front.webp" alt="" style="left:1177px;top:5px;width:831px;height:455px">
     </div>
     <div class="darkener"></div>
     <div class="col celeb-text" data-from="64,1182" data-to="64,2717" style="left:64px;top:279px;width:790px;gap:24px;align-items:flex-start">
       <h2 class="hd h48x" style="width:790px">celebrities meet and greet</h2>
       <p class="bd b24" style="width:790px">Get a chance to meet your favorite celebrities, with Autograph Stations, Photo Opportunities, and Live Q&amp;A Sessions</p>
     </div>
-    <div class="cap cutout satan" data-from="90,1194" data-to="90,2729" style="left:90px;top:474px;width:265px;gap:0px"><img src="assets/img/day3/satan.webp" alt="" style="width:265px;height:262px;filter:drop-shadow(2px -11px 4px #000)"><p class="bd b24">Satan</p></div>
-    <div class="cap cutout jesus" data-from="329,1468" data-to="329,3003" style="left:329px;top:748px;width:225px;gap:9px"><img src="assets/img/day3/jesus.webp" alt="" style="width:225px;height:212px;filter:drop-shadow(-9px -11px 4px #000);transform:scaleX(-1);object-fit:cover"><p class="bd b24">Jesus</p></div>
-    <div class="cap cutout gabriel" data-from="500,1191" data-to="500,2726" style="left:500px;top:471px;width:317px;gap:18px"><img src="assets/img/day3/gabriel.webp" alt="" style="width:317px;height:202px;filter:drop-shadow(2px -11px 4px #000);object-fit:cover"><p class="bd b24">Gabriel</p></div>
-    <div class="crop cutout god-portrait" data-from="1094,-419" data-to="1158,-1878" style="left:1094px;top:375px;width:342px;height:384px;filter:drop-shadow(2px -11px 4px #000)"><img src="assets/img/day3/god-portrait.webp" alt="" style="position:absolute;left:-12.59%;top:-5.73%;width:127.23%;height:113.54%"></div>
+    <div class="cap cutout satan" data-from="90,1194" data-to="90,2729" style="left:90px;top:474px;width:265px;gap:0px"><img loading="lazy" decoding="async" src="assets/img/day3/satan.webp" alt="" style="width:265px;height:262px;filter:drop-shadow(2px -11px 4px #000)"><p class="bd b24">Satan</p></div>
+    <div class="cap cutout jesus" data-from="329,1468" data-to="329,3003" style="left:329px;top:748px;width:225px;gap:9px"><img loading="lazy" decoding="async" src="assets/img/day3/jesus.webp" alt="" style="width:225px;height:212px;filter:drop-shadow(-9px -11px 4px #000);transform:scaleX(-1);object-fit:cover"><p class="bd b24">Jesus</p></div>
+    <div class="cap cutout gabriel" data-from="500,1191" data-to="500,2726" style="left:500px;top:471px;width:317px;gap:18px"><img loading="lazy" decoding="async" src="assets/img/day3/gabriel.webp" alt="" style="width:317px;height:202px;filter:drop-shadow(2px -11px 4px #000);object-fit:cover"><p class="bd b24">Gabriel</p></div>
+    <div class="crop cutout god-portrait" data-from="1094,-419" data-to="1158,-1878" style="left:1094px;top:375px;width:342px;height:384px;filter:drop-shadow(2px -11px 4px #000)"><img loading="lazy" decoding="async" src="assets/img/day3/god-portrait.webp" alt="" style="position:absolute;left:-12.59%;top:-5.73%;width:127.23%;height:113.54%"></div>
     <div class="col god-text" data-from="874,-211" data-to="938,-1670" style="left:874px;top:829px;width:790px;gap:24px;align-items:flex-end">
       <h2 class="hd h48x" style="width:100%">“one on one” meetings with yaweh</h2>
       <p class="bd b24" style="width:100%">A once-in-a-lifetime opportunity to learn from a mind like no other,<br>where you can understand important insights and maybe get the inside scoop</p>
@@ -158,190 +160,190 @@
 </section>
 <section class="fold fold--day4" id="fold-day4" data-day="4">
   <div class="stage">
-    <img class="sky" src="assets/img/shared/sky.webp" alt="" style="left:0;top:0;width:1728px;height:1117px">
+    <img loading="lazy" decoding="async" class="sky" src="assets/img/shared/sky.webp" alt="" style="left:0;top:0;width:1728px;height:1117px">
     <div class="night" style="left:0;top:0;width:1728px;height:1117px">
-      <img class="n" src="assets/img/shared/night-2.webp" alt="" style="left:761px;top:411px;width:798px;height:366px">
-      <img class="n" src="assets/img/shared/night-4.webp" alt="" style="left:798px;top:0px;width:930px;height:745px">
-      <img class="n" src="assets/img/shared/night-3.webp" alt="" style="left:854px;top:0px;width:874px;height:903px">
-      <img class="n" src="assets/img/shared/night-1.webp" alt="" style="left:1077px;top:0px;width:651px;height:568px">
-      <img class="n moon" src="assets/img/shared/moon.webp" alt="" style="left:1424px;top:51px;width:146px;height:177px">
+      <img loading="lazy" decoding="async" class="n" src="assets/img/shared/night-2.webp" alt="" style="left:761px;top:411px;width:798px;height:366px">
+      <img loading="lazy" decoding="async" class="n" src="assets/img/shared/night-4.webp" alt="" style="left:798px;top:0px;width:930px;height:745px">
+      <img loading="lazy" decoding="async" class="n" src="assets/img/shared/night-3.webp" alt="" style="left:854px;top:0px;width:874px;height:903px">
+      <img loading="lazy" decoding="async" class="n" src="assets/img/shared/night-1.webp" alt="" style="left:1077px;top:0px;width:651px;height:568px">
+      <img loading="lazy" decoding="async" class="n moon" src="assets/img/shared/moon.webp" alt="" style="left:1424px;top:51px;width:146px;height:177px">
     </div>
     <div class="ground" style="left:0;top:0;width:1728px;height:1117px;overflow:hidden">
-      <img class="g" src="assets/img/shared/mountain-2.webp" alt="" style="left:900px;top:506px;width:609px;height:174px">
-      <img class="g" src="assets/img/shared/ground-8.webp" alt="" style="left:1377px;top:496px;width:351px;height:388px">
-      <img class="g" src="assets/img/shared/mountain-1.webp" alt="" style="left:0px;top:401px;width:945px;height:316px">
-      <img class="g" src="assets/img/shared/ground-5.webp" alt="" style="left:539px;top:555px;width:461px;height:396px">
-      <img class="g" src="assets/img/shared/ground-4.webp" alt="" style="left:0px;top:470px;width:747px;height:494px">
-      <img class="g" src="assets/img/shared/ground-6.webp" alt="" style="left:880px;top:555px;width:459px;height:399px">
-      <img class="g" src="assets/img/shared/ground-3.webp" alt="" style="left:721px;top:557px;width:777px;height:356px">
-      <img class="g" src="assets/img/shared/ground-7.webp" alt="" style="left:1353px;top:591px;width:375px;height:399px">
-      <img class="g" src="assets/img/shared/ground-1.webp" alt="" style="left:565px;top:576px;width:435px;height:312px">
-      <img class="g" src="assets/img/shared/ground-2.webp" alt="" style="left:0px;top:605px;width:726px;height:512px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/mountain-2.webp" alt="" style="left:900px;top:506px;width:609px;height:174px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-8.webp" alt="" style="left:1377px;top:496px;width:351px;height:388px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/mountain-1.webp" alt="" style="left:0px;top:401px;width:945px;height:316px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-5.webp" alt="" style="left:539px;top:555px;width:461px;height:396px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-4.webp" alt="" style="left:0px;top:470px;width:747px;height:494px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-6.webp" alt="" style="left:880px;top:555px;width:459px;height:399px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-3.webp" alt="" style="left:721px;top:557px;width:777px;height:356px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-7.webp" alt="" style="left:1353px;top:591px;width:375px;height:399px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-1.webp" alt="" style="left:565px;top:576px;width:435px;height:312px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-2.webp" alt="" style="left:0px;top:605px;width:726px;height:512px">
     </div>
     <div class="sea" style="left:0;top:0;width:1728px;height:1117px">
-      <img class="s" src="assets/img/shared/sea-5.webp" alt="" style="left:0px;top:760px;width:863px;height:482px">
-      <img class="s whale" src="assets/img/shared/whale.webp" alt="" style="left:81.2px;top:969.7px;width:344px;height:293px;transform:rotate(45deg)">
-      <img class="s" src="assets/img/shared/sea-4.webp" alt="" style="left:-1px;top:787px;width:982px;height:390px">
-      <img class="s" src="assets/img/shared/sea-2.webp" alt="" style="left:-15px;top:934px;width:1112px;height:222px">
-      <img class="s" src="assets/img/shared/sea-3.webp" alt="" style="left:810px;top:787px;width:917px;height:406px">
-      <img class="s" src="assets/img/shared/sea-1.webp" alt="" style="left:541px;top:881px;width:1243px;height:305px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-5.webp" alt="" style="left:0px;top:760px;width:863px;height:482px">
+      <img loading="lazy" decoding="async" class="s whale" src="assets/img/shared/whale.webp" alt="" style="left:81.2px;top:969.7px;width:344px;height:293px;transform:rotate(45deg)">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-4.webp" alt="" style="left:-1px;top:787px;width:982px;height:390px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-2.webp" alt="" style="left:-15px;top:934px;width:1112px;height:222px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-3.webp" alt="" style="left:810px;top:787px;width:917px;height:406px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-1.webp" alt="" style="left:541px;top:881px;width:1243px;height:305px">
     </div>
     <div class="clouds" style="left:0;top:0;width:1728px;height:1117px;overflow:hidden">
-      <img class="cloud c-front-left" src="assets/img/shared/cloud-front-left.webp" alt="" style="left:314px;top:-22px;width:616px;height:309px">
-      <img class="cloud c-tiny" src="assets/img/shared/cloud-tiny.webp" alt="" style="left:329px;top:175px;width:255px;height:175px">
-      <img class="cloud c-left-back" src="assets/img/shared/cloud-left-back.webp" alt="" style="left:-60px;top:119px;width:509px;height:251px">
-      <img class="cloud c-left-far" src="assets/img/shared/cloud-left-far.webp" alt="" style="left:-172px;top:-116px;width:701px;height:395px">
-      <img class="cloud sun" src="assets/img/shared/sun.webp" alt="" style="left:93px;top:58px;width:146px;height:144px">
-      <img class="cloud c-top-big" src="assets/img/shared/cloud-top-big.webp" alt="" style="left:-1133px;top:-356px;width:1990px;height:466px">
+      <img loading="lazy" decoding="async" class="cloud c-front-left" src="assets/img/shared/cloud-front-left.webp" alt="" style="left:314px;top:-22px;width:616px;height:309px">
+      <img loading="lazy" decoding="async" class="cloud c-tiny" src="assets/img/shared/cloud-tiny.webp" alt="" style="left:329px;top:175px;width:255px;height:175px">
+      <img loading="lazy" decoding="async" class="cloud c-left-back" src="assets/img/shared/cloud-left-back.webp" alt="" style="left:-60px;top:119px;width:509px;height:251px">
+      <img loading="lazy" decoding="async" class="cloud c-left-far" src="assets/img/shared/cloud-left-far.webp" alt="" style="left:-172px;top:-116px;width:701px;height:395px">
+      <img loading="lazy" decoding="async" class="cloud sun" src="assets/img/shared/sun.webp" alt="" style="left:93px;top:58px;width:146px;height:144px">
+      <img loading="lazy" decoding="async" class="cloud c-top-big" src="assets/img/shared/cloud-top-big.webp" alt="" style="left:-1133px;top:-356px;width:1990px;height:466px">
     </div>
     <div class="darkener"></div>
     <div class="col day4-text" data-from="181,-279" data-to="181,-1387" style="left:181px;top:236px;width:1365px;gap:56px">
       <h2 class="hd h96" style="width:100%">Be fruitfull and multiply party </h2>
       <p class="bd b30" style="width:1060px">Celebrate from the dusk till dawn in an OFF THE HOOK Mitzvah party<br>Make your descendants become as numerous as the stars of the sky!</p>
     </div>
-    <img class="cutout guys" data-from="1782,627" data-to="4018,627" src="assets/img/day4/guys.webp" alt="" style="left:943px;top:627px;width:519px;height:270px;object-fit:contain;filter:drop-shadow(2px -11px 4px #000)">
-    <img class="cutout girls" data-from="-545,614" data-to="-2453,614" src="assets/img/day4/girls.webp" alt="" style="left:266px;top:614px;width:520px;height:283px;object-fit:contain;filter:drop-shadow(-8px -11px 4px #000)">
+    <img loading="lazy" decoding="async" class="cutout guys" data-from="1782,627" data-to="4018,627" src="assets/img/day4/guys.webp" alt="" style="left:943px;top:627px;width:519px;height:270px;object-fit:contain;filter:drop-shadow(2px -11px 4px #000)">
+    <img loading="lazy" decoding="async" class="cutout girls" data-from="-545,614" data-to="-2453,614" src="assets/img/day4/girls.webp" alt="" style="left:266px;top:614px;width:520px;height:283px;object-fit:contain;filter:drop-shadow(-8px -11px 4px #000)">
   </div>
 </section>
 <section class="fold fold--day5" id="fold-day5" data-day="5">
   <div class="stage">
-    <img class="sky" src="assets/img/shared/sky.webp" alt="" style="left:0;top:0;width:1728px;height:1117px">
+    <img loading="lazy" decoding="async" class="sky" src="assets/img/shared/sky.webp" alt="" style="left:0;top:0;width:1728px;height:1117px">
     <div class="night" style="left:0;top:0;width:1728px;height:1117px">
-      <img class="n" src="assets/img/shared/night-2.webp" alt="" style="left:761px;top:411px;width:798px;height:366px">
-      <img class="n" src="assets/img/shared/night-4.webp" alt="" style="left:798px;top:0px;width:930px;height:745px">
-      <img class="n" src="assets/img/shared/night-3.webp" alt="" style="left:854px;top:0px;width:874px;height:903px">
-      <img class="n" src="assets/img/shared/night-1.webp" alt="" style="left:1077px;top:0px;width:651px;height:568px">
-      <img class="n moon" src="assets/img/shared/moon.webp" alt="" style="left:1424px;top:51px;width:146px;height:177px">
+      <img loading="lazy" decoding="async" class="n" src="assets/img/shared/night-2.webp" alt="" style="left:761px;top:411px;width:798px;height:366px">
+      <img loading="lazy" decoding="async" class="n" src="assets/img/shared/night-4.webp" alt="" style="left:798px;top:0px;width:930px;height:745px">
+      <img loading="lazy" decoding="async" class="n" src="assets/img/shared/night-3.webp" alt="" style="left:854px;top:0px;width:874px;height:903px">
+      <img loading="lazy" decoding="async" class="n" src="assets/img/shared/night-1.webp" alt="" style="left:1077px;top:0px;width:651px;height:568px">
+      <img loading="lazy" decoding="async" class="n moon" src="assets/img/shared/moon.webp" alt="" style="left:1424px;top:51px;width:146px;height:177px">
     </div>
     <div class="ground" style="left:0;top:0;width:1728px;height:1117px;overflow:hidden">
-      <img class="g" src="assets/img/shared/mountain-2.webp" alt="" style="left:900px;top:506px;width:609px;height:174px">
-      <img class="g" src="assets/img/shared/ground-8.webp" alt="" style="left:1377px;top:496px;width:351px;height:388px">
-      <img class="g" src="assets/img/shared/mountain-1.webp" alt="" style="left:0px;top:401px;width:945px;height:316px">
-      <img class="g" src="assets/img/shared/ground-5.webp" alt="" style="left:539px;top:555px;width:461px;height:396px">
-      <img class="g" src="assets/img/shared/ground-4.webp" alt="" style="left:0px;top:470px;width:747px;height:494px">
-      <img class="g" src="assets/img/shared/ground-6.webp" alt="" style="left:880px;top:555px;width:459px;height:399px">
-      <img class="g" src="assets/img/shared/ground-3.webp" alt="" style="left:721px;top:557px;width:777px;height:356px">
-      <img class="g" src="assets/img/shared/ground-7.webp" alt="" style="left:1353px;top:591px;width:375px;height:399px">
-      <img class="g" src="assets/img/shared/ground-1.webp" alt="" style="left:565px;top:576px;width:435px;height:312px">
-      <img class="g" src="assets/img/shared/ground-2.webp" alt="" style="left:0px;top:605px;width:726px;height:512px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/mountain-2.webp" alt="" style="left:900px;top:506px;width:609px;height:174px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-8.webp" alt="" style="left:1377px;top:496px;width:351px;height:388px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/mountain-1.webp" alt="" style="left:0px;top:401px;width:945px;height:316px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-5.webp" alt="" style="left:539px;top:555px;width:461px;height:396px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-4.webp" alt="" style="left:0px;top:470px;width:747px;height:494px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-6.webp" alt="" style="left:880px;top:555px;width:459px;height:399px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-3.webp" alt="" style="left:721px;top:557px;width:777px;height:356px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-7.webp" alt="" style="left:1353px;top:591px;width:375px;height:399px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-1.webp" alt="" style="left:565px;top:576px;width:435px;height:312px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-2.webp" alt="" style="left:0px;top:605px;width:726px;height:512px">
     </div>
     <div class="sea" style="left:0;top:0;width:1728px;height:1117px">
-      <img class="s" src="assets/img/shared/sea-5.webp" alt="" style="left:0px;top:760px;width:863px;height:482px">
-      <img class="s whale" src="assets/img/shared/whale.webp" alt="" style="left:164px;top:623px;width:344px;height:293px">
-      <img class="s" src="assets/img/shared/sea-4.webp" alt="" style="left:-1px;top:787px;width:982px;height:390px">
-      <img class="s" src="assets/img/shared/sea-2.webp" alt="" style="left:-15px;top:934px;width:1112px;height:222px">
-      <img class="s" src="assets/img/shared/sea-3.webp" alt="" style="left:810px;top:787px;width:917px;height:406px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-5.webp" alt="" style="left:0px;top:760px;width:863px;height:482px">
+      <img loading="lazy" decoding="async" class="s whale" src="assets/img/shared/whale.webp" alt="" style="left:164px;top:623px;width:344px;height:293px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-4.webp" alt="" style="left:-1px;top:787px;width:982px;height:390px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-2.webp" alt="" style="left:-15px;top:934px;width:1112px;height:222px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-3.webp" alt="" style="left:810px;top:787px;width:917px;height:406px">
       <div class="fish" style="left:984px;top:726px;width:641px;height:293px">
-        <img class="f" src="assets/img/shared/fish-1.webp" alt="" style="left:227px;top:142px;width:103px;height:102px">
-        <img class="f" src="assets/img/shared/fish-2.webp" alt="" style="left:130px;top:132px;width:89px;height:98px">
-        <img class="f" src="assets/img/shared/fish-3.webp" alt="" style="left:404px;top:57px;width:76px;height:39px">
-        <img class="f" src="assets/img/shared/fish-4.webp" alt="" style="left:197px;top:42px;width:69px;height:54px">
-        <img class="f" src="assets/img/shared/fish-5.webp" alt="" style="left:508px;top:51px;width:94px;height:45px">
-        <img class="f" src="assets/img/shared/fish-6.webp" alt="" style="left:102px;top:84px;width:81px;height:81px">
-        <img class="f" src="assets/img/shared/fish-7.webp" alt="" style="left:24px;top:196px;width:88px;height:97px">
-        <img class="f" src="assets/img/shared/fish-8.webp" alt="" style="left:227px;top:58px;width:126px;height:99px">
-        <img class="f" src="assets/img/shared/fish-9.webp" alt="" style="left:382px;top:0px;width:132px;height:66px">
-        <img class="f" src="assets/img/shared/fish-10.webp" alt="" style="left:309px;top:74px;width:120px;height:68px">
-        <img class="f" src="assets/img/shared/fish-11.webp" alt="" style="left:0px;top:164px;width:60px;height:77px">
-        <img class="f" src="assets/img/shared/fish-12.webp" alt="" style="left:283px;top:14px;width:78px;height:50px">
-        <img class="f" src="assets/img/shared/fish-13.webp" alt="" style="left:450px;top:92px;width:75px;height:40px">
-        <img class="f" src="assets/img/shared/fish-14.webp" alt="" style="left:514px;top:98px;width:127px;height:93px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-1.webp" alt="" style="left:227px;top:142px;width:103px;height:102px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-2.webp" alt="" style="left:130px;top:132px;width:89px;height:98px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-3.webp" alt="" style="left:404px;top:57px;width:76px;height:39px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-4.webp" alt="" style="left:197px;top:42px;width:69px;height:54px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-5.webp" alt="" style="left:508px;top:51px;width:94px;height:45px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-6.webp" alt="" style="left:102px;top:84px;width:81px;height:81px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-7.webp" alt="" style="left:24px;top:196px;width:88px;height:97px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-8.webp" alt="" style="left:227px;top:58px;width:126px;height:99px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-9.webp" alt="" style="left:382px;top:0px;width:132px;height:66px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-10.webp" alt="" style="left:309px;top:74px;width:120px;height:68px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-11.webp" alt="" style="left:0px;top:164px;width:60px;height:77px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-12.webp" alt="" style="left:283px;top:14px;width:78px;height:50px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-13.webp" alt="" style="left:450px;top:92px;width:75px;height:40px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-14.webp" alt="" style="left:514px;top:98px;width:127px;height:93px">
       </div>
-      <img class="s" src="assets/img/shared/sea-1.webp" alt="" style="left:541px;top:881px;width:1243px;height:305px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-1.webp" alt="" style="left:541px;top:881px;width:1243px;height:305px">
     </div>
     <div class="clouds" style="left:0;top:0;width:1728px;height:1117px;overflow:hidden">
-      <img class="cloud c-front-left" src="assets/img/shared/cloud-front-left.webp" alt="" style="left:314px;top:-22px;width:616px;height:309px">
-      <img class="cloud c-tiny" src="assets/img/shared/cloud-tiny.webp" alt="" style="left:329px;top:175px;width:255px;height:175px">
-      <img class="cloud c-left-back" src="assets/img/shared/cloud-left-back.webp" alt="" style="left:-60px;top:119px;width:509px;height:251px">
-      <img class="cloud c-left-far" src="assets/img/shared/cloud-left-far.webp" alt="" style="left:-172px;top:-116px;width:701px;height:395px">
-      <img class="cloud sun" src="assets/img/shared/sun.webp" alt="" style="left:93px;top:58px;width:146px;height:144px">
-      <img class="cloud c-top-big" src="assets/img/shared/cloud-top-big.webp" alt="" style="left:-1133px;top:-356px;width:1990px;height:466px">
+      <img loading="lazy" decoding="async" class="cloud c-front-left" src="assets/img/shared/cloud-front-left.webp" alt="" style="left:314px;top:-22px;width:616px;height:309px">
+      <img loading="lazy" decoding="async" class="cloud c-tiny" src="assets/img/shared/cloud-tiny.webp" alt="" style="left:329px;top:175px;width:255px;height:175px">
+      <img loading="lazy" decoding="async" class="cloud c-left-back" src="assets/img/shared/cloud-left-back.webp" alt="" style="left:-60px;top:119px;width:509px;height:251px">
+      <img loading="lazy" decoding="async" class="cloud c-left-far" src="assets/img/shared/cloud-left-far.webp" alt="" style="left:-172px;top:-116px;width:701px;height:395px">
+      <img loading="lazy" decoding="async" class="cloud sun" src="assets/img/shared/sun.webp" alt="" style="left:93px;top:58px;width:146px;height:144px">
+      <img loading="lazy" decoding="async" class="cloud c-top-big" src="assets/img/shared/cloud-top-big.webp" alt="" style="left:-1133px;top:-356px;width:1990px;height:466px">
     </div>
     <div class="birds" style="left:0;top:0;width:1728px;height:1117px">
-      <img class="bird" src="assets/img/shared/bird-1.webp" alt="" style="left:374px;top:210px;width:186px;height:199px">
-      <img class="bird" src="assets/img/shared/bird-5.webp" alt="" style="left:248px;top:49px;width:147px;height:161px">
-      <img class="bird" src="assets/img/shared/bird-4.webp" alt="" style="left:49px;top:330px;width:130px;height:74px">
-      <img class="bird" src="assets/img/shared/bird-3.webp" alt="" style="left:75px;top:117px;width:124px;height:139px">
-      <img class="bird" src="assets/img/shared/bird-2.webp" alt="" style="left:192px;top:263px;width:136px;height:78px">
+      <img loading="lazy" decoding="async" class="bird" src="assets/img/shared/bird-1.webp" alt="" style="left:374px;top:210px;width:186px;height:199px">
+      <img loading="lazy" decoding="async" class="bird" src="assets/img/shared/bird-5.webp" alt="" style="left:248px;top:49px;width:147px;height:161px">
+      <img loading="lazy" decoding="async" class="bird" src="assets/img/shared/bird-4.webp" alt="" style="left:49px;top:330px;width:130px;height:74px">
+      <img loading="lazy" decoding="async" class="bird" src="assets/img/shared/bird-3.webp" alt="" style="left:75px;top:117px;width:124px;height:139px">
+      <img loading="lazy" decoding="async" class="bird" src="assets/img/shared/bird-2.webp" alt="" style="left:192px;top:263px;width:136px;height:78px">
     </div>
     <div class="bighands" style="left:0;top:0;width:1728px;height:1117px">
-      <img class="bh hand-god" src="assets/img/shared/hand-god.webp" alt="" style="left:1583px;top:-662px;width:873px;height:698px">
+      <img loading="lazy" decoding="async" class="bh hand-god" src="assets/img/shared/hand-god.webp" alt="" style="left:1583px;top:-662px;width:873px;height:698px">
     </div>
     <div class="darkener"></div>
     <div class="col day5-text" data-from="-849,400" data-to="-2709,400" style="left:105px;top:400px;width:790px;gap:37px">
       <div class="col" style="width:100%;align-items:flex-start"><h2 class="hd h72" style="width:100%">family activity</h2><h2 class="hd h96" style="width:100%">Name the animals!</h2></div>
       <p class="bd b30" style="width:100%">Use your imagination and creativity in a fantastic Animal Name-a-palooza, invent and name the animals of the world<br>Fun for the whole family!</p>
     </div>
-    <div class="cap cutout lion" data-from="1873,568" data-to="4484,568" style="left:1066px;top:568px;width:193px;gap:12px"><img src="assets/img/day5/lion.webp" alt="" style="width:193px;height:244px;filter:drop-shadow(4px -10px 4px #000);transform:scaleX(-1)"><p class="bd b24">“Lion”</p></div>
-    <div class="cap cutout fox" data-from="1816,244" data-to="4427,244" style="left:1009px;top:244px;width:202px;gap:12px"><img src="assets/img/day5/fox.webp" alt="" style="width:202px;height:201px;filter:drop-shadow(2px -11px 4px #000)"><p class="bd b24">“King Kunta”</p></div>
-    <div class="cap cutout orangutan" data-from="2066,244" data-to="4677,244" style="left:1342px;top:244px;width:207px;gap:12px"><img src="assets/img/day5/orangutan.webp" alt="" style="width:191px;height:232px;filter:drop-shadow(-7px -11px 4px #000)"><p class="bd b24">“Orangutan”</p></div>
-    <div class="cap cutout ostrich" data-from="2103,582" data-to="4714,582" style="left:1379px;top:582px;width:193px;gap:12px"><img src="assets/img/day5/ostrich.webp" alt="" style="width:171px;height:211px;filter:drop-shadow(-6px -8px 4px #000);object-fit:cover"><p class="bd b24">“Kalderon”</p></div>
+    <div class="cap cutout lion" data-from="1873,568" data-to="4484,568" style="left:1066px;top:568px;width:193px;gap:12px"><img loading="lazy" decoding="async" src="assets/img/day5/lion.webp" alt="" style="width:193px;height:244px;filter:drop-shadow(4px -10px 4px #000);transform:scaleX(-1)"><p class="bd b24">“Lion”</p></div>
+    <div class="cap cutout fox" data-from="1816,244" data-to="4427,244" style="left:1009px;top:244px;width:202px;gap:12px"><img loading="lazy" decoding="async" src="assets/img/day5/fox.webp" alt="" style="width:202px;height:201px;filter:drop-shadow(2px -11px 4px #000)"><p class="bd b24">“King Kunta”</p></div>
+    <div class="cap cutout orangutan" data-from="2066,244" data-to="4677,244" style="left:1342px;top:244px;width:207px;gap:12px"><img loading="lazy" decoding="async" src="assets/img/day5/orangutan.webp" alt="" style="width:191px;height:232px;filter:drop-shadow(-7px -11px 4px #000)"><p class="bd b24">“Orangutan”</p></div>
+    <div class="cap cutout ostrich" data-from="2103,582" data-to="4714,582" style="left:1379px;top:582px;width:193px;gap:12px"><img loading="lazy" decoding="async" src="assets/img/day5/ostrich.webp" alt="" style="width:171px;height:211px;filter:drop-shadow(-6px -8px 4px #000);object-fit:cover"><p class="bd b24">“Kalderon”</p></div>
   </div>
 </section>
 <section class="fold fold--day6" id="fold-day6" data-day="6">
   <div class="stage">
-    <img class="sky" src="assets/img/shared/sky.webp" alt="" style="left:0;top:0;width:1728px;height:1117px">
+    <img loading="lazy" decoding="async" class="sky" src="assets/img/shared/sky.webp" alt="" style="left:0;top:0;width:1728px;height:1117px">
     <div class="night" style="left:0;top:0;width:1728px;height:1117px">
-      <img class="n" src="assets/img/shared/night-2.webp" alt="" style="left:761px;top:411px;width:798px;height:366px">
-      <img class="n" src="assets/img/shared/night-4.webp" alt="" style="left:798px;top:0px;width:930px;height:745px">
-      <img class="n" src="assets/img/shared/night-3.webp" alt="" style="left:854px;top:0px;width:874px;height:903px">
-      <img class="n" src="assets/img/shared/night-1.webp" alt="" style="left:1077px;top:0px;width:651px;height:568px">
-      <img class="n moon" src="assets/img/shared/moon.webp" alt="" style="left:1424px;top:51px;width:146px;height:177px">
+      <img loading="lazy" decoding="async" class="n" src="assets/img/shared/night-2.webp" alt="" style="left:761px;top:411px;width:798px;height:366px">
+      <img loading="lazy" decoding="async" class="n" src="assets/img/shared/night-4.webp" alt="" style="left:798px;top:0px;width:930px;height:745px">
+      <img loading="lazy" decoding="async" class="n" src="assets/img/shared/night-3.webp" alt="" style="left:854px;top:0px;width:874px;height:903px">
+      <img loading="lazy" decoding="async" class="n" src="assets/img/shared/night-1.webp" alt="" style="left:1077px;top:0px;width:651px;height:568px">
+      <img loading="lazy" decoding="async" class="n moon" src="assets/img/shared/moon.webp" alt="" style="left:1424px;top:51px;width:146px;height:177px">
     </div>
     <div class="ground" style="left:0;top:0;width:1728px;height:1117px;overflow:hidden">
-      <img class="g" src="assets/img/shared/mountain-2.webp" alt="" style="left:900px;top:506px;width:609px;height:174px">
-      <img class="g" src="assets/img/shared/ground-8.webp" alt="" style="left:1377px;top:496px;width:351px;height:388px">
-      <img class="g" src="assets/img/shared/mountain-1.webp" alt="" style="left:0px;top:401px;width:945px;height:316px">
-      <img class="g" src="assets/img/shared/ground-5.webp" alt="" style="left:539px;top:555px;width:461px;height:396px">
-      <img class="g" src="assets/img/shared/ground-4.webp" alt="" style="left:0px;top:470px;width:747px;height:494px">
-      <img class="g" src="assets/img/shared/ground-6.webp" alt="" style="left:880px;top:555px;width:459px;height:399px">
-      <img class="g" src="assets/img/shared/ground-3.webp" alt="" style="left:721px;top:557px;width:777px;height:356px">
-      <img class="g" src="assets/img/shared/ground-7.webp" alt="" style="left:1353px;top:591px;width:375px;height:399px">
-      <img class="g" src="assets/img/shared/ground-1.webp" alt="" style="left:565px;top:576px;width:435px;height:312px">
-      <img class="g" src="assets/img/shared/ground-2.webp" alt="" style="left:0px;top:605px;width:726px;height:512px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/mountain-2.webp" alt="" style="left:900px;top:506px;width:609px;height:174px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-8.webp" alt="" style="left:1377px;top:496px;width:351px;height:388px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/mountain-1.webp" alt="" style="left:0px;top:401px;width:945px;height:316px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-5.webp" alt="" style="left:539px;top:555px;width:461px;height:396px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-4.webp" alt="" style="left:0px;top:470px;width:747px;height:494px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-6.webp" alt="" style="left:880px;top:555px;width:459px;height:399px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-3.webp" alt="" style="left:721px;top:557px;width:777px;height:356px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-7.webp" alt="" style="left:1353px;top:591px;width:375px;height:399px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-1.webp" alt="" style="left:565px;top:576px;width:435px;height:312px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-2.webp" alt="" style="left:0px;top:605px;width:726px;height:512px">
     </div>
     <div class="sea" style="left:0;top:0;width:1728px;height:1117px">
-      <img class="s" src="assets/img/shared/sea-5.webp" alt="" style="left:0px;top:760px;width:863px;height:482px">
-      <img class="s whale" src="assets/img/shared/whale.webp" alt="" style="left:164px;top:623px;width:344px;height:293px">
-      <img class="s" src="assets/img/shared/sea-4.webp" alt="" style="left:-1px;top:787px;width:982px;height:390px">
-      <img class="s" src="assets/img/shared/sea-2.webp" alt="" style="left:-15px;top:934px;width:1112px;height:222px">
-      <img class="s" src="assets/img/shared/sea-3.webp" alt="" style="left:810px;top:787px;width:917px;height:406px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-5.webp" alt="" style="left:0px;top:760px;width:863px;height:482px">
+      <img loading="lazy" decoding="async" class="s whale" src="assets/img/shared/whale.webp" alt="" style="left:164px;top:623px;width:344px;height:293px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-4.webp" alt="" style="left:-1px;top:787px;width:982px;height:390px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-2.webp" alt="" style="left:-15px;top:934px;width:1112px;height:222px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-3.webp" alt="" style="left:810px;top:787px;width:917px;height:406px">
       <div class="fish" style="left:984px;top:726px;width:641px;height:293px">
-        <img class="f" src="assets/img/shared/fish-1.webp" alt="" style="left:227px;top:142px;width:103px;height:102px">
-        <img class="f" src="assets/img/shared/fish-2.webp" alt="" style="left:130px;top:132px;width:89px;height:98px">
-        <img class="f" src="assets/img/shared/fish-3.webp" alt="" style="left:404px;top:57px;width:76px;height:39px">
-        <img class="f" src="assets/img/shared/fish-4.webp" alt="" style="left:197px;top:42px;width:69px;height:54px">
-        <img class="f" src="assets/img/shared/fish-5.webp" alt="" style="left:508px;top:51px;width:94px;height:45px">
-        <img class="f" src="assets/img/shared/fish-6.webp" alt="" style="left:102px;top:84px;width:81px;height:81px">
-        <img class="f" src="assets/img/shared/fish-7.webp" alt="" style="left:24px;top:196px;width:88px;height:97px">
-        <img class="f" src="assets/img/shared/fish-8.webp" alt="" style="left:227px;top:58px;width:126px;height:99px">
-        <img class="f" src="assets/img/shared/fish-9.webp" alt="" style="left:382px;top:0px;width:132px;height:66px">
-        <img class="f" src="assets/img/shared/fish-10.webp" alt="" style="left:309px;top:74px;width:120px;height:68px">
-        <img class="f" src="assets/img/shared/fish-11.webp" alt="" style="left:0px;top:164px;width:60px;height:77px">
-        <img class="f" src="assets/img/shared/fish-12.webp" alt="" style="left:283px;top:14px;width:78px;height:50px">
-        <img class="f" src="assets/img/shared/fish-13.webp" alt="" style="left:450px;top:92px;width:75px;height:40px">
-        <img class="f" src="assets/img/shared/fish-14.webp" alt="" style="left:514px;top:98px;width:127px;height:93px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-1.webp" alt="" style="left:227px;top:142px;width:103px;height:102px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-2.webp" alt="" style="left:130px;top:132px;width:89px;height:98px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-3.webp" alt="" style="left:404px;top:57px;width:76px;height:39px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-4.webp" alt="" style="left:197px;top:42px;width:69px;height:54px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-5.webp" alt="" style="left:508px;top:51px;width:94px;height:45px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-6.webp" alt="" style="left:102px;top:84px;width:81px;height:81px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-7.webp" alt="" style="left:24px;top:196px;width:88px;height:97px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-8.webp" alt="" style="left:227px;top:58px;width:126px;height:99px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-9.webp" alt="" style="left:382px;top:0px;width:132px;height:66px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-10.webp" alt="" style="left:309px;top:74px;width:120px;height:68px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-11.webp" alt="" style="left:0px;top:164px;width:60px;height:77px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-12.webp" alt="" style="left:283px;top:14px;width:78px;height:50px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-13.webp" alt="" style="left:450px;top:92px;width:75px;height:40px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-14.webp" alt="" style="left:514px;top:98px;width:127px;height:93px">
       </div>
-      <img class="s" src="assets/img/shared/sea-1.webp" alt="" style="left:541px;top:881px;width:1243px;height:305px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-1.webp" alt="" style="left:541px;top:881px;width:1243px;height:305px">
     </div>
     <div class="clouds" style="left:0;top:0;width:1728px;height:1117px;overflow:hidden">
-      <img class="cloud c-front-left" src="assets/img/shared/cloud-front-left.webp" alt="" style="left:314px;top:-22px;width:616px;height:309px">
-      <img class="cloud c-tiny" src="assets/img/shared/cloud-tiny.webp" alt="" style="left:329px;top:175px;width:255px;height:175px">
-      <img class="cloud c-left-back" src="assets/img/shared/cloud-left-back.webp" alt="" style="left:-60px;top:119px;width:509px;height:251px">
-      <img class="cloud c-left-far" src="assets/img/shared/cloud-left-far.webp" alt="" style="left:-172px;top:-116px;width:701px;height:395px">
-      <img class="cloud sun" src="assets/img/shared/sun.webp" alt="" style="left:93px;top:58px;width:146px;height:144px">
-      <img class="cloud c-top-big" src="assets/img/shared/cloud-top-big.webp" alt="" style="left:-1133px;top:-356px;width:1990px;height:466px">
+      <img loading="lazy" decoding="async" class="cloud c-front-left" src="assets/img/shared/cloud-front-left.webp" alt="" style="left:314px;top:-22px;width:616px;height:309px">
+      <img loading="lazy" decoding="async" class="cloud c-tiny" src="assets/img/shared/cloud-tiny.webp" alt="" style="left:329px;top:175px;width:255px;height:175px">
+      <img loading="lazy" decoding="async" class="cloud c-left-back" src="assets/img/shared/cloud-left-back.webp" alt="" style="left:-60px;top:119px;width:509px;height:251px">
+      <img loading="lazy" decoding="async" class="cloud c-left-far" src="assets/img/shared/cloud-left-far.webp" alt="" style="left:-172px;top:-116px;width:701px;height:395px">
+      <img loading="lazy" decoding="async" class="cloud sun" src="assets/img/shared/sun.webp" alt="" style="left:93px;top:58px;width:146px;height:144px">
+      <img loading="lazy" decoding="async" class="cloud c-top-big" src="assets/img/shared/cloud-top-big.webp" alt="" style="left:-1133px;top:-356px;width:1990px;height:466px">
     </div>
     <div class="birds" style="left:0;top:0;width:1728px;height:1117px">
-      <img class="bird" src="assets/img/shared/bird-1.webp" alt="" style="left:374px;top:210px;width:186px;height:199px">
-      <img class="bird" src="assets/img/shared/bird-5.webp" alt="" style="left:248px;top:49px;width:147px;height:161px">
-      <img class="bird" src="assets/img/shared/bird-4.webp" alt="" style="left:49px;top:330px;width:130px;height:74px">
-      <img class="bird" src="assets/img/shared/bird-3.webp" alt="" style="left:75px;top:117px;width:124px;height:139px">
-      <img class="bird" src="assets/img/shared/bird-2.webp" alt="" style="left:192px;top:263px;width:136px;height:78px">
+      <img loading="lazy" decoding="async" class="bird" src="assets/img/shared/bird-1.webp" alt="" style="left:374px;top:210px;width:186px;height:199px">
+      <img loading="lazy" decoding="async" class="bird" src="assets/img/shared/bird-5.webp" alt="" style="left:248px;top:49px;width:147px;height:161px">
+      <img loading="lazy" decoding="async" class="bird" src="assets/img/shared/bird-4.webp" alt="" style="left:49px;top:330px;width:130px;height:74px">
+      <img loading="lazy" decoding="async" class="bird" src="assets/img/shared/bird-3.webp" alt="" style="left:75px;top:117px;width:124px;height:139px">
+      <img loading="lazy" decoding="async" class="bird" src="assets/img/shared/bird-2.webp" alt="" style="left:192px;top:263px;width:136px;height:78px">
     </div>
     <div class="bighands" style="left:0;top:0;width:1728px;height:1117px">
-      <img class="bh hand-man" src="assets/img/shared/hand-man.webp" alt="" style="left:-307px;top:837px;width:865px;height:669px">
-      <img class="bh hand-god" src="assets/img/shared/hand-god.webp" alt="" style="left:1185px;top:-285px;width:873px;height:698px">
+      <img loading="lazy" decoding="async" class="bh hand-man" src="assets/img/shared/hand-man.webp" alt="" style="left:-307px;top:837px;width:865px;height:669px">
+      <img loading="lazy" decoding="async" class="bh hand-god" src="assets/img/shared/hand-god.webp" alt="" style="left:1185px;top:-285px;width:873px;height:698px">
     </div>
     <div class="darkener"></div>
     <div class="col day6-text" data-from="64,1388" data-to="64,2827" style="left:64px;top:540px;width:1600px;gap:49px">
@@ -349,76 +351,76 @@
       <p class="bd b30" style="width:1056px">Imagine a world where your creative vision shapes humanity’s origins, this competition allows you to become the creator - and see your creations come to life in a fantastical, divine way!</p>
     </div>
     <div class="row adams cutout" data-from="444.5,1322" data-to="444.5,2761" style="left:444.5px;top:301px;gap:105px">
-      <img src="assets/img/day6/adam-bald.webp" alt="" style="width:173px;height:222px;object-fit:contain">
-      <img src="assets/img/day6/adam-weird.webp" alt="" style="width:243px;height:222px;object-fit:contain">
-      <img src="assets/img/day6/adam-bully.webp" alt="" style="width:212px;height:218px;object-fit:contain;transform:scaleX(-1)">
+      <img loading="lazy" decoding="async" src="assets/img/day6/adam-bald.webp" alt="" style="width:173px;height:222px;object-fit:contain">
+      <img loading="lazy" decoding="async" src="assets/img/day6/adam-weird.webp" alt="" style="width:243px;height:222px;object-fit:contain">
+      <img loading="lazy" decoding="async" src="assets/img/day6/adam-bully.webp" alt="" style="width:212px;height:218px;object-fit:contain;transform:scaleX(-1)">
     </div>
   </div>
 </section>
 <section class="fold fold--shabbat" id="fold-shabbat" data-day="7">
   <div class="stage">
-    <img class="sky" src="assets/img/shared/sky.webp" alt="" style="left:0;top:0;width:1728px;height:1117px">
+    <img loading="lazy" decoding="async" class="sky" src="assets/img/shared/sky.webp" alt="" style="left:0;top:0;width:1728px;height:1117px">
     <div class="night" style="left:0;top:0;width:1728px;height:1117px">
-      <img class="n" src="assets/img/shared/night-2.webp" alt="" style="left:761px;top:411px;width:798px;height:366px">
-      <img class="n" src="assets/img/shared/night-4.webp" alt="" style="left:798px;top:0px;width:930px;height:745px">
-      <img class="n" src="assets/img/shared/night-3.webp" alt="" style="left:854px;top:0px;width:874px;height:903px">
-      <img class="n" src="assets/img/shared/night-1.webp" alt="" style="left:1077px;top:0px;width:651px;height:568px">
-      <img class="n moon" src="assets/img/shared/moon.webp" alt="" style="left:1424px;top:51px;width:146px;height:177px">
+      <img loading="lazy" decoding="async" class="n" src="assets/img/shared/night-2.webp" alt="" style="left:761px;top:411px;width:798px;height:366px">
+      <img loading="lazy" decoding="async" class="n" src="assets/img/shared/night-4.webp" alt="" style="left:798px;top:0px;width:930px;height:745px">
+      <img loading="lazy" decoding="async" class="n" src="assets/img/shared/night-3.webp" alt="" style="left:854px;top:0px;width:874px;height:903px">
+      <img loading="lazy" decoding="async" class="n" src="assets/img/shared/night-1.webp" alt="" style="left:1077px;top:0px;width:651px;height:568px">
+      <img loading="lazy" decoding="async" class="n moon" src="assets/img/shared/moon.webp" alt="" style="left:1424px;top:51px;width:146px;height:177px">
     </div>
     <div class="ground" style="left:0;top:0;width:1728px;height:1117px;overflow:hidden">
-      <img class="g" src="assets/img/shared/mountain-2.webp" alt="" style="left:900px;top:506px;width:609px;height:174px">
-      <img class="g" src="assets/img/shared/ground-8.webp" alt="" style="left:1377px;top:496px;width:351px;height:388px">
-      <img class="g" src="assets/img/shared/mountain-1.webp" alt="" style="left:0px;top:401px;width:945px;height:316px">
-      <img class="g" src="assets/img/shared/ground-5.webp" alt="" style="left:539px;top:555px;width:461px;height:396px">
-      <img class="g" src="assets/img/shared/ground-4.webp" alt="" style="left:0px;top:470px;width:747px;height:494px">
-      <img class="g" src="assets/img/shared/ground-6.webp" alt="" style="left:880px;top:555px;width:459px;height:399px">
-      <img class="g" src="assets/img/shared/ground-3.webp" alt="" style="left:721px;top:557px;width:777px;height:356px">
-      <img class="g" src="assets/img/shared/ground-7.webp" alt="" style="left:1353px;top:591px;width:375px;height:399px">
-      <img class="g" src="assets/img/shared/ground-1.webp" alt="" style="left:565px;top:576px;width:435px;height:312px">
-      <img class="g" src="assets/img/shared/ground-2.webp" alt="" style="left:0px;top:605px;width:726px;height:512px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/mountain-2.webp" alt="" style="left:900px;top:506px;width:609px;height:174px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-8.webp" alt="" style="left:1377px;top:496px;width:351px;height:388px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/mountain-1.webp" alt="" style="left:0px;top:401px;width:945px;height:316px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-5.webp" alt="" style="left:539px;top:555px;width:461px;height:396px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-4.webp" alt="" style="left:0px;top:470px;width:747px;height:494px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-6.webp" alt="" style="left:880px;top:555px;width:459px;height:399px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-3.webp" alt="" style="left:721px;top:557px;width:777px;height:356px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-7.webp" alt="" style="left:1353px;top:591px;width:375px;height:399px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-1.webp" alt="" style="left:565px;top:576px;width:435px;height:312px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-2.webp" alt="" style="left:0px;top:605px;width:726px;height:512px">
     </div>
     <div class="sea" style="left:0;top:0;width:1728px;height:1117px">
-      <img class="s" src="assets/img/shared/sea-5.webp" alt="" style="left:0px;top:760px;width:863px;height:482px">
-      <img class="s whale" src="assets/img/shared/whale.webp" alt="" style="left:164px;top:623px;width:344px;height:293px">
-      <img class="s" src="assets/img/shared/sea-4.webp" alt="" style="left:-1px;top:787px;width:982px;height:390px">
-      <img class="s" src="assets/img/shared/sea-2.webp" alt="" style="left:-15px;top:934px;width:1112px;height:222px">
-      <img class="s" src="assets/img/shared/sea-3.webp" alt="" style="left:810px;top:787px;width:917px;height:406px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-5.webp" alt="" style="left:0px;top:760px;width:863px;height:482px">
+      <img loading="lazy" decoding="async" class="s whale" src="assets/img/shared/whale.webp" alt="" style="left:164px;top:623px;width:344px;height:293px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-4.webp" alt="" style="left:-1px;top:787px;width:982px;height:390px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-2.webp" alt="" style="left:-15px;top:934px;width:1112px;height:222px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-3.webp" alt="" style="left:810px;top:787px;width:917px;height:406px">
       <div class="fish" style="left:984px;top:726px;width:641px;height:293px">
-        <img class="f" src="assets/img/shared/fish-1.webp" alt="" style="left:227px;top:142px;width:103px;height:102px">
-        <img class="f" src="assets/img/shared/fish-2.webp" alt="" style="left:130px;top:132px;width:89px;height:98px">
-        <img class="f" src="assets/img/shared/fish-3.webp" alt="" style="left:404px;top:57px;width:76px;height:39px">
-        <img class="f" src="assets/img/shared/fish-4.webp" alt="" style="left:197px;top:42px;width:69px;height:54px">
-        <img class="f" src="assets/img/shared/fish-5.webp" alt="" style="left:508px;top:51px;width:94px;height:45px">
-        <img class="f" src="assets/img/shared/fish-6.webp" alt="" style="left:102px;top:84px;width:81px;height:81px">
-        <img class="f" src="assets/img/shared/fish-7.webp" alt="" style="left:24px;top:196px;width:88px;height:97px">
-        <img class="f" src="assets/img/shared/fish-8.webp" alt="" style="left:227px;top:58px;width:126px;height:99px">
-        <img class="f" src="assets/img/shared/fish-9.webp" alt="" style="left:382px;top:0px;width:132px;height:66px">
-        <img class="f" src="assets/img/shared/fish-10.webp" alt="" style="left:309px;top:74px;width:120px;height:68px">
-        <img class="f" src="assets/img/shared/fish-11.webp" alt="" style="left:0px;top:164px;width:60px;height:77px">
-        <img class="f" src="assets/img/shared/fish-12.webp" alt="" style="left:283px;top:14px;width:78px;height:50px">
-        <img class="f" src="assets/img/shared/fish-13.webp" alt="" style="left:450px;top:92px;width:75px;height:40px">
-        <img class="f" src="assets/img/shared/fish-14.webp" alt="" style="left:514px;top:98px;width:127px;height:93px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-1.webp" alt="" style="left:227px;top:142px;width:103px;height:102px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-2.webp" alt="" style="left:130px;top:132px;width:89px;height:98px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-3.webp" alt="" style="left:404px;top:57px;width:76px;height:39px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-4.webp" alt="" style="left:197px;top:42px;width:69px;height:54px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-5.webp" alt="" style="left:508px;top:51px;width:94px;height:45px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-6.webp" alt="" style="left:102px;top:84px;width:81px;height:81px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-7.webp" alt="" style="left:24px;top:196px;width:88px;height:97px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-8.webp" alt="" style="left:227px;top:58px;width:126px;height:99px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-9.webp" alt="" style="left:382px;top:0px;width:132px;height:66px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-10.webp" alt="" style="left:309px;top:74px;width:120px;height:68px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-11.webp" alt="" style="left:0px;top:164px;width:60px;height:77px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-12.webp" alt="" style="left:283px;top:14px;width:78px;height:50px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-13.webp" alt="" style="left:450px;top:92px;width:75px;height:40px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-14.webp" alt="" style="left:514px;top:98px;width:127px;height:93px">
       </div>
-      <img class="s" src="assets/img/shared/sea-1.webp" alt="" style="left:541px;top:881px;width:1243px;height:305px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-1.webp" alt="" style="left:541px;top:881px;width:1243px;height:305px">
     </div>
     <div class="clouds" style="left:0;top:0;width:1728px;height:1117px;overflow:hidden">
-      <img class="cloud c-front-left" src="assets/img/shared/cloud-front-left.webp" alt="" style="left:314px;top:-22px;width:616px;height:309px">
-      <img class="cloud c-tiny" src="assets/img/shared/cloud-tiny.webp" alt="" style="left:329px;top:175px;width:255px;height:175px">
-      <img class="cloud c-left-back" src="assets/img/shared/cloud-left-back.webp" alt="" style="left:-60px;top:119px;width:509px;height:251px">
-      <img class="cloud c-left-far" src="assets/img/shared/cloud-left-far.webp" alt="" style="left:-172px;top:-116px;width:701px;height:395px">
-      <img class="cloud sun" src="assets/img/shared/sun.webp" alt="" style="left:93px;top:58px;width:146px;height:144px">
-      <img class="cloud c-top-big" src="assets/img/shared/cloud-top-big.webp" alt="" style="left:-1133px;top:-356px;width:1990px;height:466px">
+      <img loading="lazy" decoding="async" class="cloud c-front-left" src="assets/img/shared/cloud-front-left.webp" alt="" style="left:314px;top:-22px;width:616px;height:309px">
+      <img loading="lazy" decoding="async" class="cloud c-tiny" src="assets/img/shared/cloud-tiny.webp" alt="" style="left:329px;top:175px;width:255px;height:175px">
+      <img loading="lazy" decoding="async" class="cloud c-left-back" src="assets/img/shared/cloud-left-back.webp" alt="" style="left:-60px;top:119px;width:509px;height:251px">
+      <img loading="lazy" decoding="async" class="cloud c-left-far" src="assets/img/shared/cloud-left-far.webp" alt="" style="left:-172px;top:-116px;width:701px;height:395px">
+      <img loading="lazy" decoding="async" class="cloud sun" src="assets/img/shared/sun.webp" alt="" style="left:93px;top:58px;width:146px;height:144px">
+      <img loading="lazy" decoding="async" class="cloud c-top-big" src="assets/img/shared/cloud-top-big.webp" alt="" style="left:-1133px;top:-356px;width:1990px;height:466px">
     </div>
     <div class="birds" style="left:0;top:0;width:1728px;height:1117px">
-      <img class="bird" src="assets/img/shared/bird-1.webp" alt="" style="left:374px;top:210px;width:186px;height:199px">
-      <img class="bird" src="assets/img/shared/bird-5.webp" alt="" style="left:248px;top:49px;width:147px;height:161px">
-      <img class="bird" src="assets/img/shared/bird-4.webp" alt="" style="left:49px;top:330px;width:130px;height:74px">
-      <img class="bird" src="assets/img/shared/bird-3.webp" alt="" style="left:75px;top:117px;width:124px;height:139px">
-      <img class="bird" src="assets/img/shared/bird-2.webp" alt="" style="left:192px;top:263px;width:136px;height:78px">
+      <img loading="lazy" decoding="async" class="bird" src="assets/img/shared/bird-1.webp" alt="" style="left:374px;top:210px;width:186px;height:199px">
+      <img loading="lazy" decoding="async" class="bird" src="assets/img/shared/bird-5.webp" alt="" style="left:248px;top:49px;width:147px;height:161px">
+      <img loading="lazy" decoding="async" class="bird" src="assets/img/shared/bird-4.webp" alt="" style="left:49px;top:330px;width:130px;height:74px">
+      <img loading="lazy" decoding="async" class="bird" src="assets/img/shared/bird-3.webp" alt="" style="left:75px;top:117px;width:124px;height:139px">
+      <img loading="lazy" decoding="async" class="bird" src="assets/img/shared/bird-2.webp" alt="" style="left:192px;top:263px;width:136px;height:78px">
     </div>
     <div class="bighands" style="left:0;top:0;width:1728px;height:1117px">
-      <img class="bh hand-man" src="assets/img/shared/hand-man.webp" alt="" style="left:-52px;top:519px;width:865px;height:669px">
-      <img class="bh hand-god" src="assets/img/shared/hand-god.webp" alt="" style="left:893px;top:-48px;width:873px;height:698px">
+      <img loading="lazy" decoding="async" class="bh hand-man" src="assets/img/shared/hand-man.webp" alt="" style="left:-52px;top:519px;width:865px;height:669px">
+      <img loading="lazy" decoding="async" class="bh hand-god" src="assets/img/shared/hand-god.webp" alt="" style="left:893px;top:-48px;width:873px;height:698px">
     </div>
     <div class="darkener"></div>
     <h2 class="hd h128 day7-title" data-from="64,-255" data-to="64,-1051" style="left:64px;top:229px;width:1600px">netflix and chill<br>at god’s house</h2>
@@ -427,73 +429,73 @@
 </section>
 <section class="fold fold--footer" id="fold-footer" data-day="contact">
   <div class="stage">
-    <img class="sky" src="assets/img/shared/sky.webp" alt="" style="left:0;top:0;width:1728px;height:1117px">
+    <img loading="lazy" decoding="async" class="sky" src="assets/img/shared/sky.webp" alt="" style="left:0;top:0;width:1728px;height:1117px">
     <div class="night" style="left:0;top:0;width:1728px;height:1117px">
-      <img class="n" src="assets/img/shared/night-2.webp" alt="" style="left:761px;top:411px;width:798px;height:366px">
-      <img class="n" src="assets/img/shared/night-4.webp" alt="" style="left:798px;top:0px;width:930px;height:745px">
-      <img class="n" src="assets/img/shared/night-3.webp" alt="" style="left:854px;top:0px;width:874px;height:903px">
-      <img class="n" src="assets/img/shared/night-1.webp" alt="" style="left:1077px;top:0px;width:651px;height:568px">
-      <img class="n moon" src="assets/img/shared/moon.webp" alt="" style="left:1424px;top:51px;width:146px;height:177px">
+      <img loading="lazy" decoding="async" class="n" src="assets/img/shared/night-2.webp" alt="" style="left:761px;top:411px;width:798px;height:366px">
+      <img loading="lazy" decoding="async" class="n" src="assets/img/shared/night-4.webp" alt="" style="left:798px;top:0px;width:930px;height:745px">
+      <img loading="lazy" decoding="async" class="n" src="assets/img/shared/night-3.webp" alt="" style="left:854px;top:0px;width:874px;height:903px">
+      <img loading="lazy" decoding="async" class="n" src="assets/img/shared/night-1.webp" alt="" style="left:1077px;top:0px;width:651px;height:568px">
+      <img loading="lazy" decoding="async" class="n moon" src="assets/img/shared/moon.webp" alt="" style="left:1424px;top:51px;width:146px;height:177px">
     </div>
     <div class="ground" style="left:0;top:0;width:1728px;height:1117px;overflow:hidden">
-      <img class="g" src="assets/img/shared/mountain-2.webp" alt="" style="left:900px;top:506px;width:609px;height:174px">
-      <img class="g" src="assets/img/shared/ground-8.webp" alt="" style="left:1377px;top:496px;width:351px;height:388px">
-      <img class="g" src="assets/img/shared/mountain-1.webp" alt="" style="left:0px;top:401px;width:945px;height:316px">
-      <img class="g" src="assets/img/shared/ground-5.webp" alt="" style="left:539px;top:555px;width:461px;height:396px">
-      <img class="g" src="assets/img/shared/ground-4.webp" alt="" style="left:0px;top:470px;width:747px;height:494px">
-      <img class="g" src="assets/img/shared/ground-6.webp" alt="" style="left:880px;top:555px;width:459px;height:399px">
-      <img class="g" src="assets/img/shared/ground-3.webp" alt="" style="left:721px;top:557px;width:777px;height:356px">
-      <img class="g" src="assets/img/shared/ground-7.webp" alt="" style="left:1353px;top:591px;width:375px;height:399px">
-      <img class="g" src="assets/img/shared/ground-1.webp" alt="" style="left:565px;top:576px;width:435px;height:312px">
-      <img class="g" src="assets/img/shared/ground-2.webp" alt="" style="left:0px;top:605px;width:726px;height:512px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/mountain-2.webp" alt="" style="left:900px;top:506px;width:609px;height:174px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-8.webp" alt="" style="left:1377px;top:496px;width:351px;height:388px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/mountain-1.webp" alt="" style="left:0px;top:401px;width:945px;height:316px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-5.webp" alt="" style="left:539px;top:555px;width:461px;height:396px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-4.webp" alt="" style="left:0px;top:470px;width:747px;height:494px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-6.webp" alt="" style="left:880px;top:555px;width:459px;height:399px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-3.webp" alt="" style="left:721px;top:557px;width:777px;height:356px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-7.webp" alt="" style="left:1353px;top:591px;width:375px;height:399px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-1.webp" alt="" style="left:565px;top:576px;width:435px;height:312px">
+      <img loading="lazy" decoding="async" class="g" src="assets/img/shared/ground-2.webp" alt="" style="left:0px;top:605px;width:726px;height:512px">
     </div>
     <div class="sea" style="left:0;top:0;width:1728px;height:1117px">
-      <img class="s" src="assets/img/shared/sea-5.webp" alt="" style="left:0px;top:760px;width:863px;height:482px">
-      <img class="s whale" src="assets/img/shared/whale.webp" alt="" style="left:164px;top:623px;width:344px;height:293px">
-      <img class="s" src="assets/img/shared/sea-4.webp" alt="" style="left:-1px;top:787px;width:982px;height:390px">
-      <img class="s" src="assets/img/shared/sea-2.webp" alt="" style="left:-15px;top:934px;width:1112px;height:222px">
-      <img class="s" src="assets/img/shared/sea-3.webp" alt="" style="left:810px;top:787px;width:917px;height:406px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-5.webp" alt="" style="left:0px;top:760px;width:863px;height:482px">
+      <img loading="lazy" decoding="async" class="s whale" src="assets/img/shared/whale.webp" alt="" style="left:164px;top:623px;width:344px;height:293px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-4.webp" alt="" style="left:-1px;top:787px;width:982px;height:390px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-2.webp" alt="" style="left:-15px;top:934px;width:1112px;height:222px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-3.webp" alt="" style="left:810px;top:787px;width:917px;height:406px">
       <div class="fish" style="left:984px;top:726px;width:641px;height:293px">
-        <img class="f" src="assets/img/shared/fish-1.webp" alt="" style="left:227px;top:142px;width:103px;height:102px">
-        <img class="f" src="assets/img/shared/fish-2.webp" alt="" style="left:130px;top:132px;width:89px;height:98px">
-        <img class="f" src="assets/img/shared/fish-3.webp" alt="" style="left:404px;top:57px;width:76px;height:39px">
-        <img class="f" src="assets/img/shared/fish-4.webp" alt="" style="left:197px;top:42px;width:69px;height:54px">
-        <img class="f" src="assets/img/shared/fish-5.webp" alt="" style="left:508px;top:51px;width:94px;height:45px">
-        <img class="f" src="assets/img/shared/fish-6.webp" alt="" style="left:102px;top:84px;width:81px;height:81px">
-        <img class="f" src="assets/img/shared/fish-7.webp" alt="" style="left:24px;top:196px;width:88px;height:97px">
-        <img class="f" src="assets/img/shared/fish-8.webp" alt="" style="left:227px;top:58px;width:126px;height:99px">
-        <img class="f" src="assets/img/shared/fish-9.webp" alt="" style="left:382px;top:0px;width:132px;height:66px">
-        <img class="f" src="assets/img/shared/fish-10.webp" alt="" style="left:309px;top:74px;width:120px;height:68px">
-        <img class="f" src="assets/img/shared/fish-11.webp" alt="" style="left:0px;top:164px;width:60px;height:77px">
-        <img class="f" src="assets/img/shared/fish-12.webp" alt="" style="left:283px;top:14px;width:78px;height:50px">
-        <img class="f" src="assets/img/shared/fish-13.webp" alt="" style="left:450px;top:92px;width:75px;height:40px">
-        <img class="f" src="assets/img/shared/fish-14.webp" alt="" style="left:514px;top:98px;width:127px;height:93px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-1.webp" alt="" style="left:227px;top:142px;width:103px;height:102px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-2.webp" alt="" style="left:130px;top:132px;width:89px;height:98px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-3.webp" alt="" style="left:404px;top:57px;width:76px;height:39px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-4.webp" alt="" style="left:197px;top:42px;width:69px;height:54px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-5.webp" alt="" style="left:508px;top:51px;width:94px;height:45px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-6.webp" alt="" style="left:102px;top:84px;width:81px;height:81px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-7.webp" alt="" style="left:24px;top:196px;width:88px;height:97px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-8.webp" alt="" style="left:227px;top:58px;width:126px;height:99px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-9.webp" alt="" style="left:382px;top:0px;width:132px;height:66px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-10.webp" alt="" style="left:309px;top:74px;width:120px;height:68px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-11.webp" alt="" style="left:0px;top:164px;width:60px;height:77px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-12.webp" alt="" style="left:283px;top:14px;width:78px;height:50px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-13.webp" alt="" style="left:450px;top:92px;width:75px;height:40px">
+        <img loading="lazy" decoding="async" class="f" src="assets/img/shared/fish-14.webp" alt="" style="left:514px;top:98px;width:127px;height:93px">
       </div>
-      <img class="s" src="assets/img/shared/sea-1.webp" alt="" style="left:541px;top:881px;width:1243px;height:305px">
+      <img loading="lazy" decoding="async" class="s" src="assets/img/shared/sea-1.webp" alt="" style="left:541px;top:881px;width:1243px;height:305px">
     </div>
     <div class="clouds" style="left:0;top:0;width:1728px;height:1117px;overflow:hidden">
-      <img class="cloud c-front-left" src="assets/img/shared/cloud-front-left.webp" alt="" style="left:314px;top:-22px;width:616px;height:309px">
-      <img class="cloud c-tiny" src="assets/img/shared/cloud-tiny.webp" alt="" style="left:329px;top:175px;width:255px;height:175px">
-      <img class="cloud c-left-back" src="assets/img/shared/cloud-left-back.webp" alt="" style="left:-60px;top:119px;width:509px;height:251px">
-      <img class="cloud c-left-far" src="assets/img/shared/cloud-left-far.webp" alt="" style="left:-172px;top:-116px;width:701px;height:395px">
-      <img class="cloud sun" src="assets/img/shared/sun.webp" alt="" style="left:93px;top:58px;width:146px;height:144px">
-      <img class="cloud c-top-big" src="assets/img/shared/cloud-top-big.webp" alt="" style="left:-1133px;top:-356px;width:1990px;height:466px">
+      <img loading="lazy" decoding="async" class="cloud c-front-left" src="assets/img/shared/cloud-front-left.webp" alt="" style="left:314px;top:-22px;width:616px;height:309px">
+      <img loading="lazy" decoding="async" class="cloud c-tiny" src="assets/img/shared/cloud-tiny.webp" alt="" style="left:329px;top:175px;width:255px;height:175px">
+      <img loading="lazy" decoding="async" class="cloud c-left-back" src="assets/img/shared/cloud-left-back.webp" alt="" style="left:-60px;top:119px;width:509px;height:251px">
+      <img loading="lazy" decoding="async" class="cloud c-left-far" src="assets/img/shared/cloud-left-far.webp" alt="" style="left:-172px;top:-116px;width:701px;height:395px">
+      <img loading="lazy" decoding="async" class="cloud sun" src="assets/img/shared/sun.webp" alt="" style="left:93px;top:58px;width:146px;height:144px">
+      <img loading="lazy" decoding="async" class="cloud c-top-big" src="assets/img/shared/cloud-top-big.webp" alt="" style="left:-1133px;top:-356px;width:1990px;height:466px">
     </div>
     <div class="birds" style="left:0;top:0;width:1728px;height:1117px">
-      <img class="bird" src="assets/img/shared/bird-1.webp" alt="" style="left:374px;top:210px;width:186px;height:199px">
-      <img class="bird" src="assets/img/shared/bird-5.webp" alt="" style="left:248px;top:49px;width:147px;height:161px">
-      <img class="bird" src="assets/img/shared/bird-4.webp" alt="" style="left:49px;top:330px;width:130px;height:74px">
-      <img class="bird" src="assets/img/shared/bird-3.webp" alt="" style="left:75px;top:117px;width:124px;height:139px">
-      <img class="bird" src="assets/img/shared/bird-2.webp" alt="" style="left:192px;top:263px;width:136px;height:78px">
+      <img loading="lazy" decoding="async" class="bird" src="assets/img/shared/bird-1.webp" alt="" style="left:374px;top:210px;width:186px;height:199px">
+      <img loading="lazy" decoding="async" class="bird" src="assets/img/shared/bird-5.webp" alt="" style="left:248px;top:49px;width:147px;height:161px">
+      <img loading="lazy" decoding="async" class="bird" src="assets/img/shared/bird-4.webp" alt="" style="left:49px;top:330px;width:130px;height:74px">
+      <img loading="lazy" decoding="async" class="bird" src="assets/img/shared/bird-3.webp" alt="" style="left:75px;top:117px;width:124px;height:139px">
+      <img loading="lazy" decoding="async" class="bird" src="assets/img/shared/bird-2.webp" alt="" style="left:192px;top:263px;width:136px;height:78px">
     </div>
     <div class="bighands" style="left:0;top:0;width:1728px;height:1117px">
-      <img class="bh hand-man" src="assets/img/shared/hand-man.webp" alt="" style="left:-1px;top:446px;width:865px;height:669px">
-      <img class="bh hand-god" src="assets/img/shared/hand-god.webp" alt="" style="left:855px;top:0px;width:873px;height:698px">
+      <img loading="lazy" decoding="async" class="bh hand-man" src="assets/img/shared/hand-man.webp" alt="" style="left:-1px;top:446px;width:865px;height:669px">
+      <img loading="lazy" decoding="async" class="bh hand-god" src="assets/img/shared/hand-god.webp" alt="" style="left:855px;top:0px;width:873px;height:698px">
     </div>
     <div class="darkener darkener--25"></div>
-    <a class="ticket" href="#" data-from="696,-147" style="left:696px;top:267px;width:316px;height:99px"><img src="assets/img/shared/ticket.webp" alt="Tickets" style="position:static;width:100%;height:100%"></a>
+    <a class="ticket" href="#" data-from="696,-147" style="left:696px;top:267px;width:316px;height:99px"><img loading="lazy" decoding="async" src="assets/img/shared/ticket.webp" alt="Tickets" style="position:static;width:100%;height:100%"></a>
     <div class="logo" data-from="785,-152" style="left:785px;top:73px;width:158px">
-      <img src="assets/img/shared/logo-god.webp" alt="Jehova Events" style="position:static;width:158px;height:104px;object-fit:contain">
+      <img loading="lazy" decoding="async" src="assets/img/shared/logo-god.webp" alt="Jehova Events" style="position:static;width:158px;height:104px;object-fit:contain">
       <p class="logo__word">jehova events</p>
     </div>
     <div class="col footer-learn" data-from="199,1381" style="left:199px;top:842px;width:385px;gap:14px">
