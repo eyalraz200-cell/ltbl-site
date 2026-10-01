@@ -51,7 +51,7 @@ sea = {  # slug: (w,h, f1, f2, f3, f4+)
 order = ['sea-5', 'whale', 'sea-4', 'sea-2', 'sea-3', 'fish', 'sea-1']
 for slug in order:
     if slug == 'whale':
-        B.append(img('s whale', 'shared/whale', K((4, [81.2, 969.7, 344, 293, 45]), (5, [164, 623, 344, 293, 0])), 344, 293))
+        B.append(img('s whale', 'shared/whale', K((3, [81.2, 2086.7, 344, 293, 45]), (4, [81.2, 969.7, 344, 293, 45]), (5, [164, 623, 344, 293, 0])), 344, 293))
     elif slug == 'fish':
         FISH = [(1,227,142,103,102),(2,130,132,89,98),(3,404,57,76,39),(4,197,42,69,54),(5,508,51,94,45),(6,102,84,81,81),(7,24,196,88,97),(8,227,58,126,99),(9,382,0,132,66),(10,309,74,120,68),(11,0,164,60,77),(12,283,14,78,50),(13,450,92,75,40),(14,514,98,127,93)]
         inner = ''.join(f'<img src="assets/img/shared/fish-{i}.webp" alt="" style="left:{fx}px;top:{fy}px;width:{fw}px;height:{fh}px">' for i, fx, fy, fw, fh in FISH)
@@ -147,4 +147,10 @@ S.append(el('h2', 'h192 footer-title', K((7, [334, 1067]), (8, [334, 405])), 106
 
 FRAMES = 'hero,about,day2,day3,day4,day5,day6,shabbat,footer'
 DAYS = '1,about,2,3,4,5,6,7,contact'
-print(f'<section class="world" id="world" data-frames="{FRAMES}" data-days="{DAYS}">\n  <div class="backdrop">\n    ' + '\n    '.join(B) + '\n  </div>\n  <div class="stage">\n    ' + '\n    '.join(S) + '\n  </div>\n</section>')
+OUT = f'<section class="world" id="world" data-frames="{FRAMES}" data-days="{DAYS}">\n  <div class="backdrop">\n    ' + '\n    '.join(B) + '\n  </div>\n  <div class="stage">\n    ' + '\n    '.join(S) + '\n  </div>\n</section>'
+import re as _re
+CRIT=('shared/sky','shared/cloud-','intro/dark-','shared/logo-god','shared/ticket','shared/hand.')
+def _p(m):
+    t=m.group(0).replace(' fetchpriority="high"',''); src=_re.search(r'assets/img/([^"]+)',t).group(1)
+    return t.replace('<img ','<img fetchpriority="'+('high' if src.startswith(CRIT) else 'low')+'" ',1)
+print(_re.sub(r'<img [^>]*src="assets/img/[^>]*>',_p,OUT))

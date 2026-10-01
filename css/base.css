@@ -38,7 +38,7 @@ img{display:block;max-width:none}
 .backdrop{transform:translate(-50%,-50%) scale(var(--bleed-scale,1))}
 .stage{overflow:hidden}
 .backdrop > *,.stage > *,.fish > *,.intro-clouds > *{position:absolute}
-.backdrop .darkener{background:#000}
+.backdrop .darkener{background:#000;opacity:.4}   /* scroll.js drives it per frame (footer .25); this is its value before the engine starts */
 /* discrete paper pieces (moon, sun, birds, big hands) live on the contained stage so they never crop with the bleed;
    they sat under the .4 darkener in Figma, so they carry the same dimming themselves */
 .stage .scenery{filter:brightness(.6)}
@@ -67,3 +67,5 @@ html.is-intro{overflow:hidden}
 .cap img{object-fit:contain}
 /* heading face: IM Fell DW Pica (OFL, Google Fonts), standing in for RFC Vintage Apothecary; sizes are 75% of Figma, +0.03em tracking, because it runs wider */
 @font-face{font-family:"IM Fell DW Pica";src:url(../assets/fonts/IMFellDWPica-Regular.woff2) format("woff2");font-display:swap}
+/* until the intro's pictures are decoded the world is just the ground colour (no half-loaded frame) */
+.world.is-loading .backdrop,.world.is-loading .stage{visibility:hidden}

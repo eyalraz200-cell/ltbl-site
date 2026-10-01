@@ -11,6 +11,16 @@
     return;
   }
   const q = gsap.utils.selector(hero);
+  document.documentElement.classList.add('is-intro');
+  // hold the intro until its own pictures are decoded (sky, both cloud sets, logo, ticket, hands) — never start on a black frame
+  const critical = [...hero.querySelectorAll('img[fetchpriority="high"], .logo img, .ticket img, .hand img')];
+  const ready = Promise.race([
+    Promise.all(critical.map(img => (img.complete ? Promise.resolve() : new Promise(r => { img.addEventListener('load', r, { once: true }); img.addEventListener('error', r, { once: true }); })).then(() => img.decode && img.decode().catch(() => {})))),
+    new Promise(r => setTimeout(r, 8000))   // slow network: start anyway after 8 s
+  ]);
+  hero.classList.add('is-loading');
+  window.LTBL.introDone = ready.then(() => { hero.classList.remove('is-loading'); return run(); });
+  function run(){
 
   // dark intro clouds: DOM = סרטון 1 positions
   const DARK3 = { 'd-8':[1,-83], 'd-10':[226,213], 'd-9':[-217,137], 'd-7':[-137,51], 'd-6':[92,0], 'd-1':[-69,51], 'd-2':[0,0], 'd-3':[42,-86], 'd-4':[192,18], 'd-5':[-137,-94] };
@@ -45,9 +55,10 @@
     .to(q('.logo'), { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power2.out' }, T.land)
     .to(q('.hand'), { autoAlpha: 1, x: 0, y: 0, duration: 1.0, ease: 'power2.out' }, T.land);
 
-  window.LTBL.introDone = new Promise(res => tl.eventCallback('onComplete', () => {
+  return new Promise(res => tl.eventCallback('onComplete', () => {
     introClouds.remove();
     document.documentElement.classList.remove('is-intro');
     res();
   }));
+  }
 })();
