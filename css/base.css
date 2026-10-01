@@ -29,8 +29,8 @@ img{display:block;max-width:none}
 }
 /* the world: one 100vh section pinned for the whole page. Inside it, two 1728x1117 frames share Figma coordinates:
    .backdrop (scenery + darkener) scales to COVER the viewport, so paper pieces slide to its very edges with no bars;
-   .stage (content) scales to fit INSIDE it (contain) and clips to the frame. */
-.world{position:relative;height:100vh;height:100svh;overflow:hidden;background:var(--ground)}
+   .stage (content) scales to fit INSIDE it (contain) and does not clip; js/scroll.js keeps parked pieces out of the margins. */
+.world{position:relative;height:100vh;height:100svh;overflow:hidden;overflow:clip;background:var(--ground)}   /* clip: focus can never scroll the world */
 .backdrop,.stage{
   position:absolute;left:50%;top:50%;
   width:calc(var(--stage-w) * 1px);height:calc(var(--stage-h) * 1px);

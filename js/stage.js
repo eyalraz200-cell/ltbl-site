@@ -2,15 +2,16 @@
   const W = 1728, H = 1117;
   const root = document.documentElement;
   function compute(){
-    // contain (Eyal's pick, 2026-10-01, over cover / fit-height): the whole 1728x1117 frame is always visible;
-    // the --ground colour of .fold shows as bars where the window is a different shape
-    const s = Math.min(innerWidth / W, innerHeight / H);
+    // contain (Eyal's pick, 2026-10-01, over cover / fit-height): the whole 1728x1117 frame is always visible.
+    // clientWidth/Height, not innerWidth/Height: those include a classic (Windows/Linux) scrollbar and would crop the sides
+    const vw = root.clientWidth, vh = root.clientHeight;
+    const s = Math.min(vw / W, vh / H);
     // backdrop (.backdrop, scenery + darkener) covers instead: no bars, scenery edges crop, content never does
-    root.style.setProperty('--bleed-scale', Math.max(innerWidth / W, innerHeight / H).toFixed(4));
+    root.style.setProperty('--bleed-scale', Math.max(vw / W, vh / H).toFixed(4));
     root.style.setProperty('--stage-scale', s.toFixed(4));
     // big hands: scale about the fingertip just enough that the cut ends of both arms clear every window edge, in every
     // frame where they rest on screen (day 6, day 7, footer). Image tips: god (2,536) of 873x698, Adam (863,113) of 865x669.
-    const mx = Math.max(0, (innerWidth / s - W) / 2) + 24, my = Math.max(0, (innerHeight / s - H) / 2) + 24;
+    const mx = Math.max(0, (vw / s - W) / 2) + 24, my = Math.max(0, (vh / s - H) / 2) + 24;
     const GOD = [[1185, -285], [893, -48], [855, 0]], ADAM = [[-307, 837], [-52, 519], [-1, 446]];
     let need = 1;
     GOD.forEach(([x, y]) => { const tx = x + 2, ty = y + 536; need = Math.max(need, (W + mx - tx) / 871, (ty + my) / 536); });
@@ -23,14 +24,12 @@
   addEventListener('resize', () => {
     cancelAnimationFrame(raf);
     raf = requestAnimationFrame(() => {
-      scale = compute();
-      if (window.ScrollTrigger) ScrollTrigger.refresh();
+      scale = compute();                                   // js/scroll.js rebuilds (and refreshes) the engine itself
     });
   });
 
-  // Scroll restoration is ours: the pins change the page height after load, so the browser's own restore lands on the
-  // wrong fold. Remember the position; on a reload / back-forward the intro is skipped and scroll.js restores it once
-  // the pins exist (Review Focus 2).
+  // Scroll restoration is ours: the pin changes the page height after load, so the browser's own restore lands on the
+  // wrong frame. Remember the position; on Back/Forward the intro is skipped and scroll.js restores it once the pin exists.
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   const nav = performance.getEntriesByType('navigation')[0];
   const restoring = !!nav && nav.type === 'back_forward';   // a refresh always restarts at the hero with the intro (Eyal, 2026-10-01); only Back/Forward returns to the frame
@@ -45,8 +44,8 @@
     stageScale: () => scale,
     isDesktop: () => desktop.matches,
     reducedMotion: () => matchMedia('(prefers-reduced-motion: reduce)').matches,
-    restoreY: saved,            // > 0 only on a reload / back-forward with a remembered position
+    restoreY: saved,            // > 0 only on Back/Forward with a remembered position
   };
-  // a window widened past the breakpoint starts the engine the only clean way: one fresh load (position remembered)
+  // a window widened past the breakpoint starts the engine the only clean way: one fresh load (back at the hero)
   desktop.addEventListener('change', e => { if (e.matches && !window.LTBL.engineUp) location.reload(); });
 })();

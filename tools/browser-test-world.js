@@ -28,6 +28,21 @@ let fails = 0; const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); 
   await p.setViewportSize({ width: 1920, height: 1080 }); await p.waitForTimeout(600);
   const st2 = await p.evaluate(() => { const s = ScrollTrigger.getById('world'); return s.end - s.start; });
   ok(Math.abs(st2 - 24 * 1080) < 2, 'resize: pin length recomputed (' + st2 + ')');
+  // review 2026-10-01: a parked link must not be reachable (focusing it scrolled #world itself and broke the scene)
+  const go = f => p.evaluate(f => { const s = ScrollTrigger.getById('world'); scrollTo(0, s.start + (s.end - s.start) * f / 8); }, f);
+  await go(4); await p.waitForTimeout(1200);
+  const foc = await p.evaluate(() => { document.querySelector('#world .ticket--hero').focus(); const w = document.getElementById('world');
+    return { top: w.scrollTop, left: w.scrollLeft, focused: document.activeElement.classList.contains('ticket--hero') }; });
+  ok(foc.top === 0 && foc.left === 0 && !foc.focused, 'parked ticket at day 4: not focusable, world never scrolls ' + JSON.stringify(foc));
+  await go(0); await p.waitForTimeout(1200);
+  await p.keyboard.press('Tab');
+  const tab = await p.evaluate(() => ({ cls: document.activeElement.className, top: document.getElementById('world').scrollTop }));
+  ok(tab.top === 0 && !/ticket--footer/.test(tab.cls), 'first Tab at the hero skips the parked footer ticket ' + JSON.stringify(tab));
+  // review 2026-10-01: a resize keeps the visitor's place
+  await go(4); await p.waitForTimeout(1200);
+  await p.setViewportSize({ width: 1400, height: 800 }); await p.waitForTimeout(1200);
+  const pr = await p.evaluate(() => ScrollTrigger.getById('world').progress * 8);
+  ok(Math.abs(pr - 4) < 0.02, 'resize at day 4 stays at day 4 (frame ' + pr.toFixed(3) + ')');
   ok(errs.length === 0, 'no page errors ' + errs.join(' | '));
   await b.close(); console.log(fails ? fails + ' FAILED' : 'ALL PASS'); process.exit(fails ? 1 : 0);
 })();

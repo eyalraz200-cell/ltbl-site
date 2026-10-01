@@ -20,7 +20,7 @@ def rng(a, b): return list(range(a, b + 1))
 
 def el(tag, cls, k, w, h, inner='', extra='', attrs=''):
     x, y = k[0][0], k[0][1]
-    size = f'width:{w}px;height:{h}px;' if w is not None else ''
+    size = (f'width:{w}px;' if w is not None else '') + (f'height:{h}px;' if w is not None and h is not None else '')
     return f'<{tag} class="{cls}" data-k=\'{json.dumps(k, separators=(",",":"))}\' style="left:{x}px;top:{y}px;{size}{extra}"{attrs}>{inner}</{tag}>'
 def img(cls, src, k, w, h, extra='', attrs=''):
     x, y = k[0][0], k[0][1]
@@ -95,7 +95,6 @@ B.append('<div class="intro-clouds" style="left:0;top:0;width:1728px;height:1117
 B.append(el('div', 'darkener', K((0, [0, 0, 1728, 1117, 0, .4]), (7, [0, 0, 1728, 1117, 0, .4]), (8, [0, 0, 1728, 1117, 0, .25])), 1728, 1117))
 
 # ================= content =================
-def tr(x): return x
 # hero (frame 0; parked in about frame 1)
 S.append(el('div', 'logo', K((0, [785, 87]), (1, [785, -1873])), 158, None, '<img src="assets/img/shared/logo-god.webp" alt="Jehova Events" style="position:static;width:158px;height:104px;object-fit:contain"><p class="logo__word">jehova events</p>'))
 S.append(el('h1', 'h192 title-1', K((0, [334, 228]), (1, [334, -1699])), 1060, None, 'let there be'))

@@ -1,6 +1,7 @@
 // Day nav (סקרולר 12661:1380) as a sliding strip, as in the reference video: label i sits at stage x = 864 + (i − p)·STEP,
 // where p is the continuous frame position (0..8) from the scroll; opacity 1 at the centre, .5 one step away, 0 beyond.
 (function(){
+  if (!LTBL.isDesktop()) return;          // below 1024px the plate covers the page; no focusable labels behind it
   const world = document.getElementById('world');
   const frames = world.dataset.frames.split(','), days = world.dataset.days.split(',');
   const list = document.querySelector('.daynav__list');

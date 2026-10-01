@@ -1,18 +1,12 @@
 // The world: one pinned stage, nine Figma frames as keyframes. Every [data-k] element carries its box in each frame
 // ([x,y] or [x,y,w,h,rotation,opacity], already carried across frames by tools/gen-world.py). Scroll progress runs
-// 0..8; between frame i and i+1 the element tweens from one box to the other (ease none, scrubbed), with a hold at
-// each keyframe so every fold rests. Nothing in the document scrolls — the paper pieces move inside the frame.
+// 0..8; between frame i and i+1 the element tweens from one box to the other (scrubbed; feel = MOTION below), with a
+// rest at each keyframe. Nothing in the document scrolls — the paper pieces move inside the frame.
 (async function(){
-  function bezier(x1, y1, x2, y2){                       // CSS cubic-bezier as a GSAP ease (t → progress)
-    const cx = 3 * x1, bx = 3 * (x2 - x1) - cx, ax = 1 - cx - bx, cy = 3 * y1, by = 3 * (y2 - y1) - cy, ay = 1 - cy - by;
-    const X = t => ((ax * t + bx) * t + cx) * t, dX = t => (3 * ax * t + 2 * bx) * t + cx;
-    return x => { let t = x; for (let n = 0; n < 8; n++) { const d = dX(t); if (Math.abs(d) < 1e-6) break; t -= (X(t) - x) / d; }
-      t = Math.min(1, Math.max(0, t)); return ((ay * t + by) * t + cy) * t; };
-  }
   if (!LTBL.isDesktop()) return;
-  // Content pieces parked outside the Figma frame must not show in the side margins of a wide window (the stage no
-  // longer clips). vis[i] = the piece touches the frame at keyframe i; where it doesn't, build() parks it past the
-  // window edge. Hide frame-0 outsiders until the engine places them.
+  // Content pieces parked outside the Figma frame must not show in the margins of a window of another shape (the stage
+  // doesn't clip). vis[i] = the piece is in the frame at keyframe i; where it isn't, build() pushes it out by the margin.
+  // Hide frame-0 outsiders until the engine places them.
   const W = 1728, H = 1117;
   const stageEls = [...document.querySelectorAll('#world .stage > [data-k]')].map(el => {
     const k = JSON.parse(el.dataset.k), w = el.offsetWidth, h = el.offsetHeight;
@@ -24,6 +18,11 @@
     return { el, vis, w, h };
   });
   stageEls.forEach(({ el, vis }) => { el.style.visibility = vis[0] ? '' : 'hidden'; });
+  // Links on parked pieces are inert: focusing one (Tab) made the browser scroll #world itself to reveal it, which tore
+  // the scene apart. A piece's links are live only while it is in the frame at the nearest keyframe.
+  const linked = stageEls.filter(({ el }) => el.matches('a,button') || el.querySelector('a,button'));
+  const setInert = f => linked.forEach(({ el, vis }) => { el.inert = !vis[f]; });
+  setInert(0);
   await LTBL.introDone;
   if (!window.gsap || !window.ScrollTrigger || !window.ScrollToPlugin) return;   // CDN down: the page stays on frame 0
   window.LTBL.engineUp = true;
@@ -37,24 +36,25 @@
   const box = (k, i) => { const v = k[i]; return { x: v[0], y: v[1], w: v[2], h: v[3], r: v[4] || 0, o: v[5] == null ? 1 : v[5] }; };
   const diff = (a, b) => a.x !== b.x || a.y !== b.y || a.w !== b.w || a.h !== b.h || a.r !== b.r || a.o !== b.o;
 
-  // MOTION is the feel of the scrub; a harness may rebuild with other values via LTBL.rebuildWorld(opts).
-  // page: true = the Figma prototype (הגשה 5): every day-to-day link is Smart Animate, Ease out, 300 ms, fired by a drag —
-  // one scroll gesture flips one whole frame, all pieces together. page: false = scrubbed with the wheel (harness picks).
-  const FIGMA_EASE_OUT = bezier(0, 0, 0.58, 1);           // Figma's "Ease out"
-  const MOTION = { page: false, ease: 'none', hold: 0.15, scrub: 0.6, snap: false, len: 300, creep: 0, pace: 'mid', edge: false, floor: 0.5, flip: 0.3 };   // Eyal's pick, 2026-10-01 (compare/ harness)
+  // MOTION is the feel of the scrub (docs/wiki/Scroll-engine.md); a harness may rebuild with other values via
+  // LTBL.rebuildWorld(opts). The Figma prototype's own transition (one frame per drag, 300 ms ease-out) was tried and
+  // rejected by Eyal on 2026-10-01.
+  const MOTION = { ease: 'none', hold: 0.15, scrub: 0.6, snap: false, len: 300, creep: 0, pace: 'mid', edge: false, floor: 0.5 };   // Eyal's pick, 2026-10-01 (compare/ harness)
   let tl;
   function build(m){
-    const ease = m.ease === 'figma' ? FIGMA_EASE_OUT : m.ease, hold = m.hold, dur = 1 - 2 * hold;
+    const ease = m.ease, hold = m.hold, dur = 1 - 2 * hold;
     tl = gsap.timeline({
       scrollTrigger: {
         id: 'world', trigger: world, start: 'top top', end: '+=' + (N - 1) * m.len + '%',
-        pin: true, scrub: reduced ? true : m.scrub,      // reduced: still tied to scroll (false would autoplay the timeline) anticipatePin: 1,
+        pin: true, anticipatePin: 1,
+        scrub: reduced ? true : m.scrub,                     // reduced: still tied to scroll (false would autoplay the timeline)
         snap: reduced ? { snapTo: 1 / (N - 1), duration: 0 } : (m.snap ? { snapTo: 1 / (N - 1), duration: { min: 0.3, max: 0.9 }, delay: 0.08, ease: 'power2.inOut' } : false),
         onUpdate: self => syncNav(self.progress)
       }
     });
     const sc = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--stage-scale')) || 1;
-    const mx = Math.max(0, (innerWidth / sc - W) / 2), my = Math.max(0, (innerHeight / sc - H) / 2);
+    const vw = document.documentElement.clientWidth, vh = document.documentElement.clientHeight;   // without a classic scrollbar
+    const mx = Math.max(0, (vw / sc - W) / 2), my = Math.max(0, (vh / sc - H) / 2);
     const outer = new Map(stageEls.map(o => [o.el, o]));
     const at = (el, k, i) => {
       const b = box(k, i), o = outer.get(el); if (!o || o.vis[i]) return b;
@@ -104,8 +104,9 @@
     tl.to({}, { duration: 0.001 }, N - 1);                  // pin the timeline length to exactly N-1 segments
   }
   build(MOTION);
-  window.LTBL.rebuildWorld = opts => {
-    const st = ScrollTrigger.getById('world'), p = st ? gsap.utils.clamp(0, 1, (scrollY - st.start) / (st.end - st.start)) : 0;
+  window.LTBL.rebuildWorld = (opts, keep) => {            // keep: the progress to land on (default: where we are now)
+    const st = ScrollTrigger.getById('world');
+    const p = keep != null ? keep : st ? gsap.utils.clamp(0, 1, (scrollY - st.start) / (st.end - st.start)) : 0;
     tl.scrollTrigger.kill(true); tl.kill();
     Object.assign(MOTION, opts); build(MOTION);
     ScrollTrigger.refresh();
@@ -113,55 +114,27 @@
     s2.scroll(s2.start + (s2.end - s2.start) * p); s2.update(); tl.progress(p);   // stay on the same spot; no travel
   };
 
-  let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => LTBL.rebuildWorld({}), 250); });   // margins change with the window
-
-  // Paging (MOTION.page): one wheel/touch gesture = one frame, animated over MOTION.flip s. A trackpad's inertia keeps
-  // firing wheel events after the flip; the next flip waits for a 150 ms pause in them.
-  let cur = 0, busy = false, lastWheel = 0;
-  const yOf = i => { const st = ScrollTrigger.getById('world'); return st.start + (st.end - st.start) * i / (N - 1); };
-  const nearest = () => { const st = ScrollTrigger.getById('world'); return Math.round(st.progress * (N - 1)); };
-  function flip(dir){
-    const st = ScrollTrigger.getById('world');
-    if (busy || !st) return;
-    const i = Math.max(0, Math.min(N - 1, nearest() + dir));
-    if (dir > 0 && scrollY >= st.end - 2 && i === N - 1) return false;        // past the footer: let the page go on
-    if (i === nearest() && Math.abs(scrollY - yOf(i)) < 2) return dir < 0 && scrollY <= st.start ? false : true;
-    busy = true; cur = i;
-    gsap.to(window, { scrollTo: yOf(i), duration: MOTION.flip, ease: 'none', overwrite: true, onComplete: () => { busy = false; } });
-    return true;
-  }
-  const paging = () => MOTION.page && !reduced;
-  addEventListener('wheel', e => {
-    if (!paging()) return;
-    const st = ScrollTrigger.getById('world'); if (!st || scrollY > st.end + 2) return;
-    e.preventDefault();
-    const quiet = performance.now() - lastWheel > 150; lastWheel = performance.now();
-    if (busy || !quiet || Math.abs(e.deltaY) < 2) return;
-    flip(Math.sign(e.deltaY));
-  }, { passive: false });
-  let ty = null;
-  addEventListener('touchstart', e => { ty = e.touches[0].clientY; }, { passive: true });
-  addEventListener('touchmove', e => { if (paging() && ty != null) e.preventDefault(); }, { passive: false });
-  addEventListener('touchend', e => { if (!paging() || ty == null) return; const d = ty - e.changedTouches[0].clientY; ty = null; if (Math.abs(d) > 30) flip(Math.sign(d)); });
-  addEventListener('keydown', e => {
-    if (!paging() || e.target.closest('input,textarea')) return;
-    const dir = { ArrowDown: 1, PageDown: 1, ' ': e.shiftKey ? -1 : 1, ArrowUp: -1, PageUp: -1 }[e.key];
-    if (dir && flip(dir) !== false) e.preventDefault();
+  // Margins change with the window, so a resize rebuilds. The place is read at the FIRST event of a burst: by the time the
+  // debounce fires, ScrollTrigger has already refreshed start/end while scrollY stayed put, so reading it then is wrong.
+  let rz, keepP = null;
+  addEventListener('resize', () => {
+    if (keepP == null) keepP = ScrollTrigger.getById('world').progress;
+    clearTimeout(rz); rz = setTimeout(() => { LTBL.rebuildWorld({}, keepP); keepP = null; }, 250);
   });
 
   // nav + anchors
-  function syncNav(p){ if (LTBL.navSetPos) LTBL.navSetPos(p * (N - 1)); }
+  function syncNav(p){ setInert(Math.round(p * (N - 1))); if (LTBL.navSetPos) LTBL.navSetPos(p * (N - 1)); }
   window.LTBL.frameIndex = id => FRAMES.indexOf(id);
   window.LTBL.scrollTo = id => {
     const st = ScrollTrigger.getById('world'); const i = FRAMES.indexOf(id); if (!st || i < 0) return;
-    gsap.to(window, { scrollTo: st.start + (st.end - st.start) * i / (N - 1), duration: 1, ease: 'power2.inOut', onComplete: () => ScrollTrigger.refresh() });
+    gsap.to(window, { scrollTo: st.start + (st.end - st.start) * i / (N - 1), duration: 1, ease: 'power2.inOut', overwrite: true, onComplete: () => ScrollTrigger.refresh() });
   };
   document.addEventListener('click', e => {
     const a = e.target.closest('a[href^="#"]'); if (!a) return;
     e.preventDefault();                                   // no instant hash jumps
     const id = a.getAttribute('href').slice(1); if (id) LTBL.scrollTo(id);
   });
-  if (LTBL.restoreY > 10) { ScrollTrigger.refresh(); scrollTo(0, LTBL.restoreY); }   // reload: the one non-animated scroll
+  if (LTBL.restoreY > 10) { ScrollTrigger.refresh(); scrollTo(0, LTBL.restoreY); }   // Back/Forward: the one non-animated scroll
   if (document.readyState === 'complete') ScrollTrigger.refresh();
   else addEventListener('load', () => ScrollTrigger.refresh());
   syncNav(ScrollTrigger.getById('world').progress);
