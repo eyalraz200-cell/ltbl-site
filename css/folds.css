@@ -23,3 +23,11 @@
 
 /* folds 8–9: shabbat (12649:850) and footer (12649:939) */
 .footer-learn a{color:inherit;text-decoration:none;cursor:pointer}
+
+/* TICKETS hover — Figma component ידיים וכרטיס, variant הובר (12572:19): cream ticket, both hands reach in and tilt */
+.ticket{position:absolute}
+.ticket .ticket__hover{position:absolute;left:0;top:0;opacity:0;transition:opacity .25s}
+.ticket--hero:hover .ticket__hover,.ticket--hero:focus-visible .ticket__hover{opacity:1}
+.hand img{transition:transform .35s cubic-bezier(.3,.7,.3,1)}
+.world:has(.ticket--hero:hover) .hand--right img,.world:has(.ticket--hero:focus-visible) .hand--right img{transform:translate(-36.4px,36.2px) rotate(-15.66deg)}
+.world:has(.ticket--hero:hover) .hand--left img,.world:has(.ticket--hero:focus-visible) .hand--left img{transform:translate(63.1px,7.6px) scaleX(-1) rotate(18.39deg)}

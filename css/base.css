@@ -67,3 +67,6 @@ html.is-intro{overflow:hidden}
 @font-face{font-family:"IM Fell DW Pica";src:url(../assets/fonts/IMFellDWPica-Regular.woff2) format("woff2");font-display:swap}
 /* until the intro's pictures are decoded the world is just the ground colour (no half-loaded frame) */
 .world.is-loading .backdrop,.world.is-loading .stage{visibility:hidden}
+/* non-current day labels glow on hover */
+.daynav__item{transition:opacity .3s,text-shadow .25s}
+.daynav__item:not(.is-current):hover,.daynav__item:not(.is-current):focus-visible{text-shadow:0 0 8px #fff,0 0 2px #fff;opacity:1 !important}

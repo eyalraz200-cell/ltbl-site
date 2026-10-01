@@ -100,7 +100,7 @@ S.append(el('div', 'logo', K((0, [785, 87]), (1, [785, -1873])), 158, None, '<im
 S.append(el('h1', 'h192 title-1', K((0, [334, 228]), (1, [334, -1699])), 1060, None, 'let there be'))
 S.append(el('h1', 'h192 title-2', K((0, [334, 383]), (1, [348, -1402])), 1060, None, 'light'))
 S.append(el('p', 'b36 sub', K((0, [334, 592]), (1, [334, -1127])), 1060, None, 'And god said, let there be an outrageous seven day Freak-Out<br>And god saw that it was good'))
-S.append(el('a', 'ticket', K((0, [705, 866]), (1, [705, 2434])), 316, 99, '<img src="assets/img/shared/ticket.webp" alt="Tickets" style="position:static;width:100%;height:100%">', attrs=' href="#"'))
+S.append(el('a', 'ticket ticket--hero', K((0, [705, 866]), (1, [705, 2434])), 316, 99, '<img src="assets/img/shared/ticket.webp" alt="Tickets" style="position:static;width:100%;height:100%"><img class="ticket__hover" src="assets/img/shared/ticket-hover.webp" alt="" style="width:100%;height:100%">', attrs=' href="#"'))
 S.append(el('div', 'hand hand--right', K((0, [1052.6, 751]), (1, [3347, 771])), 271.569, 213.37, '<img src="assets/img/shared/hand.webp" alt="">'))
 S.append(el('div', 'hand hand--left', K((0, [398, 822]), (1, [-1894, 793])), 274.582, 170.848, '<img src="assets/img/shared/hand.webp" alt="">'))
 # about (frame 1)
