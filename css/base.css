@@ -39,6 +39,9 @@ img{display:block;max-width:none}
 .stage{overflow:hidden}
 .backdrop > *,.stage > *,.fish > *,.intro-clouds > *{position:absolute}
 .backdrop .darkener{background:#000}
+/* discrete paper pieces (moon, sun, birds, big hands) live on the contained stage so they never crop with the bleed;
+   they sat under the .4 darkener in Figma, so they carry the same dimming themselves */
+.stage .scenery{filter:brightness(.6)}
 html.is-intro{overflow:hidden}
 /* day nav: a 1728-wide strip scaled with the stage; labels 48px heading, padding 0 199 (node 12661:1380) */
 .daynav{position:fixed;left:50%;top:var(--stage-top,0px);z-index:10;width:calc(1728px * var(--stage-scale,1));height:calc(39px * var(--stage-scale,1));transform:translateX(-50%);pointer-events:none}
