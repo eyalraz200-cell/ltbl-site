@@ -24,3 +24,11 @@ img{display:block;max-width:none}
 @media (max-width:1023px){
   .desktop-only-plate{display:grid;place-items:center;position:fixed;inset:0;z-index:99;background:var(--ground);padding:32px;font:400 24px/1.4 var(--font-body);text-align:center}
 }
+.fold{position:relative;height:100vh;height:100svh;overflow:hidden;background:var(--ground)}
+.stage{
+  position:absolute;left:50%;top:50%;
+  width:calc(var(--stage-w) * 1px);height:calc(var(--stage-h) * 1px);
+  transform:translate(-50%,-50%) scale(var(--stage-scale,1));
+  transform-origin:center center;
+}
+.stage > *{position:absolute}
