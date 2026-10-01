@@ -1,0 +1,35 @@
+// World engine checks: one pin, keyframes reversible after a fast wheel, nav tracks the frame, animated scrollTo and anchors, page ends on the footer.
+const pw = require(process.env.PLAYWRIGHT || '/Users/eyalraz/.npm/_npx/705bc6b22212b352/node_modules/playwright');
+let fails = 0; const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); if (!c) fails++; };
+(async () => {
+  const b = await pw.chromium.launch(); const p = await b.newPage({ viewport: { width: 1728, height: 1117 } });
+  const errs = []; p.on('pageerror', e => errs.push(e.message));
+  await p.goto('http://localhost:8010/?nointro', { waitUntil: 'load' });
+  await p.waitForFunction(() => window.ScrollTrigger && ScrollTrigger.getById('world'), null, { timeout: 8000 });
+  const st = await p.evaluate(() => { const s = ScrollTrigger.getById('world'); return { start: s.start, end: s.end, n: ScrollTrigger.getAll().length, pin: !!s.pin }; });
+  ok(st.n === 1 && st.pin && Math.abs(st.end - st.start - 8 * 1117) < 2, 'one pinned trigger spanning 8 viewports ' + JSON.stringify(st));
+  const snap = () => p.evaluate(() => [...document.querySelectorAll('#world [data-k]')].slice(0, 40).map(e => getComputedStyle(e).transform).join('|'));
+  const rest0 = await snap();
+  for (let i = 0; i < 40; i++) await p.mouse.wheel(0, 1500); await p.waitForTimeout(400);
+  const bottomNav = await p.evaluate(() => document.querySelector('.daynav__item.is-current').textContent);
+  const footer = await p.evaluate(() => { const r = document.querySelector('.footer-title').getBoundingClientRect(); const s = document.querySelector('#world .stage').getBoundingClientRect(); return (r.top - s.top) / (s.width / 1728); });
+  ok(bottomNav === 'contact' && Math.abs(footer - 405) < 2, `bottom: nav=contact, footer title at 405 (${footer.toFixed(1)}, nav ${bottomNav})`);
+  for (let i = 0; i < 60; i++) await p.mouse.wheel(0, -1500); await p.waitForTimeout(1500);
+  ok((await snap()) === rest0 && (await p.evaluate(() => scrollY)) === 0, 'fast wheel down and back: every element back at frame 0');
+  const nav0 = await p.evaluate(() => [...document.querySelectorAll('.daynav__item')].map(b => b.textContent + ':' + getComputedStyle(b).opacity).join(' '));
+  ok(nav0.startsWith('day 1:1 about:0.5 day 2:0'), 'nav at frame 0: ' + nav0);
+  const ys = await p.evaluate(() => new Promise(res => { const ys = []; LTBL.scrollTo('day3'); const iv = setInterval(() => ys.push(scrollY), 100); setTimeout(() => { clearInterval(iv); res(ys); }, 1500); }));
+  const target = st.start + (st.end - st.start) * 3 / 8;
+  ok(new Set(ys).size > 3 && Math.abs(ys[ys.length - 1] - target) < 2, 'scrollTo(day3) animates to ' + target.toFixed(0) + ': ' + ys.join(','));
+  const navNow = await p.evaluate(() => document.querySelector('.daynav__item.is-current').textContent);
+  ok(navNow === 'day 3', 'nav current after scrollTo = ' + navNow);
+  await p.evaluate(() => scrollTo(0, document.documentElement.scrollHeight)); await p.waitForTimeout(800);
+  const ys2 = await p.evaluate(() => new Promise(res => { const ys = []; document.querySelector('.footer-learn a').click(); const iv = setInterval(() => ys.push(scrollY), 100); setTimeout(() => { clearInterval(iv); res(ys); }, 1600); }));
+  const about = st.start + (st.end - st.start) / 8;
+  ok(new Set(ys2).size > 3 && Math.abs(ys2[ys2.length - 1] - about) < 2, 'LEARN MORE animates to about (' + about.toFixed(0) + '): …' + ys2[ys2.length - 1]);
+  await p.setViewportSize({ width: 1920, height: 1080 }); await p.waitForTimeout(600);
+  const st2 = await p.evaluate(() => { const s = ScrollTrigger.getById('world'); return s.end - s.start; });
+  ok(Math.abs(st2 - 8 * 1080) < 2, 'resize: pin length recomputed (' + st2 + ')');
+  ok(errs.length === 0, 'no page errors ' + errs.join(' | '));
+  await b.close(); console.log(fails ? fails + ' FAILED' : 'ALL PASS'); process.exit(fails ? 1 : 0);
+})();

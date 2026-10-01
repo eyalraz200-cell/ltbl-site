@@ -25,24 +25,20 @@ img{display:block;max-width:none}
 @media (max-width:1023px){
   .desktop-only-plate{display:grid;place-items:center;position:fixed;inset:0;z-index:99;background:var(--ground);padding:32px;font:400 24px/1.4 var(--font-body);text-align:center}
 }
-.fold{position:relative;height:100vh;height:100svh;overflow:hidden;background:var(--ground)}
-.stage{
+/* the world: one 100vh section pinned for the whole page. Inside it, two 1728x1117 frames share Figma coordinates:
+   .backdrop (scenery + darkener) scales to COVER the viewport, so paper pieces slide to its very edges with no bars;
+   .stage (content) scales to fit INSIDE it (contain) and clips to the frame. */
+.world{position:relative;height:100vh;height:100svh;overflow:hidden;background:var(--ground)}
+.backdrop,.stage{
   position:absolute;left:50%;top:50%;
   width:calc(var(--stage-w) * 1px);height:calc(var(--stage-h) * 1px);
   transform:translate(-50%,-50%) scale(var(--stage-scale,1));
   transform-origin:center center;
-  /* no clip: the frame edge now sits over scenery, so a traveller mid-flight must not be cut there; the fold clips at the viewport */
 }
-.stage > *{position:absolute}
-/* backdrop: the same 1728x1117 frame scaled to COVER the viewport (--bleed-scale), so scenery fills the window with no bars;
-   its outer edges are cropped by the fold while the content stage above stays contained. Figma coordinates unchanged. */
-.backdrop{
-  position:absolute;left:50%;top:50%;
-  width:calc(var(--stage-w) * 1px);height:calc(var(--stage-h) * 1px);
-  transform:translate(-50%,-50%) scale(var(--bleed-scale,1));
-  transform-origin:center center;
-}
-.backdrop > *{position:absolute}
+.backdrop{transform:translate(-50%,-50%) scale(var(--bleed-scale,1))}
+.stage{overflow:hidden}
+.backdrop > *,.stage > *,.fish > *,.intro-clouds > *{position:absolute}
+.backdrop .darkener{background:#000}
 html.is-intro{overflow:hidden}
 /* day nav: a 1728-wide strip scaled with the stage; labels 48px heading, padding 0 199 (node 12661:1380) */
 .daynav{position:fixed;left:50%;top:var(--stage-top,0px);z-index:10;width:calc(1728px * var(--stage-scale,1));height:calc(39px * var(--stage-scale,1));transform:translateX(-50%);pointer-events:none}

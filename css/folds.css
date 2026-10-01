@@ -1,9 +1,7 @@
 /* per-fold geometry: every value copied verbatim from Figma (1728x1117 stage) */
 
 /* fold 1: hero (node 12649:1019; intro frames 12649:1136..1047) */
-.fold--hero .darkener{inset:0;background:rgba(0,0,0,.4)}
-.fold--hero .cloud,.fold--hero .dark{will-change:transform,opacity}
-.fold--hero .clouds > *,.fold--hero .intro-clouds > *{position:absolute}
+.cloud,.dark{will-change:transform,opacity}
 .logo{display:flex;flex-direction:column;align-items:center;gap:8px}
 .logo img{filter:drop-shadow(var(--shadow-logo))}
 .logo__word{font:400 35px/0.8 var(--font-logo);text-transform:uppercase;text-align:center;white-space:nowrap}
@@ -14,11 +12,8 @@
 .hand--left img{transform:scaleX(-1) rotate(17.53deg)}
 
 /* fold 2: about (node 12649:394) */
-.fold .darkener{inset:0;background:rgba(0,0,0,.4)}
-.fold .clouds > *{position:absolute}
 
 /* day folds (nodes 12649:438, 499, 566, 664, 759) */
-.fold .ground > *,.fold .sea > *,.fold .night > *,.fold .birds > *,.fold .bighands > *,.fold .fish > *{position:absolute}
 .box{display:flex;align-items:center;justify-content:center}
 .box > img{position:static}
 .row{display:flex;align-items:center}
@@ -27,5 +22,4 @@
 .cutout{will-change:transform}
 
 /* folds 8–9: shabbat (12649:850) and footer (12649:939) */
-.fold .darkener--25{background:rgba(0,0,0,.25)}
 .footer-learn a{color:inherit;text-decoration:none;cursor:pointer}

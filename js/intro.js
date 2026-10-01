@@ -1,7 +1,7 @@
 // Once-on-load intro: the five סרטון frames (12649:1136, 1121, 1105, 1073, 1047) then the hero rest state (12649:1019).
 // Every offset below is (Figma position in that frame) − (position in the hero rest frame), in stage px.
 (function(){
-  const hero = document.querySelector('#fold-hero');   // the fold: clouds sit in .backdrop, titles in .stage
+  const hero = document.getElementById('world');     // clouds sit in .backdrop, titles in .stage
   const introClouds = hero.querySelector('.intro-clouds');
   let skip = !LTBL.isDesktop() || LTBL.reducedMotion() || LTBL.restoreY > 10 || location.search.includes('nointro');
 
@@ -18,8 +18,8 @@
   // light clouds: DOM = hero rest; parked = סרטון 4
   const LIGHT4 = { 'c-front-left':[-406,-588], 'c-bl-back':[-875,46], 'c-br-back':[588,-179], 'c-br-front':[892,494], 'c-bl-front':[-494,443], 'c-tiny':[437,-568], 'c-left-back':[-481,-175], 'c-left-far':[-376,-341], 'c-top-big':[63,-398], 'c-small-right':[1086,-535], 'c-tr-front':[684,-423] };
   const key = (el, map) => Object.keys(map).find(k => el.classList.contains(k));
-  const xOf = map => (i, el) => map[key(el, map)][0];
-  const yOf = map => (i, el) => map[key(el, map)][1];
+  const xOf = map => (i, el) => (map[key(el, map)] || [0, 0])[0];   // elements without an entry (the sun) stay put
+  const yOf = map => (i, el) => (map[key(el, map)] || [0, 0])[1];
 
   document.documentElement.classList.add('is-intro');
   const T = { t1: 0.8, t2: 2.2, part: 2.2, open: 4.0, clear: 5.8, land: 7.4 };   // keyframe start times (s)

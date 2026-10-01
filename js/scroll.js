@@ -1,65 +1,59 @@
-// Pin + travel. One pinned ScrollTrigger per fold (id = fold id). While a fold pins, its timeline scrubs:
-//   first half  — every [data-from="x,y"] element travels from that Figma position (its spot in the previous frame) to rest
-//   second half — every [data-to="x,y"] element travels from rest to that position (its spot in the next frame)
-//   plain .cutout elements without data-from drift in gently.
-// Travellers live in .stage or .backdrop (the about-fold clouds). Positions are stage px, read verbatim from the Figma frames; rest = the element's inline left/top.
+// The world: one pinned stage, nine Figma frames as keyframes. Every [data-k] element carries its box in each frame
+// ([x,y] or [x,y,w,h,rotation,opacity], already carried across frames by tools/gen-world.py). Scroll progress runs
+// 0..8; between frame i and i+1 the element tweens from one box to the other (ease none, scrubbed), with a hold at
+// each keyframe so every fold rests. Nothing in the document scrolls — the paper pieces move inside the frame.
 (async function(){
   if (!LTBL.isDesktop()) return;
   await LTBL.introDone;
-  if (!window.gsap || !window.ScrollTrigger || !window.ScrollToPlugin) return;   // CDN down: the folds still scroll as a plain page
+  if (!window.gsap || !window.ScrollTrigger || !window.ScrollToPlugin) return;   // CDN down: the page stays on frame 0
   window.LTBL.engineUp = true;
   gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-  const folds = [...document.querySelectorAll('.fold')];
-  const reduced = LTBL.reducedMotion() || location.search.includes("notravel");   // notravel: rest geometry for tools/parity.js
-  const rest = el => ({ x: parseFloat(el.style.left) || 0, y: parseFloat(el.style.top) || 0 });
-  const pt = s => s.split(',').map(Number);
+  const world = document.getElementById('world');
+  const FRAMES = world.dataset.frames.split(',');
+  const N = FRAMES.length;
+  const HOLD = 0.25;                 // fraction of each scroll segment that rests on the keyframe before/after a move
+  const reduced = LTBL.reducedMotion() || location.search.includes('notravel');
 
-  folds.forEach((fold, i) => {
-    const last = i === folds.length - 1;
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        id: fold.id, trigger: fold, start: 'top top', end: last ? '+=50%' : '+=100%',
-        pin: true, scrub: reduced ? false : 0.6, anticipatePin: 1,
-        onToggle: self => self.isActive && LTBL.navSetCurrent && LTBL.navSetCurrent(i)
-      }
-    });
-    if (reduced) return;
-    fold.querySelectorAll('[data-from]').forEach(el => {
-      const [x, y] = pt(el.dataset.from), r = rest(el);
-      tl.fromTo(el, { x: x - r.x, y: y - r.y }, { x: 0, y: 0, ease: 'none', duration: 0.5 }, 0);
-    });
-    fold.querySelectorAll('[data-to]').forEach(el => {
-      const [x, y] = pt(el.dataset.to), r = rest(el);
-      tl.to(el, { x: x - r.x, y: y - r.y, ease: 'none', duration: 0.5 }, 0.5);
-    });
-    fold.querySelectorAll('.cutout:not([data-from])').forEach((el, k) => {
-      tl.from(el, { y: 80, autoAlpha: 0, duration: 0.3, ease: 'power2.out' }, 0.05 * k);
-    });
-    if (tl.duration() < 1) tl.to({}, { duration: 1 - tl.duration() });   // every fold pins for the full range
+  const els = [...world.querySelectorAll('[data-k]')].map(el => ({ el, k: JSON.parse(el.dataset.k) }));
+  const box = (k, i) => { const v = k[i]; return { x: v[0], y: v[1], w: v[2], h: v[3], r: v[4] || 0, o: v[5] == null ? 1 : v[5] }; };
+  const diff = (a, b) => a.x !== b.x || a.y !== b.y || a.w !== b.w || a.h !== b.h || a.r !== b.r || a.o !== b.o;
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      id: 'world', trigger: world, start: 'top top', end: '+=' + (N - 1) * 100 + '%',
+      pin: true, scrub: reduced ? false : 0.6, anticipatePin: 1,
+      snap: reduced ? { snapTo: 1 / (N - 1), duration: 0 } : false,
+      onUpdate: self => syncNav(self.progress)
+    }
   });
+  els.forEach(({ el, k }) => {
+    const b0 = box(k, 0);
+    const base = { x: b0.x, y: b0.y };                      // inline left/top = frame 0; tweens are deltas from it
+    gsap.set(el, { x: 0, y: 0, rotation: b0.r, opacity: b0.o, ...(b0.w != null ? { width: b0.w, height: b0.h } : {}) });
+    for (let i = 0; i < N - 1; i++) {
+      const a = box(k, i), b = box(k, i + 1);
+      if (!diff(a, b)) continue;
+      const to = { x: b.x - base.x, y: b.y - base.y, rotation: b.r, opacity: b.o, ease: 'none', duration: reduced ? 0.001 : 1 - 2 * HOLD };
+      if (b.w != null) { to.width = b.w; to.height = b.h; }
+      tl.to(el, to, i + HOLD);
+    }
+  });
+  tl.to({}, { duration: 0.001 }, N - 1);                  // pin the timeline length to exactly N-1 segments
 
-  // nav: the current fold is the last one whose pin has started (covers jumps that skip onToggle, e.g. restored scroll)
-  function syncNav(){
-    if (!LTBL.navSetCurrent) return;
-    const y = scrollY; let cur = 0;
-    folds.forEach((f, i) => { const st = ScrollTrigger.getById(f.id); if (st && y >= st.start - 1) cur = i; });
-    LTBL.navSetCurrent(cur);
-  }
-  ScrollTrigger.addEventListener('scrollEnd', syncNav);
-  ScrollTrigger.addEventListener('refresh', syncNav);
-
+  // nav + anchors
+  function syncNav(p){ if (LTBL.navSetCurrent) LTBL.navSetCurrent(Math.round(p * (N - 1))); }
+  window.LTBL.frameIndex = id => FRAMES.indexOf(id);
   window.LTBL.scrollTo = id => {
-    const st = ScrollTrigger.getById(id); if (!st) return;
-    gsap.to(window, { scrollTo: st.start, duration: 1, ease: 'power2.inOut', onComplete: () => ScrollTrigger.refresh() });
+    const st = ScrollTrigger.getById('world'); const i = FRAMES.indexOf(id); if (!st || i < 0) return;
+    gsap.to(window, { scrollTo: st.start + (st.end - st.start) * i / (N - 1), duration: 1, ease: 'power2.inOut', onComplete: () => ScrollTrigger.refresh() });
   };
   document.addEventListener('click', e => {
     const a = e.target.closest('a[href^="#"]'); if (!a) return;
     e.preventDefault();                                   // no instant hash jumps
     const id = a.getAttribute('href').slice(1); if (id) LTBL.scrollTo(id);
   });
-  // reload / back-forward: put the remembered position back now that the pins exist (the browser's own restore,
-  // done by us because the pinned page is taller than the one it measured) — the one non-animated scroll on the page
-  if (LTBL.restoreY > 10) { ScrollTrigger.refresh(); scrollTo(0, LTBL.restoreY); }
+  if (LTBL.restoreY > 10) { ScrollTrigger.refresh(); scrollTo(0, LTBL.restoreY); }   // reload: the one non-animated scroll
   if (document.readyState === 'complete') ScrollTrigger.refresh();
   else addEventListener('load', () => ScrollTrigger.refresh());
+  syncNav(ScrollTrigger.getById('world').progress);
 })();

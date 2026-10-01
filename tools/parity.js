@@ -1,31 +1,38 @@
-// Geometry parity: compares rendered element boxes (at 1728x1117, ?nointro) with Figma values. Usage: node tools/parity.js <fold-id> [tolerance=4]
-// Expected boxes live in tools/parity-expect.json: { "fold-hero": { "selector": [x, y, w, h], ... } } — x/y/w/h in stage px from the Figma design context.
+// Geometry parity: at keyframe k (0..8) every [data-k] element's rendered box must equal its Figma box for that frame.
+// Boxes come from data-k (written by tools/gen-world.py from docs/figma-geometry.md). Usage: node tools/parity.js <k|all> [tolerance=1]
 const pw = require(process.env.PLAYWRIGHT || '/Users/eyalraz/.npm/_npx/705bc6b22212b352/node_modules/playwright');
-const fs = require('fs');
-const [fold, tolArg] = process.argv.slice(2); const tol = +(tolArg || 4);
-const expect = JSON.parse(fs.readFileSync(__dirname + '/parity-expect.json', 'utf8'))[fold];
+const [arg, tolArg] = process.argv.slice(2); const tol = +(tolArg || 1);
 (async () => {
   const b = await pw.chromium.launch(); const p = await b.newPage({ viewport: { width: 1728, height: 1117 } });
-  await p.goto('http://localhost:8010/?nointro&notravel#' + fold, { waitUntil: 'networkidle' });
-  const res = await p.evaluate(([fold, expect]) => {
-    const stage = document.querySelector('#' + fold + ' .stage'); const s = stage.getBoundingClientRect();
-    const out = {};
-    for (const sel of Object.keys(expect)) {
-      const el = document.querySelector('#' + fold).querySelector(sel)   /* scenery sits in .backdrop, measured at 1728x1117 where both scales are 1 */; if (!el) { out[sel] = null; continue; }
-      const r = el.getBoundingClientRect(); out[sel] = [r.left - s.left, r.top - s.top, r.width, r.height].map(v => Math.round(v * 10) / 10);
+  await p.goto('http://localhost:8010/?nointro', { waitUntil: 'load' });
+  await p.waitForFunction(() => window.ScrollTrigger && ScrollTrigger.getById('world'), null, { timeout: 8000 });
+  const frames = arg === 'all' ? [0, 1, 2, 3, 4, 5, 6, 7, 8] : [+arg];
+  let bad = 0, total = 0;
+  for (const k of frames) {
+    await p.evaluate(k => { const s = ScrollTrigger.getById('world'); scrollTo(0, s.start + (s.end - s.start) * k / 8); }, k);
+    await p.waitForTimeout(1200);
+    const res = await p.evaluate(k => {
+      const out = [];
+      for (const layer of ['backdrop', 'stage']) {
+        const root = document.querySelector('#world .' + layer); const sr = root.getBoundingClientRect();
+        const sc = sr.width / 1728;
+        root.querySelectorAll(':scope > [data-k]').forEach(el => {
+          const v = JSON.parse(el.dataset.k)[k]; const r = el.getBoundingClientRect();
+          const got = [(r.left - sr.left) / sc, (r.top - sr.top) / sc, r.width / sc, r.height / sc];
+          out.push({ name: el.className, exp: v, got: got.map(n => Math.round(n * 10) / 10), rot: v[4] || 0 });
+        });
+      }
+      return out;
+    }, k);
+    for (const r of res) {
+      total++;
+      // rotated boxes: compare the centre instead of the corner
+      let d;
+      if (r.rot) { const cx = r.exp[0] + r.exp[2] / 2, cy = r.exp[1] + r.exp[3] / 2; d = [Math.abs(cx - (r.got[0] + r.got[2] / 2)), Math.abs(cy - (r.got[1] + r.got[3] / 2))]; }
+      else { d = [Math.abs(r.exp[0] - r.got[0]), Math.abs(r.exp[1] - r.got[1])]; if (r.exp[2] != null) d.push(Math.abs(r.exp[2] - r.got[2]), Math.abs(r.exp[3] - r.got[3])); }
+      if (d.some(v => v > tol)) { bad++; console.log(`DRIFT f${k} ${r.name.padEnd(26)} figma ${JSON.stringify(r.exp)} got ${JSON.stringify(r.got)}`); }
     }
-    return out;
-  }, [fold, expect]);
-  let drift = 0, missing = 0;
-  for (const sel of Object.keys(expect)) {
-    const e = expect[sel], g = res[sel];
-    if (!g) { console.log('MISSING  ' + sel); missing++; continue; }
-    const d = e.map((v, i) => v == null ? 0 : Math.abs(v - g[i]));
-    const bad = d.some(v => v > tol);
-    if (bad) drift++;
-    console.log((bad ? 'DRIFT    ' : 'match    ') + sel.padEnd(28) + ' figma ' + JSON.stringify(e) + ' got ' + JSON.stringify(g));
+    console.log(`frame ${k}: ${res.length} elements checked`);
   }
-  await b.close();
-  console.log(`${fold}: ${Object.keys(expect).length} elements, ${drift} drift >${tol}px, ${missing} missing`);
-  process.exit(drift + missing ? 1 : 0);
+  await b.close(); console.log(`${total} boxes, ${bad} drift >${tol}px`); process.exit(bad ? 1 : 0);
 })();
