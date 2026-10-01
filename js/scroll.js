@@ -4,6 +4,17 @@
 // each keyframe so every fold rests. Nothing in the document scrolls — the paper pieces move inside the frame.
 (async function(){
   if (!LTBL.isDesktop()) return;
+  // Content pieces parked outside the Figma frame must not show in the side margins of a wide window (the stage no
+  // longer clips, so pieces can slide to the window edge). A piece is visible at keyframe i only if its box touches the
+  // frame there; during a move it is visible if it touches the frame at either end. Hide frame-0 outsiders now, before
+  // the intro.
+  const W = 1728, H = 1117;
+  const stageEls = [...document.querySelectorAll('#world .stage > [data-k]')].map(el => {
+    const k = JSON.parse(el.dataset.k), w = el.offsetWidth, h = el.offsetHeight;
+    const vis = k.map(v => { const bw = v[2] == null ? w : v[2], bh = v[3] == null ? h : v[3]; return v[0] < W && v[0] + bw > 0 && v[1] < H && v[1] + bh > 0; });
+    return { el, vis };
+  });
+  stageEls.forEach(({ el, vis }) => { el.style.visibility = vis[0] ? '' : 'hidden'; });
   await LTBL.introDone;
   if (!window.gsap || !window.ScrollTrigger || !window.ScrollToPlugin) return;   // CDN down: the page stays on frame 0
   window.LTBL.engineUp = true;
@@ -36,6 +47,13 @@
       const to = { x: b.x - base.x, y: b.y - base.y, rotation: b.r, opacity: b.o, ease: 'none', duration: reduced ? 0.001 : 1 - 2 * HOLD };
       if (b.w != null) { to.width = b.w; to.height = b.h; }
       tl.to(el, to, i + HOLD);
+    }
+  });
+  stageEls.forEach(({ el, vis }) => {
+    for (let i = 0; i < N - 1; i++) {
+      tl.set(el, { visibility: vis[i] ? 'inherit' : 'hidden' }, i);
+      tl.set(el, { visibility: vis[i] || vis[i + 1] ? 'inherit' : 'hidden' }, i + HOLD);
+      tl.set(el, { visibility: vis[i + 1] ? 'inherit' : 'hidden' }, i + 1 - HOLD);
     }
   });
   tl.to({}, { duration: 0.001 }, N - 1);                  // pin the timeline length to exactly N-1 segments

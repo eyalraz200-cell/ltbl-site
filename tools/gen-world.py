@@ -86,7 +86,7 @@ for slug, p4, p5 in birds:
     SC.append(img('scenery bird ' + slug, 'shared/' + slug, K((4, list(p4)), (5, list(p5))), p4[2], p4[3]))
 # ---- big hands
 SC.append(img('scenery bh hand-man', 'shared/hand-man', K((5, [-688, 1209]), (6, [-307, 837]), (7, [-52, 519]), (8, [-1, 446])), 865, 669))
-SC.append(img('scenery bh hand-god', 'shared/hand-god', K((5, [1583, -662]), (6, [1185, -285]), (7, [893, -48]), (8, [855, 0])), 873, 698))
+SC.append(img('scenery bh hand-god', 'shared/hand-god', K((4, [1583, -1779]), (5, [1583, -662]), (6, [1185, -285]), (7, [893, -48]), (8, [855, 0])), 873, 698))
 # ---- darkener (opacity .4, footer .25) — opacity is the 6th slot
 B.append(el('div', 'darkener', K((0, [0, 0, 1728, 1117, 0, .4]), (7, [0, 0, 1728, 1117, 0, .4]), (8, [0, 0, 1728, 1117, 0, .25])), 1728, 1117))
 # ---- intro clouds (removed after the intro; positions = סרטון 1)
