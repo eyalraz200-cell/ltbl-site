@@ -33,3 +33,11 @@ img{display:block;max-width:none}
 }
 .stage > *{position:absolute}
 body.is-intro{overflow:hidden}
+/* day nav: a 1728-wide strip scaled with the stage; labels 48px heading, padding 0 199 (node 12661:1380) */
+.daynav{position:fixed;left:50%;top:0;z-index:10;width:calc(1728px * var(--stage-scale,1));height:calc(39px * var(--stage-scale,1));transform:translateX(-50%);pointer-events:none}
+.daynav__list{list-style:none;padding:0;margin:0}
+.daynav__item{position:absolute;top:0;font:400 calc(48px * var(--stage-scale,1))/0.8 var(--font-heading);text-transform:uppercase;color:var(--white);white-space:nowrap;opacity:0;transition:opacity .3s;pointer-events:none;cursor:pointer;background:none;border:0;padding:0}
+.daynav__item.is-prev{left:calc(199px * var(--stage-scale,1))}
+.daynav__item.is-next{right:calc(199px * var(--stage-scale,1))}
+.daynav__item.is-near{opacity:.5;pointer-events:auto}
+.daynav__item.is-current{left:50%;transform:translateX(-50%);opacity:1;text-shadow:var(--aura-body)}
