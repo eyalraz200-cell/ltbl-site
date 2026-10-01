@@ -30,7 +30,7 @@ def day2():
       <p class="hd h36x" style="width:730px">Ocean's Wrath vs. Divine Power!</p>
       <p class="bd b30" style="width:730px;height:274px">Get ready for the ultimate showdown! On 02.01.0001, witness an incredible battle as Poseidon, the God of the Sea, takes on the Almighty in a mythical contest of strength, will, and supremacy.</p>
     </div>'''
-    poseidon = f'<div class="box cutout poseidon"{tr("343,1095","574,2182")} style="left:201px;top:430px;width:728.443px;height:650.596px"><img src="assets/img/shared/poseidon.webp" alt="" style="width:608px;height:487px;transform:scaleY(-1) rotate(-162.06deg);filter:drop-shadow(10px -11px 4px #000)"></div>'
+    poseidon = f'<div class="box cutout poseidon"{tr("343,1095","574,2182")} style="left:201px;top:430px;width:728.443px;height:650.596px"><img src="assets/img/shared/poseidon.webp" alt="" style="width:608px;height:487px;transform:rotate(-162.06deg) scaleY(-1);filter:drop-shadow(10px -11px 4px #000)"></div>'
     zeus = f'<div class="box cutout zeus"{tr("-584,-291","-1371,-1148")} style="left:0;top:103px;width:559.068px;height:660.44px"><img src="assets/img/shared/zeus.webp" alt="" style="width:453.279px;height:582.634px;transform:rotate(11.35deg);filter:drop-shadow(10px -11px 4px #000)"></div>'
     return section('day2','2',[SKY,sea,clouds,'<div class="darkener"></div>',text,poseidon,zeus])
 
