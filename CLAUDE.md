@@ -1,0 +1,29 @@
+# Let There Be Light — festival site
+
+Desktop-only, single-page festival site built from Figma page הגשה 5
+(file `vFkPM0DGEDXyeG1ijR4Rs2`, page node `12360:2`).
+
+## Start here
+- The plan is the spec: `docs/superpowers/plans/2026-10-01-ltbl-site.md`.
+  Execute it task by task with `superpowers:executing-plans`. Check boxes as you go.
+- Run: `python3 server.py` → http://localhost:8010
+- Test: `./tools/check-assets.sh` (missing/empty assets, leftover Figma URLs). Run before every commit.
+
+## Non-negotiables
+- Every fold is a fixed 1728×1117 stage scaled to cover the viewport. Figma coordinates are copied verbatim, never eyeballed.
+- Assets come only from Figma `download_assets`, compressed to WebP, never edited or substituted. One copy of shared pieces in `assets/img/shared/`.
+- No instant scroll jumps. Any programmatic scroll is animated, then `ScrollTrigger.refresh()`.
+- Verify each fold with the `figma-pixel-parity` skill against its node before committing it.
+- Tuning by eye (intro timings, travel distances) goes through a `manual/` harness from `~/.claude/templates/harness-panel.js`, baked as exact px, harness deleted.
+- Vanilla HTML/CSS/JS + GSAP 3.12.5 from cdnjs. No framework, no Tailwind, no build step.
+
+## Stack map
+- `index.html` — all nine `<section class="fold">`s
+- `css/base.css` tokens, fonts, stage; `css/folds.css` per-fold geometry
+- `js/stage.js` scaler · `js/intro.js` once-on-load intro · `js/scroll.js` pin + travel · `js/nav.js` day nav
+- `tools/asset-manifest.md` — Figma node → file mapping
+
+## Open questions (ask Eyal, don't guess)
+- Licensed files for RFC Vintage Apothecary and Tanach. Abyssinica SIL is free to fetch.
+- Intro plays once on load (assumed) vs scroll-scrubbed.
+- Off-canvas cutouts are treated as elements travelling between neighbouring folds.
