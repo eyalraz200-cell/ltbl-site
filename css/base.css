@@ -46,7 +46,7 @@ img{display:block;max-width:none}
 .stage .scenery{filter:brightness(.6)}
 html.is-intro{overflow:hidden}
 /* day nav: a 1728-wide strip scaled with the stage; labels 48px heading, padding 0 199 (node 12661:1380) */
-.daynav{position:fixed;left:50%;top:var(--stage-top,0px);z-index:10;width:calc(1728px * var(--stage-scale,1));height:calc(39px * var(--stage-scale,1));transform:translateX(-50%);pointer-events:none}
+.daynav{position:fixed;left:50%;top:0;z-index:10;width:calc(1728px * var(--stage-scale,1));height:calc(39px * var(--stage-scale,1));transform:translateX(-50%);pointer-events:none}
 .daynav__list{list-style:none;padding:0;margin:0}
 .daynav__item{position:absolute;top:0;font:400 calc(30px * var(--stage-scale,1))/calc(38.4px * var(--stage-scale,1)) var(--font-heading);letter-spacing:.07em;text-transform:uppercase;color:var(--white);white-space:nowrap;opacity:0;transition:opacity .3s;pointer-events:none;cursor:pointer;background:none;border:0;padding:0}
 .daynav__item{left:0;transform:translateX(-50%);pointer-events:auto}   /* js/nav.js slides the strip with scroll progress */

@@ -16,7 +16,6 @@
     GOD.forEach(([x, y]) => { const tx = x + 2, ty = y + 536; need = Math.max(need, (W + mx - tx) / 871, (ty + my) / 536); });
     ADAM.forEach(([x, y]) => { const tx = x + 863, ty = y + 113; need = Math.max(need, (tx + mx) / 863, (H + my - ty) / 556); });
     root.style.setProperty('--bh-scale', need.toFixed(3));
-    root.style.setProperty('--stage-top', ((innerHeight - H * s) / 2).toFixed(2) + 'px');   // where the frame's top edge sits (the nav hangs there)
     return s;
   }
   let scale = compute();

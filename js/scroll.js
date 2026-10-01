@@ -16,7 +16,11 @@
   const W = 1728, H = 1117;
   const stageEls = [...document.querySelectorAll('#world .stage > [data-k]')].map(el => {
     const k = JSON.parse(el.dataset.k), w = el.offsetWidth, h = el.offsetHeight;
-    const vis = k.map(v => { const bw = v[2] == null ? w : v[2], bh = v[3] == null ? h : v[3]; return v[0] < W && v[0] + bw > 0 && v[1] < H && v[1] + bh > 0; });
+    // "in the frame" = at least a fifth of the box is inside it; a piece Figma parks just over an edge (the footer title
+    // pokes 50px into frame 0, hidden by Figma's clip and its own padding) counts as parked, so it moves out with the margin
+    const vis = k.map(v => { const bw = v[2] == null ? w : v[2], bh = v[3] == null ? h : v[3];
+      const ix = Math.max(0, Math.min(W, v[0] + bw) - Math.max(0, v[0])), iy = Math.max(0, Math.min(H, v[1] + bh) - Math.max(0, v[1]));
+      return ix * iy >= 0.2 * bw * bh; });
     return { el, vis, w, h };
   });
   stageEls.forEach(({ el, vis }) => { el.style.visibility = vis[0] ? '' : 'hidden'; });
@@ -59,9 +63,10 @@
         const pad = 4 + (b.r ? 0.3 * Math.max(bw, bh) : 0);
         if (b.x >= W) b.x = W + mx + pad; else if (b.x + bw <= 0) b.x = -mx - bw - pad;
         if (b.y >= H) b.y = H + my + pad; else if (b.y + bh <= 0) b.y = -my - bh - pad;
-      } else {                                                // keep Figma's distance, pushed out by the margin (0 in an exact-fit window)
-        if (b.x >= W) b.x += mx; else if (b.x + bw <= 0) b.x -= mx;
-        if (b.y >= H) b.y += my; else if (b.y + bh <= 0) b.y -= my;
+      } else {                                                // keep Figma's distance, pushed out by the margin (0 in an exact-fit window),
+        const cx = b.x + bw / 2, cy = b.y + bh / 2;           // on the side its centre is past, so a sliver over the edge stays a sliver
+        if (cx >= W) b.x += mx; else if (cx <= 0) b.x -= mx;
+        if (cy >= H) b.y += my; else if (cy <= 0) b.y -= my;
       }
       return b;
     };
