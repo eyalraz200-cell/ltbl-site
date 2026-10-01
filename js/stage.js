@@ -8,10 +8,14 @@
     // backdrop (.backdrop, scenery + darkener) covers instead: no bars, scenery edges crop, content never does
     root.style.setProperty('--bleed-scale', Math.max(innerWidth / W, innerHeight / H).toFixed(4));
     root.style.setProperty('--stage-scale', s.toFixed(4));
-    // big hands: scale about the fingertip just enough that the cut ends of the arms clear the window's side margins.
-    // Shabbat frame (the widest reach): god tip x 895, image right edge 1766; Adam tip x 811, image left edge -52.
-    const m = Math.max(0, (innerWidth / s - W) / 2) + 20;
-    root.style.setProperty('--bh-scale', Math.max(1, (W + m - 895) / 871, (811 + m) / 863).toFixed(3));
+    // big hands: scale about the fingertip just enough that the cut ends of both arms clear every window edge, in every
+    // frame where they rest on screen (day 6, day 7, footer). Image tips: god (2,536) of 873x698, Adam (863,113) of 865x669.
+    const mx = Math.max(0, (innerWidth / s - W) / 2) + 24, my = Math.max(0, (innerHeight / s - H) / 2) + 24;
+    const GOD = [[1185, -285], [893, -48], [855, 0]], ADAM = [[-307, 837], [-52, 519], [-1, 446]];
+    let need = 1;
+    GOD.forEach(([x, y]) => { const tx = x + 2, ty = y + 536; need = Math.max(need, (W + mx - tx) / 871, (ty + my) / 536); });
+    ADAM.forEach(([x, y]) => { const tx = x + 863, ty = y + 113; need = Math.max(need, (tx + mx) / 863, (H + my - ty) / 556); });
+    root.style.setProperty('--bh-scale', need.toFixed(3));
     root.style.setProperty('--stage-top', ((innerHeight - H * s) / 2).toFixed(2) + 'px');   // where the frame's top edge sits (the nav hangs there)
     return s;
   }
