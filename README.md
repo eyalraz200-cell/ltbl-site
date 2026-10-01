@@ -4,7 +4,7 @@ Desktop-only single-page festival site built from the Figma page הגשה 5.
 Run: `python3 server.py` → http://localhost:8010
 Check: `./tools/check-assets.sh` (missing/empty assets, leftover Figma URLs)
 
-**Heading font pending:** RFC Vintage Apothecary (paid, Etsy/RFC) is not yet supplied; Tanach is in place (assets/fonts/Tanach.ttf, licence beside it); `@font-face` rules are in place and the files are listed in `tools/pending-assets.txt`. Drop the woff2 files into `assets/fonts/` and remove them from that list.
+**Heading font pending:** RFC Vintage Apothecary (paid, Etsy/RFC) is not yet supplied — IM Fell DW Pica (OFL) stands in at 75% of the Figma sizes with 0.03em tracking (Eyal's compare/ pick, 2026-10-01); when the RFC file arrives, restore the sizes to 100% and drop the tracking; Tanach is in place (assets/fonts/Tanach.ttf, licence beside it); `@font-face` rules are in place and the files are listed in `tools/pending-assets.txt`. Drop the woff2 files into `assets/fonts/` and remove them from that list.
 
 Transfer (2026-10-01, cache disabled, full scroll, 1728×1117): 3.75 MB over 96 requests (3.7 MB WebP).
 Scroll frame budget (2026-10-01, headless Chromium, 24px/frame scroll top→bottom): p95 9.3 ms, 0 frames over 32 ms. Re-measure: `node tools/measure.js`.

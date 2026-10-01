@@ -11,15 +11,15 @@
   --shadow-hand:-13px -2px 4px rgba(0,0,0,.93);
   --shadow-ticket:-9px -6px 4px rgba(0,0,0,.93);
   --shadow-logo:0 -2px 4px rgba(0,0,0,.93);
-  --font-heading:"RFC Vintage Apothecary",Georgia,serif;
+  --font-heading:"IM Fell DW Pica","RFC Vintage Apothecary",Georgia,serif;   /* Eyal's pick 2026-10-01 (compare/: IM Fell English, DW Pica, Goudy Bookletter) */
   --font-body:"Abyssinica SIL",Georgia,serif;
   --font-logo:"Tanach",Georgia,serif;
 }
 *{box-sizing:border-box;margin:0}
 html,body{background:var(--ground);color:var(--white);overflow-x:hidden}
 img{display:block;max-width:none}
-.h192{font:400 192px/0.8 var(--font-heading);text-transform:uppercase;text-shadow:var(--aura-heading);text-align:center;white-space:nowrap}
-.h48{font:400 48px/0.8 var(--font-heading);text-transform:uppercase;text-align:center}
+.h192{font:400 144px/0.8 var(--font-heading);text-transform:uppercase;text-shadow:var(--aura-heading);text-align:center;white-space:nowrap;letter-spacing:.03em}
+.h48{font:400 36px/0.8 var(--font-heading);letter-spacing:.03em;text-transform:uppercase;text-align:center}
 .b36{font:400 36px/1.6 var(--font-body);text-shadow:var(--aura-body);text-align:center}
 .desktop-only-plate{display:none}
 @media (max-width:1023px){
@@ -38,14 +38,14 @@ html.is-intro{overflow:hidden}
 /* day nav: a 1728-wide strip scaled with the stage; labels 48px heading, padding 0 199 (node 12661:1380) */
 .daynav{position:fixed;left:50%;top:var(--stage-top,0px);z-index:10;width:calc(1728px * var(--stage-scale,1));height:calc(39px * var(--stage-scale,1));transform:translateX(-50%);pointer-events:none}
 .daynav__list{list-style:none;padding:0;margin:0}
-.daynav__item{position:absolute;top:0;font:400 calc(48px * var(--stage-scale,1))/0.8 var(--font-heading);text-transform:uppercase;color:var(--white);white-space:nowrap;opacity:0;transition:opacity .3s;pointer-events:none;cursor:pointer;background:none;border:0;padding:0}
+.daynav__item{position:absolute;top:0;font:400 calc(36px * var(--stage-scale,1))/0.8 var(--font-heading);letter-spacing:.03em;text-transform:uppercase;color:var(--white);white-space:nowrap;opacity:0;transition:opacity .3s;pointer-events:none;cursor:pointer;background:none;border:0;padding:0}
 .daynav__item.is-prev{left:calc(199px * var(--stage-scale,1))}
 .daynav__item.is-next{right:calc(199px * var(--stage-scale,1))}
 .daynav__item.is-near{opacity:.5;pointer-events:auto}
 .daynav__item.is-current{left:50%;transform:translateX(-50%);opacity:1;text-shadow:var(--aura-body)}
 /* heading sizes (RFC Vintage Apothecary, line-height .8, aura heading) and body sizes (Abyssinica SIL, 1.6, aura body) */
-.hd{font-family:var(--font-heading);font-weight:400;line-height:0.8;text-transform:uppercase;text-align:center;text-shadow:var(--aura-heading);color:var(--white);white-space:nowrap}
-.h128{font-size:128px}.h96{font-size:96px}.h72{font-size:72px}.h60{font-size:60px}.h48x{font-size:48px}.h36x{font-size:36px}
+.hd{font-family:var(--font-heading);font-weight:400;line-height:0.8;letter-spacing:.03em;text-transform:uppercase;text-align:center;text-shadow:var(--aura-heading);color:var(--white);white-space:nowrap}
+.h128{font-size:96px}.h96{font-size:72px}.h72{font-size:54px}.h60{font-size:45px}.h48x{font-size:36px}.h36x{font-size:27px}
 .hd.aura-body{text-shadow:var(--aura-body)}
 .bd{font-family:var(--font-body);font-weight:400;line-height:1.6;text-align:center;text-shadow:var(--aura-body);color:var(--white)}
 .b30{font-size:30px}.b24{font-size:24px}
@@ -54,3 +54,5 @@ html.is-intro{overflow:hidden}
 .cap{display:flex;flex-direction:column;align-items:center}
 .cap > *{position:static}
 .cap img{object-fit:contain}
+/* heading face: IM Fell DW Pica (OFL, Google Fonts), standing in for RFC Vintage Apothecary; sizes are 75% of Figma, +0.03em tracking, because it runs wider */
+@font-face{font-family:"IM Fell DW Pica";src:url(../assets/fonts/IMFellDWPica-Regular.woff2) format("woff2");font-display:swap}
