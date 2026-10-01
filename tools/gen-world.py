@@ -25,7 +25,8 @@ def img(cls, src, k, w, h, extra='', attrs=''):
     x, y = k[0][0], k[0][1]
     return f'<img class="{cls}" src="assets/img/{src}.webp" alt="" data-k=\'{json.dumps(k, separators=(",",":"))}\' style="left:{x}px;top:{y}px;width:{w}px;height:{h}px;{extra}"{attrs}>'
 
-B = []   # backdrop (scenery)
+B = []   # backdrop (scenery that bleeds to the window edge)
+SC = []  # discrete scenery pieces on the contained stage, behind content (moon, sun, birds, big hands)
 S = []   # stage (content)
 
 # ---- sky
@@ -33,7 +34,7 @@ B.append(img('sky', 'shared/sky', K((0, [0, 0])), 1728, 1117, attrs=' fetchprior
 # ---- night (behind ground)
 night = [('night-2', 798, 366, (1753, 411), (761, 411)), ('night-4', 930, 745, (1827, 0), (798, 0)), ('night-3', 874, 903, (2023, 0), (854, 0)), ('night-1', 651, 568, (2337, 0), (1077, 0)), ('moon', 146, 177, (2517, -742), (1424, 51))]
 for slug, w, h, p3, p4 in night:
-    B.append(img('n ' + slug, 'shared/' + slug, K((3, list(p3)), (4, list(p4))), w, h))
+    (SC if slug == 'moon' else B).append(img(('scenery n ' if slug == 'moon' else 'n ') + slug, 'shared/' + slug, K((3, list(p3)), (4, list(p4))), w, h))
 # ---- ground: day2 frame has it at group offset (9,791), day3+ in place
 ground = [('mountain-2', 609, 174, 900, 506), ('ground-8', 351, 388, 1377, 496), ('mountain-1', 945, 316, 0, 401), ('ground-5', 461, 396, 539, 555), ('ground-4', 747, 494, 0, 470), ('ground-6', 459, 399, 880, 555), ('ground-3', 777, 356, 721, 557), ('ground-7', 375, 399, 1353, 591), ('ground-1', 435, 312, 565, 576), ('ground-2', 726, 512, 0, 605)]
 d2local = {'mountain-2': (900, 911), 'ground-8': (1377, 496), 'mountain-1': (0, 806), 'ground-5': (539, 555), 'ground-4': (0, 470), 'ground-6': (880, 555), 'ground-3': (721, 388), 'ground-7': (1353, 401), 'ground-1': (565, 423), 'ground-2': (0, 401)}
@@ -78,14 +79,14 @@ for slug, file, w, h, p0, p4, p2 in clouds:
     pairs = [(0, list(p0))]
     if p2: pairs.append((2, list(p2)))
     if p4: pairs.append((4, list(p4)))
-    B.append(img('cloud ' + slug, 'shared/' + file, K(*pairs), w, h, attrs=' fetchpriority="high"'))
+    (SC if slug == 'sun' else B).append(img(('scenery cloud ' if slug == 'sun' else 'cloud ') + slug, 'shared/' + file, K(*pairs), w, h, attrs=' fetchpriority="high"'))
 # ---- birds (smaller and off-left in day4, in place from day5)
 birds = [('bird-1', (-230, 291, 137, 147), (374, 210, 186, 199)), ('bird-5', (-249, 83, 108, 119), (248, 49, 147, 161)), ('bird-4', (-552, 337, 96, 55), (49, 330, 130, 74)), ('bird-3', (-456, 143, 91, 102), (75, 117, 124, 139)), ('bird-2', (-336, 291, 99, 57), (192, 263, 136, 78))]
 for slug, p4, p5 in birds:
-    B.append(img('bird ' + slug, 'shared/' + slug, K((4, list(p4)), (5, list(p5))), p4[2], p4[3]))
+    SC.append(img('scenery bird ' + slug, 'shared/' + slug, K((4, list(p4)), (5, list(p5))), p4[2], p4[3]))
 # ---- big hands
-B.append(img('bh hand-man', 'shared/hand-man', K((5, [-688, 1209]), (6, [-307, 837]), (7, [-52, 519]), (8, [-1, 446])), 865, 669))
-B.append(img('bh hand-god', 'shared/hand-god', K((5, [1583, -662]), (6, [1185, -285]), (7, [893, -48]), (8, [855, 0])), 873, 698))
+SC.append(img('scenery bh hand-man', 'shared/hand-man', K((5, [-688, 1209]), (6, [-307, 837]), (7, [-52, 519]), (8, [-1, 446])), 865, 669))
+SC.append(img('scenery bh hand-god', 'shared/hand-god', K((5, [1583, -662]), (6, [1185, -285]), (7, [893, -48]), (8, [855, 0])), 873, 698))
 # ---- darkener (opacity .4, footer .25) — opacity is the 6th slot
 B.append(el('div', 'darkener', K((0, [0, 0, 1728, 1117, 0, .4]), (7, [0, 0, 1728, 1117, 0, .4]), (8, [0, 0, 1728, 1117, 0, .25])), 1728, 1117))
 # ---- intro clouds (removed after the intro; positions = סרטון 1)
@@ -147,7 +148,7 @@ S.append(el('h2', 'h192 footer-title', K((7, [334, 1067]), (8, [334, 405])), 106
 
 FRAMES = 'hero,about,day2,day3,day4,day5,day6,shabbat,footer'
 DAYS = '1,about,2,3,4,5,6,7,contact'
-OUT = f'<section class="world" id="world" data-frames="{FRAMES}" data-days="{DAYS}">\n  <div class="backdrop">\n    ' + '\n    '.join(B) + '\n  </div>\n  <div class="stage">\n    ' + '\n    '.join(S) + '\n  </div>\n</section>'
+OUT = f'<section class="world" id="world" data-frames="{FRAMES}" data-days="{DAYS}">\n  <div class="backdrop">\n    ' + '\n    '.join(B) + '\n  </div>\n  <div class="stage">\n    ' + '\n    '.join(SC + S) + '\n  </div>\n</section>'
 import re as _re
 CRIT=('shared/sky','shared/cloud-','intro/dark-','shared/logo-god','shared/ticket','shared/hand.')
 def _p(m):
