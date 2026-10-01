@@ -16,7 +16,7 @@ const [arg, tolArg] = process.argv.slice(2); const tol = +(tolArg || 1);
       for (const layer of ['backdrop', 'stage']) {
         const root = document.querySelector('#world .' + layer); const sr = root.getBoundingClientRect();
         const sc = sr.width / 1728;
-        root.querySelectorAll(':scope > [data-k]').forEach(el => {
+        root.querySelectorAll(':scope > [data-k]:not(.bh)').forEach(el => {   // .bh: scaled about the fingertip on purpose (css/folds.css)
           const v = JSON.parse(el.dataset.k)[k]; const r = el.getBoundingClientRect();
           const got = [(r.left - sr.left) / sc, (r.top - sr.top) / sc, r.width / sc, r.height / sc];
           out.push({ name: el.className, exp: v, got: got.map(n => Math.round(n * 10) / 10), rot: v[4] || 0 });

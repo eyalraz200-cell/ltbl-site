@@ -31,3 +31,10 @@
 .hand img{transition:transform .35s cubic-bezier(.3,.7,.3,1)}
 .world:has(.ticket--hero:hover) .hand--right img,.world:has(.ticket--hero:focus-visible) .hand--right img{transform:translate(-36.4px,36.2px) rotate(-15.66deg)}
 .world:has(.ticket--hero:hover) .hand--left img,.world:has(.ticket--hero:focus-visible) .hand--left img{transform:translate(63.1px,7.6px) scaleX(-1) rotate(18.39deg)}
+
+/* big hands (Creation of Adam): the exports end just past the Figma frame, so in a wide window the arm's cut end showed.
+   Scaled about each FINGERTIP, only as much as the window needs, (measured from the image alpha), so the arms run past any window edge while the two
+   fingertips stay exactly where Figma puts them. `scale` composes with the GSAP transform the engine writes. */
+.bh{scale:var(--bh-scale,1)}   /* js/stage.js: just enough to reach the window edge */
+.hand-god{transform-origin:0.2% 76.8%}
+.hand-man{transform-origin:99.8% 16.9%}
