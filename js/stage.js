@@ -6,6 +6,7 @@
     // the --ground colour of .fold shows as bars where the window is a different shape
     const s = Math.min(innerWidth / W, innerHeight / H);
     root.style.setProperty('--stage-scale', s.toFixed(4));
+    root.style.setProperty('--stage-top', ((innerHeight - H * s) / 2).toFixed(2) + 'px');   // where the frame's top edge sits (the nav hangs there)
     return s;
   }
   let scale = compute();

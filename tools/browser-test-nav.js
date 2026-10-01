@@ -22,6 +22,6 @@ let fails = 0; const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); 
   await p.waitForTimeout(400); s = await state();
   ok(s[1].cur && s[0].near, 'after click: ABOUT current, DAY 1 neighbour');
   await p.setViewportSize({ width: 1920, height: 1080 }); await p.waitForTimeout(300); s = await state();
-  ok(Math.abs(parseFloat(s[1].fs) - 48 * 1920 / 1728) < 0.5, 'nav scales with the stage at 1920 (' + s[1].fs + ')');
+  ok(Math.abs(parseFloat(s[1].fs) - 48 * Math.min(1920 / 1728, 1080 / 1117)) < 0.5, 'nav scales with the stage at 1920 (' + s[1].fs + ')');
   await b.close(); console.log(fails ? fails + ' FAILED' : 'ALL PASS'); process.exit(fails ? 1 : 0);
 })();
