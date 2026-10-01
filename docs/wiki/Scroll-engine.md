@@ -9,8 +9,8 @@ its box in frame `i` to its box in frame `i+1`.
 ## `MOTION` — the feel
 
 ```js
-const MOTION = { page: false, ease: 'none', hold: 0.15, scrub: 0.6, snap: false,
-                 len: 300, creep: 0, pace: 'mid', edge: false, floor: 0.5, flip: 0.3 };
+const MOTION = { ease: 'none', hold: 0.15, scrub: 0.6, snap: false,
+                 len: 300, creep: 0, pace: 'mid', edge: false, floor: 0.5 };
 ```
 
 Picked by Eyal in a `compare/` harness on 2026-10-01. What each knob does:
@@ -19,17 +19,19 @@ Picked by Eyal in a `compare/` harness on 2026-10-01. What each knob does:
 |---|---|---|
 | `len` | 300 | Scroll distance per day, in % of window height (3 screens per day) |
 | `hold` | 0.15 | Share of each segment at both ends where nothing moves (the "rest" on a frame) |
-| `ease` | `'none'` | Curve of each piece's move. `'figma'` = Figma's Ease out |
+| `ease` | `'none'` | Curve of each piece's move (any GSAP ease) |
 | `pace` | `'mid'` | `'time'`: every piece takes the whole move (far trips fly faster). `'start'`/`'end'`/`'mid'`: one shared speed set by the segment's longest trip; shorter trips leave together, arrive together, or sit centred |
 | `floor` | 0.5 | With a shared speed, the shortest trip still takes at least this share of the move (stops short hops from snapping) |
 | `scrub` | 0.6 | Seconds the pieces lag behind the scrollbar (`true` = locked to it) |
 | `creep` | 0 | "Never still": share of each trip done as a slow drift through the rests |
 | `snap` | false | Settle on the nearest frame when scrolling stops |
 | `edge` | false | Park off-frame pieces just past the window edge instead of at Figma's distance |
-| `page`, `flip` | false, 0.3 | Figma-prototype paging: one gesture flips one frame in `flip` s (wheel/touch/keys). Off |
 
-`LTBL.rebuildWorld(opts)` kills and rebuilds the timeline with new settings, keeping the scroll position. It runs on
-every resize (debounced 250 ms) because parking depends on the window shape.
+The Figma prototype's own transition (one frame per drag, Smart Animate, ease-out 300 ms) was tried and rejected.
+
+`LTBL.rebuildWorld(opts, keep)` kills and rebuilds the timeline with new settings and lands on progress `keep` (default:
+the current place). It runs on every resize (debounced 250 ms) because parking depends on the window shape; the place
+is read at the first resize event, before ScrollTrigger recomputes its start and end.
 
 ## Parking: pieces outside the frame
 
@@ -38,6 +40,10 @@ Otherwise it is **parked**. In a window of another shape the stage has margins, 
 them, so it is pushed out by the margin on the side its centre is past. In an exact-fit window the margin is 0 and
 Figma's coordinates are untouched. A piece Figma leaves poking a sliver over the edge (god's fingertip on day 5)
 pokes the same sliver over the *window* edge.
+
+Links on parked pieces (the hero ticket below the frame, the footer ticket above it) are `inert` until their piece is
+in the frame at the nearest keyframe, and `#world` is `overflow: clip`. Otherwise Tab would focus a parked link and the
+browser would scroll the world itself to reveal it, tearing the scene apart.
 
 ## Day nav (`js/nav.js`)
 
