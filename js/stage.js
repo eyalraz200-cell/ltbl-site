@@ -2,8 +2,9 @@
   const W = 1728, H = 1117;
   const root = document.documentElement;
   function compute(){
-    // cover: scale so the stage fills both axes; overflow is clipped by .fold
-    const s = Math.max(innerWidth / W, innerHeight / H);
+    // contain (Eyal's pick, 2026-10-01, over cover / fit-height): the whole 1728x1117 frame is always visible;
+    // the --ground colour of .fold shows as bars where the window is a different shape
+    const s = Math.min(innerWidth / W, innerHeight / H);
     root.style.setProperty('--stage-scale', s.toFixed(4));
     return s;
   }

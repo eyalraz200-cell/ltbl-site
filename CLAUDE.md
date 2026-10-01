@@ -10,7 +10,7 @@ Desktop-only, single-page festival site built from Figma page הגשה 5
 - Test: `./tools/check-assets.sh` (missing/empty assets, leftover Figma URLs). Run before every commit.
 
 ## Non-negotiables
-- Every fold is a fixed 1728×1117 stage scaled to cover the viewport. Figma coordinates are copied verbatim, never eyeballed.
+- Every fold is a fixed 1728×1117 stage scaled to fit inside the viewport (contain; ground-colour bars on the other axis). Figma coordinates are copied verbatim, never eyeballed.
 - Assets come only from Figma `download_assets`, compressed to WebP, never edited or substituted. One copy of shared pieces in `assets/img/shared/`.
 - No instant scroll jumps. Any programmatic scroll is animated, then `ScrollTrigger.refresh()`.
 - Verify each fold with the `figma-pixel-parity` skill against its node before committing it.

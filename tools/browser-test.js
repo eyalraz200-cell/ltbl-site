@@ -15,11 +15,11 @@ const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); if (!c) fails++
       const st = document.querySelector('.stage'); const rc = st && st.getBoundingClientRect();
       return { s, api: !!(window.LTBL && window.LTBL.stageScale && window.LTBL.isDesktop()), rect: rc && { l: rc.left, t: rc.top, w: rc.width, h: rc.height } };
     });
-    const exp = Math.max(w / 1728, h / 1117);
+    const exp = Math.min(w / 1728, h / 1117);
     ok(Math.abs(r.s - exp) < 0.001, `${w}x${h} --stage-scale=${r.s} (expect ${exp.toFixed(4)})`);
     ok(r.api, `${w}x${h} LTBL api present and isDesktop`);
     if (r.rect) {
-      ok(r.rect.l <= 0.5 && r.rect.t <= 0.5 && r.rect.l + r.rect.w >= w - 0.5 && r.rect.t + r.rect.h >= h - 0.5, `${w}x${h} stage covers viewport (${JSON.stringify(r.rect)})`);
+      ok(r.rect.l >= -0.5 && r.rect.t >= -0.5 && r.rect.l + r.rect.w <= w + 0.5 && r.rect.t + r.rect.h <= h + 0.5 && (Math.abs(r.rect.w - w) < 1 || Math.abs(r.rect.h - h) < 1), `${w}x${h} stage contained in viewport, one axis full (${JSON.stringify(r.rect)})`);
       ok(Math.abs(r.rect.l + r.rect.w / 2 - w / 2) < 1 && Math.abs(r.rect.t + r.rect.h / 2 - h / 2) < 1, `${w}x${h} stage centred`);
     } else ok(false, `${w}x${h} a .stage exists`);
     ok(errs.length === 0, `${w}x${h} no page errors ${errs.join(' | ')}`);
