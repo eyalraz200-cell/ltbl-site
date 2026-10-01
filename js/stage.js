@@ -26,7 +26,7 @@
   // the pins exist (Review Focus 2).
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   const nav = performance.getEntriesByType('navigation')[0];
-  const restoring = !!nav && (nav.type === 'reload' || nav.type === 'back_forward');
+  const restoring = !!nav && nav.type === 'back_forward';   // a refresh always restarts at the hero with the intro (Eyal, 2026-10-01); only Back/Forward returns to the frame
   let saved = 0;
   try { saved = restoring ? (+sessionStorage.getItem('ltbl:y') || 0) : 0; } catch (e) {}
   let tick = 0;

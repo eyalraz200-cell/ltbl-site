@@ -1,4 +1,4 @@
-// Intro checks (Review Focus 2): fresh load locks scroll and ends at rest; ?nointro / reduced motion / reload mid-page skip it;
+// Intro checks (Review Focus 2): fresh load locks scroll and ends at rest; ?nointro / reduced motion skip it; a refresh restarts at the hero;
 // GSAP missing degrades to a plain page; widening a narrow window brings the engine up.
 const pw = require(process.env.PLAYWRIGHT || '/Users/eyalraz/.npm/_npx/705bc6b22212b352/node_modules/playwright');
 let fails = 0; const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); if (!c) fails++; };
@@ -27,18 +27,15 @@ const V = { viewport: { width: 1728, height: 1117 } };
   p = await b.newPage(V); await p.emulateMedia({ reducedMotion: 'reduce' });
   await p.goto('http://localhost:8010/', { waitUntil: 'load' }); await p.waitForTimeout(200);
   r = await rest(p); ok(atRest(r), 'reduced motion: intro skipped'); await p.close();
-  // 3. reload mid-page: no intro, land on the same fold
+  // 3. refresh mid-page: back to the hero, intro plays (only Back/Forward restores the frame)
   p = await b.newPage(V); await p.goto('http://localhost:8010/?nointro', { waitUntil: 'load' });
   await p.waitForFunction(() => window.ScrollTrigger && ScrollTrigger.getById('world'), null, { timeout: 8000 });
   const target = await p.evaluate(() => { history.replaceState(null, '', '/'); const s = ScrollTrigger.getById('world'); const y = Math.round(s.start + (s.end - s.start) * 5 / 8); scrollTo(0, y); return y; });
   await p.waitForTimeout(600);
-  await p.reload({ waitUntil: 'load' }); await p.waitForTimeout(1500);
-  r = await rest(p);
-  const cur = await p.evaluate(() => ({ st: window.ScrollTrigger ? ScrollTrigger.getAll().length : 0, nav: (document.querySelector('.daynav__item.is-current') || {}).textContent, d5: 0 }));
-  ok(!r.dark && r.done, 'reload mid-page: intro skipped (no dark clouds, introDone set)');
-  ok(Math.abs(r.y - target) < 2, 'reload mid-page: scroll restored to ' + target + ' (got ' + r.y + ')');
-  ok(cur.st === 1 && cur.nav === 'day 5', 'reload mid-page: pin built from the restored position, day 5 current (' + JSON.stringify(cur) + ')');
-  await p.close();
+  await p.reload({ waitUntil: 'load' }); await p.waitForTimeout(300);
+  const afterReload = await p.evaluate(() => ({ y: scrollY, dark: !!document.querySelector('#world .intro-clouds') }));
+  ok(afterReload.y === 0 && afterReload.dark, 'refresh: back at the hero with the intro playing (' + JSON.stringify(afterReload) + ')');
+  await p.close(); p = null;
   // 4. GSAP CDN down: plain page, no dark clouds, no errors
   p = await b.newPage(V); const errs = []; p.on('pageerror', e => errs.push(e.message));
   await p.route('**/cdnjs.cloudflare.com/**', rt => rt.abort());
