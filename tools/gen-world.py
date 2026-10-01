@@ -143,7 +143,9 @@ S.append(el('p', 'bd b30 day7-para', K((6, [335, 1117]), (7, [335, 796]), (8, [3
 S.append(el('a', 'ticket ticket--footer', K((7, [696, -147]), (8, [696, 267])), 316, 99, '<img src="assets/img/shared/ticket.webp" alt="Tickets" style="position:static;width:100%;height:100%"><img class="ticket__hover" src="assets/img/shared/ticket-hover.webp" alt="" style="width:100%;height:100%">', attrs=' href="#"'))
 S.append(el('div', 'logo logo--footer', K((7, [785, -152]), (8, [785, 73])), 158, None, '<img src="assets/img/shared/logo-god.webp" alt="Jehova Events" style="position:static;width:158px;height:104px;object-fit:contain"><p class="logo__word">jehova events</p>'))
 S.append(el('div', 'col footer-learn', K((7, [199, 1381]), (8, [199, 842])), 385, None, '<p class="hd h60 aura-body" style="width:100%">learn more</p><div class="col" style="width:100%;gap:8px"><p class="hd h36x aura-body" style="width:100%">faq</p><p class="hd h36x aura-body" style="width:100%">about god</p><p class="hd h36x aura-body" style="width:100%">community</p></div>', 'gap:14px;'))
-S.append(el('div', 'col footer-contact', K((7, [1144, 1381]), (8, [1144, 842])), 385, None, '<p class="hd h60 aura-body" style="width:100%">contact</p><p class="hd h36x aura-body" style="width:100%;white-space:normal">just think about it, god will hear you</p>', 'gap:28px;'))
+# creator credit (not in Figma, Eyal 2026-10-01): "(of this site, not the world)" is the title's 2nd line, so the column is
+# widened from Figma's 385 to 720 around the same centre (1336.5) to keep it on one line
+S.append(el('div', 'col footer-contact', K((7, [976.5, 1381]), (8, [976.5, 842])), 720, None, '<p class="hd h60 aura-body" style="width:100%">creator<br>(of this site, not the world)</p><p class="hd h36x aura-body" style="width:100%;white-space:normal"><a href="https://eyalraz.com" target="_blank" rel="noopener">Eyal Raz</a></p>', 'gap:28px;'))
 S.append(el('h2', 'h192 footer-title', K((7, [334, 1067]), (8, [334, 405])), 1060, None, 'let there be<br>light'))
 
 FRAMES = 'hero,about,day2,day3,day4,day5,day6,shabbat,footer'
