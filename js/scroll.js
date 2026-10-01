@@ -8,7 +8,7 @@
   await LTBL.introDone;
   gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
   const folds = [...document.querySelectorAll('.fold')];
-  const reduced = LTBL.reducedMotion();
+  const reduced = LTBL.reducedMotion() || location.search.includes("notravel");   // notravel: rest geometry for tools/parity.js
   const rest = el => ({ x: parseFloat(el.style.left) || 0, y: parseFloat(el.style.top) || 0 });
   const pt = s => s.split(',').map(Number);
 

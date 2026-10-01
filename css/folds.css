@@ -16,3 +16,12 @@
 /* fold 2: about (node 12649:394) */
 .fold .darkener{inset:0;background:rgba(0,0,0,.4)}
 .fold .clouds > *{position:absolute}
+
+/* day folds (nodes 12649:438, 499, 566, 664, 759) */
+.fold .ground > *,.fold .sea > *,.fold .night > *,.fold .birds > *,.fold .bighands > *,.fold .fish > *{position:absolute}
+.box{display:flex;align-items:center;justify-content:center}
+.box > img{position:static}
+.row{display:flex;align-items:center}
+.row > *{position:static}
+.crop{overflow:hidden}
+.cutout{will-change:transform}

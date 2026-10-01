@@ -41,3 +41,14 @@ body.is-intro{overflow:hidden}
 .daynav__item.is-next{right:calc(199px * var(--stage-scale,1))}
 .daynav__item.is-near{opacity:.5;pointer-events:auto}
 .daynav__item.is-current{left:50%;transform:translateX(-50%);opacity:1;text-shadow:var(--aura-body)}
+/* heading sizes (RFC Vintage Apothecary, line-height .8, aura heading) and body sizes (Abyssinica SIL, 1.6, aura body) */
+.hd{font-family:var(--font-heading);font-weight:400;line-height:0.8;text-transform:uppercase;text-align:center;text-shadow:var(--aura-heading);color:var(--white);white-space:nowrap}
+.h128{font-size:128px}.h96{font-size:96px}.h72{font-size:72px}.h60{font-size:60px}.h48x{font-size:48px}.h36x{font-size:36px}
+.hd.aura-body{text-shadow:var(--aura-body)}
+.bd{font-family:var(--font-body);font-weight:400;line-height:1.6;text-align:center;text-shadow:var(--aura-body);color:var(--white)}
+.b30{font-size:30px}.b24{font-size:24px}
+.col{display:flex;flex-direction:column;align-items:center}
+.col > *{position:static}
+.cap{display:flex;flex-direction:column;align-items:center}
+.cap > *{position:static}
+.cap img{object-fit:contain}

@@ -6,7 +6,7 @@ const [fold, tolArg] = process.argv.slice(2); const tol = +(tolArg || 4);
 const expect = JSON.parse(fs.readFileSync(__dirname + '/parity-expect.json', 'utf8'))[fold];
 (async () => {
   const b = await pw.chromium.launch(); const p = await b.newPage({ viewport: { width: 1728, height: 1117 } });
-  await p.goto('http://localhost:8010/?nointro#' + fold, { waitUntil: 'networkidle' });
+  await p.goto('http://localhost:8010/?nointro&notravel#' + fold, { waitUntil: 'networkidle' });
   const res = await p.evaluate(([fold, expect]) => {
     const stage = document.querySelector('#' + fold + ' .stage'); const s = stage.getBoundingClientRect();
     const out = {};
