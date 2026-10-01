@@ -1,0 +1,23 @@
+:root{
+  --white:#F2F2F2;
+  --ground:#1a1d24;
+  --stage-w:1728; --stage-h:1117;
+  --aura-heading:0 0 15px #fff;
+  --aura-body:0 0 3.5px #fff;
+  --shadow-hand:-13px -2px 4px rgba(0,0,0,.93);
+  --shadow-ticket:-9px -6px 4px rgba(0,0,0,.93);
+  --shadow-logo:0 -2px 4px rgba(0,0,0,.93);
+  --font-heading:"RFC Vintage Apothecary",Georgia,serif;
+  --font-body:"Abyssinica SIL",Georgia,serif;
+  --font-logo:"Tanach",Georgia,serif;
+}
+*{box-sizing:border-box;margin:0}
+html,body{background:var(--ground);color:var(--white);overflow-x:hidden}
+img{display:block;max-width:none}
+.h192{font:400 192px/0.8 var(--font-heading);text-transform:uppercase;text-shadow:var(--aura-heading);text-align:center}
+.h48{font:400 48px/0.8 var(--font-heading);text-transform:uppercase;text-align:center}
+.b36{font:400 36px/1.6 var(--font-body);text-shadow:var(--aura-body);text-align:center}
+.desktop-only-plate{display:none}
+@media (max-width:1023px){
+  .desktop-only-plate{display:grid;place-items:center;position:fixed;inset:0;z-index:99;background:var(--ground);padding:32px;font:400 24px/1.4 var(--font-body);text-align:center}
+}
