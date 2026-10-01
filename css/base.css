@@ -32,7 +32,7 @@ img{display:block;max-width:none}
   transform-origin:center center;
 }
 .stage > *{position:absolute}
-body.is-intro{overflow:hidden}
+html.is-intro{overflow:hidden}
 /* day nav: a 1728-wide strip scaled with the stage; labels 48px heading, padding 0 199 (node 12661:1380) */
 .daynav{position:fixed;left:50%;top:0;z-index:10;width:calc(1728px * var(--stage-scale,1));height:calc(39px * var(--stage-scale,1));transform:translateX(-50%);pointer-events:none}
 .daynav__list{list-style:none;padding:0;margin:0}

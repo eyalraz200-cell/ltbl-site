@@ -2,15 +2,15 @@
 // Every offset below is (Figma position in that frame) − (position in the hero rest frame), in stage px.
 (function(){
   const hero = document.querySelector('#fold-hero .stage');
-  const q = gsap.utils.selector(hero);
   const introClouds = hero.querySelector('.intro-clouds');
-  let skip = !LTBL.isDesktop() || LTBL.reducedMotion() || scrollY > 10 || location.search.includes('nointro');
+  let skip = !LTBL.isDesktop() || LTBL.reducedMotion() || LTBL.restoreY > 10 || location.search.includes('nointro');
 
-  if (skip) {
+  if (skip || !window.gsap) {          // no GSAP (CDN down): plain page, hero at rest
     introClouds.remove();
     window.LTBL.introDone = Promise.resolve();
     return;
   }
+  const q = gsap.utils.selector(hero);
 
   // dark intro clouds: DOM = סרטון 1 positions
   const DARK3 = { 'd-8':[1,-83], 'd-10':[226,213], 'd-9':[-217,137], 'd-7':[-137,51], 'd-6':[92,0], 'd-1':[-69,51], 'd-2':[0,0], 'd-3':[42,-86], 'd-4':[192,18], 'd-5':[-137,-94] };
@@ -21,7 +21,7 @@
   const xOf = map => (i, el) => map[key(el, map)][0];
   const yOf = map => (i, el) => map[key(el, map)][1];
 
-  document.body.classList.add('is-intro');
+  document.documentElement.classList.add('is-intro');
   const T = { t1: 0.8, t2: 2.2, part: 2.2, open: 4.0, clear: 5.8, land: 7.4 };   // keyframe start times (s)
   const tl = gsap.timeline({ defaults: { ease: 'power2.inOut' } });
   tl.set(q('.title-1,.title-2,.sub,.logo,.ticket,.hand'), { autoAlpha: 0 })
@@ -47,7 +47,7 @@
 
   window.LTBL.introDone = new Promise(res => tl.eventCallback('onComplete', () => {
     introClouds.remove();
-    document.body.classList.remove('is-intro');
+    document.documentElement.classList.remove('is-intro');
     res();
   }));
 })();

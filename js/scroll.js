@@ -6,6 +6,8 @@
 (async function(){
   if (!LTBL.isDesktop()) return;
   await LTBL.introDone;
+  if (!window.gsap || !window.ScrollTrigger || !window.ScrollToPlugin) return;   // CDN down: the folds still scroll as a plain page
+  window.LTBL.engineUp = true;
   gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
   const folds = [...document.querySelectorAll('.fold')];
   const reduced = LTBL.reducedMotion() || location.search.includes("notravel");   // notravel: rest geometry for tools/parity.js
@@ -56,6 +58,9 @@
     e.preventDefault();                                   // no instant hash jumps
     const id = a.getAttribute('href').slice(1); if (id) LTBL.scrollTo(id);
   });
+  // reload / back-forward: put the remembered position back now that the pins exist (the browser's own restore,
+  // done by us because the pinned page is taller than the one it measured) — the one non-animated scroll on the page
+  if (LTBL.restoreY > 10) { ScrollTrigger.refresh(); scrollTo(0, LTBL.restoreY); }
   if (document.readyState === 'complete') ScrollTrigger.refresh();
   else addEventListener('load', () => ScrollTrigger.refresh());
 })();
