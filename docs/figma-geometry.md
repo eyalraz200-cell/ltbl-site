@@ -1,6 +1,6 @@
 # Figma geometry (1728x1117 stage; calc() resolved: 8.33%=144 16.67%=288 25%=432 33.33%=576 41.67%=720 50%=864 58.33%=1008 66.67%=1152 75%=1296 79.17%=1368 83.33%=1440 91.67%=1584 100%=1728; 50% of H=558.5)
 Every fold frame has a full-frame image fill 41a7e.png (grey noise texture, assets/_raw/hero/frame-fill.png) under everything; then רקע groups, then תוכן groups, then סקרולר nav. Darkener rgba(0,0,0,.4) sits on top of רקע (footer: .25).
-Text/cutout shadows: cutouts shadow 10px -11px 4px black (poseidon/zeus), 2px -11px 4px (satan, gabriel, god-portrait, guys, fox), -9px -11px 4px (jesus), -8px -11px 4px (girls), 4px -10px 4px (lion), -7px -11px 4px (orangutan), -6px -8px 4px (ostrich). adams no shadow.
+Text/cutout shadows: cutouts shadow 10px -11px 4px black (poseidon/zeus), 2px -11px 4px (satan, gabriel, god-portrait, guys, fox), -9px -11px 4px (jesus), -8px -11px 4px (girls), 4px -10px 4px (lion), -7px -11px 4px (orangutan), -6px -8px 4px (ostrich). adams: no shadow in Figma (12649:843); site adds 2px -11px 4px at Eyal's request, 2026-10-01.
 Fonts: heading/192,128,96,72,60,48,36 (RFC, lh .8); body/36,30,24 (Abyssinica, lh 1.6). Captions under cutouts body/24.
 
 ## HERO 12649:1019 (rest = סרטון 5)

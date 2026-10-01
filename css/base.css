@@ -17,6 +17,8 @@
 }
 *{box-sizing:border-box;margin:0}
 html,body{background:var(--ground);color:var(--white);overflow-x:hidden}
+body{-webkit-user-select:none;user-select:none}
+img{-webkit-user-drag:none}
 img{display:block;max-width:none}
 .h192{font:400 120px/153.6px var(--font-heading);text-transform:uppercase;text-shadow:var(--aura-heading);text-align:center;white-space:nowrap;letter-spacing:.07em}
 .h48{font:400 30px/38.4px var(--font-heading);letter-spacing:.07em;text-transform:uppercase;text-align:center}

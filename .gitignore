@@ -3,3 +3,5 @@ __pycache__/
 _debug-*
 assets/_raw/
 .superpowers/
+*.mov
+*.mp4
