@@ -1,6 +1,7 @@
 @font-face{font-family:"Abyssinica SIL";src:url(../assets/fonts/AbyssinicaSIL-Regular.woff2) format("woff2");font-display:swap}
 @font-face{font-family:"RFC Vintage Apothecary";src:url(../assets/fonts/RFCVintageApothecary-Regular.woff2) format("woff2");font-display:swap}
-@font-face{font-family:"Tanach";src:url(../assets/fonts/Tanach-Regular.woff2) format("woff2");font-display:swap}
+/* Tanach (Dieter Steffmann, 1001fonts FFC licence — free for commercial use, no modification: served as the original TTF) */
+@font-face{font-family:"Tanach";src:url(../assets/fonts/Tanach.ttf) format("truetype");font-display:swap}
 :root{
   --white:#F2F2F2;
   --ground:#1a1d24;

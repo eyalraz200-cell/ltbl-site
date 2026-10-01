@@ -1,2 +1,1 @@
 assets/fonts/RFCVintageApothecary-Regular.woff2
-assets/fonts/Tanach-Regular.woff2
