@@ -1,4 +1,4 @@
-# Generates the day-fold markup from the Figma geometry (see figma-geometry.md). Run: python3 gen-folds.py <fold>  → prints the <section>.
+# Generates a fold's markup from the Figma geometry (docs/figma-geometry.md). Run: python3 tools/gen-folds.py <day2..day6|shabbat|footer> → prints the <section> pasted into index.html.
 import sys
 def img(cls, src, x, y, w, h, extra=''):
     return f'<img class="{cls}" src="assets/img/{src}.webp" alt="" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px{extra}">'
