@@ -41,7 +41,7 @@
   tl.to({}, { duration: 0.001 }, N - 1);                  // pin the timeline length to exactly N-1 segments
 
   // nav + anchors
-  function syncNav(p){ if (LTBL.navSetCurrent) LTBL.navSetCurrent(Math.round(p * (N - 1))); }
+  function syncNav(p){ if (LTBL.navSetPos) LTBL.navSetPos(p * (N - 1)); }
   window.LTBL.frameIndex = id => FRAMES.indexOf(id);
   window.LTBL.scrollTo = id => {
     const st = ScrollTrigger.getById('world'); const i = FRAMES.indexOf(id); if (!st || i < 0) return;

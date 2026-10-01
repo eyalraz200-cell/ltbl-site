@@ -36,7 +36,7 @@ img{display:block;max-width:none}
   transform-origin:center center;
 }
 .backdrop{transform:translate(-50%,-50%) scale(var(--bleed-scale,1))}
-.stage{overflow:hidden}
+.stage{}   /* no clip: the backdrop covers the window, so content may run to the window edge (the world clips there) */
 .backdrop > *,.stage > *,.fish > *,.intro-clouds > *{position:absolute}
 .backdrop .darkener{background:#000;opacity:.4}   /* scroll.js drives it per frame (footer .25); this is its value before the engine starts */
 /* discrete paper pieces (moon, sun, birds, big hands) live on the contained stage so they never crop with the bleed;
@@ -47,10 +47,8 @@ html.is-intro{overflow:hidden}
 .daynav{position:fixed;left:50%;top:var(--stage-top,0px);z-index:10;width:calc(1728px * var(--stage-scale,1));height:calc(39px * var(--stage-scale,1));transform:translateX(-50%);pointer-events:none}
 .daynav__list{list-style:none;padding:0;margin:0}
 .daynav__item{position:absolute;top:0;font:400 calc(30px * var(--stage-scale,1))/calc(38.4px * var(--stage-scale,1)) var(--font-heading);letter-spacing:.07em;text-transform:uppercase;color:var(--white);white-space:nowrap;opacity:0;transition:opacity .3s;pointer-events:none;cursor:pointer;background:none;border:0;padding:0}
-.daynav__item.is-prev{left:calc(199px * var(--stage-scale,1))}
-.daynav__item.is-next{right:calc(199px * var(--stage-scale,1))}
-.daynav__item.is-near{opacity:.5;pointer-events:auto}
-.daynav__item.is-current{left:50%;transform:translateX(-50%);opacity:1;text-shadow:var(--aura-body)}
+.daynav__item{left:0;transform:translateX(-50%);pointer-events:auto}   /* js/nav.js slides the strip with scroll progress */
+.daynav__item.is-current{text-shadow:var(--aura-body)}
 /* heading sizes (RFC Vintage Apothecary, line-height .8, aura heading) and body sizes (Abyssinica SIL, 1.6, aura body) */
 .hd{font-family:var(--font-heading);font-weight:400;letter-spacing:.07em;text-transform:uppercase;text-align:center;text-shadow:var(--aura-heading);color:var(--white);white-space:nowrap}
 /* RFC's caps sit on the bottom of its line box; Pica's sit near the top — pad .306 of the line box so baselines land where Figma's do */
