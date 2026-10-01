@@ -21,8 +21,8 @@
 .crop{overflow:hidden}
 .cutout{will-change:transform}
 
-.footer-contact a{color:inherit;text-decoration:none}
-.footer-contact a:hover,.footer-contact a:focus-visible{text-decoration:underline}
+.footer-contact a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.3em}
+.footer-contact a:hover,.footer-contact a:focus-visible{text-decoration-thickness:2px}
 
 /* TICKETS hover — Figma component ידיים וכרטיס, variant הובר (12572:19): cream ticket, both hands reach in and tilt */
 .ticket{position:absolute}
