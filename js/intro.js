@@ -56,7 +56,9 @@
     .to(q('.ticket'), { autoAlpha: 1, y: 0, duration: 1.0, ease: 'power2.out' }, T.clear + 0.8)
     // hero rest: logo drops in, hands fly in
     .to(q('.logo'), { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power2.out' }, T.land)
-    .to(q('.hand'), { autoAlpha: 1, x: 0, y: 0, duration: 1.0, ease: 'power2.out' }, T.land);
+    .to(q('.hand'), { autoAlpha: 1, x: 0, y: 0, duration: 1.0, ease: 'power2.out' }, T.land)
+    // day labels: hidden through the intro, then fade in place as the logo drops (reference video 13.1–14.5 s)
+    .fromTo(document.querySelector('.daynav'), { autoAlpha: 0 }, { autoAlpha: 1, duration: 1.3, ease: 'sine.inOut' }, T.land - 0.2);
 
   return new Promise(res => tl.eventCallback('onComplete', () => {
     introClouds.remove();
